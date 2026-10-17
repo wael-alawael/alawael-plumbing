@@ -1092,15 +1092,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalCta && ann.cta_link) modalCta.href = ann.cta_link;
     if (modalCtaText && ann.cta_text) modalCtaText.textContent = ann.cta_text;
 
-    // Apply Custom Background Color if set
+    // Apply Custom Background Color to top banner if set
     if (ann.bg_color) {
       bar.style.background = ann.bg_color;
-      const modalHeader = document.querySelector('.ad-offer-modal-header');
-      if (modalHeader) modalHeader.style.background = ann.bg_color;
     } else {
       bar.style.removeProperty('background');
-      const modalHeader = document.querySelector('.ad-offer-modal-header');
-      if (modalHeader) modalHeader.style.removeProperty('background');
     }
 
     // Modal open / close handlers
