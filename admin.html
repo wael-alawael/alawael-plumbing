@@ -2599,7 +2599,7 @@
       </button>
       <button type="button" class="tab-btn" data-tab="tab-videos">
         <i class="fa-solid fa-video"></i>
-        <span>فيديوهات قبل وبعد</span>
+        <span>الفيديوهات</span>
       </button>
       <button type="button" class="tab-btn" data-tab="tab-photos">
         <i class="fa-solid fa-images"></i>
@@ -3905,6 +3905,108 @@
     </div>
   </div>
 
+  <!-- Edit Photo Modal -->
+  <div class="edit-modal-overlay" id="editPhotoModal" aria-hidden="true">
+    <div class="edit-modal-card">
+      <div class="edit-modal-header">
+        <h3>
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>تعديل بيانات وصور المشروع</span>
+        </h3>
+        <button type="button" class="btn-close-modal" onclick="closeEditPhotoModal()" title="إغلاق">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="editPhotoForm">
+        <input type="hidden" id="editPhotoId">
+
+        <div class="form-group">
+          <label class="form-label" for="editPhotoTitle">عنوان المشروع أو العمل *</label>
+          <input type="text" id="editPhotoTitle" class="form-control" required placeholder="مثال: تأسيس سباكة فيلا بالشيخ زايد">
+        </div>
+
+        <div class="admin-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <div class="label-with-actions">
+              <label class="form-label" for="editPhotoLocation">المنطقة أو المكان</label>
+              <div class="choice-actions-toolbar">
+                <button type="button" class="btn-choice-action btn-add-choice" title="إضافة منطقة جديدة" onclick="promptAddChoice('location', 'editPhotoLocation')">
+                  <i class="fa-solid fa-plus"></i> إضافة
+                </button>
+                <button type="button" class="btn-choice-action btn-edit-choice" title="تعديل المنطقة المحددة" onclick="promptEditChoice('location', 'editPhotoLocation')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button type="button" class="btn-choice-action btn-del-choice" title="حذف المنطقة المحددة" onclick="promptDeleteChoice('location', 'editPhotoLocation')">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+            <select id="editPhotoLocation" class="form-control">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <div class="label-with-actions">
+              <label class="form-label" for="editPhotoCategory">قسم وتصنيف المعرض</label>
+              <div class="choice-actions-toolbar">
+                <button type="button" class="btn-choice-action btn-add-choice" title="إضافة قسم جديد" onclick="promptAddChoice('category', 'editPhotoCategory')">
+                  <i class="fa-solid fa-plus"></i> إضافة
+                </button>
+                <button type="button" class="btn-choice-action btn-edit-choice" title="تعديل القسم المحدد" onclick="promptEditChoice('category', 'editPhotoCategory')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button type="button" class="btn-choice-action btn-del-choice" title="حذف القسم المحدد" onclick="promptDeleteChoice('category', 'editPhotoCategory')">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+            <select id="editPhotoCategory" class="form-control">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Photos Manager inside Modal -->
+        <div class="form-group" style="background: rgba(15, 23, 42, 0.45); padding: 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.08);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <label class="form-label" style="margin-bottom: 0; color: #38bdf8; font-weight: 800;">
+              <i class="fa-solid fa-images"></i> صور المشروع الحالي
+            </label>
+            <span id="editPhotoCountBadge" style="font-size: 0.76rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 999px; font-weight: 700;"></span>
+          </div>
+
+          <!-- Existing Images Preview Grid -->
+          <div id="editPhotoThumbsGrid" class="multi-photo-grid" style="margin-bottom: 12px; min-height: 50px;">
+            <!-- Dynamically populated thumbnails with delete button -->
+          </div>
+
+          <!-- Add More Photos Button -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" id="btnPickEditPhotoFiles" class="btn-picker-opt" style="flex: 1; padding: 10px 14px; background: rgba(2, 132, 199, 0.15); border: 1.5px dashed #0284c7; color: #fff; font-weight: 700; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+              <i class="fa-solid fa-folder-plus" style="color: #38bdf8;"></i> إضافة صور جديدة من الهاتف أو الجهاز
+            </button>
+            <input type="file" id="editPhotoFileInput" accept="image/*" multiple style="display: none;">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editPhotoDesc">وصف وتفاصيل العمل المنجز</label>
+          <textarea id="editPhotoDesc" class="form-control" rows="3" placeholder="اكتب تفاصيل أو مميزات ما تم تنفيذه في هذا المشروع..."></textarea>
+        </div>
+
+        <div class="edit-modal-footer">
+          <button type="button" class="btn-cancel-modal" onclick="closeEditPhotoModal()">إلغاء</button>
+          <button type="submit" class="btn-save-main" style="width: auto; padding: 10px 24px;">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ التعديلات في المعرض</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Modal: Browse Existing Project Photos Library -->
   <div class="gallery-picker-modal" id="galleryPickerModal">
     <div class="gallery-picker-content">
@@ -3967,7 +4069,7 @@
     <span id="toastMsg">تم الحفظ بنجاح</span>
   </div>
 
-  <script src="js/site-data.js?v=4.1"></script>
+  <script src="js/site-data.js?v=4.2"></script>
   <script>
     // --- PIN AUTHENTICATION ---
     const loginOverlay = document.getElementById('loginOverlay');
@@ -5491,7 +5593,9 @@
         { id: 'photoLocation', type: 'location' },
         { id: 'videoLocation', type: 'location' },
         { id: 'editVideoLocation', type: 'location' },
+        { id: 'editPhotoLocation', type: 'location' },
         { id: 'photoCategory', type: 'category' },
+        { id: 'editPhotoCategory', type: 'category' },
         { id: 'videoTag', type: 'videoTag' },
         { id: 'editVideoTag', type: 'videoTag' }
       ];
@@ -5637,10 +5741,14 @@
         }
       }
 
-      // 5. Check if editVideoModal is open
+      // 5. Check if editVideoModal or editPhotoModal is open
       if (document.getElementById('editVideoModal')?.classList.contains('active')) {
         if (type === 'location') return document.getElementById('editVideoLocation');
         if (type === 'videoTag') return document.getElementById('editVideoTag');
+      }
+      if (document.getElementById('editPhotoModal')?.classList.contains('active')) {
+        if (type === 'location') return document.getElementById('editPhotoLocation');
+        if (type === 'category') return document.getElementById('editPhotoCategory');
       }
 
       // 6. Check active tab
@@ -6279,9 +6387,12 @@
               <h4>${p.title}</h4>
               <p style="font-size: 0.8rem; color: var(--c-muted);">${p.description || ''}</p>
             </div>
-            <div class="item-card-actions" style="margin-top: 10px;">
-              <button type="button" class="btn-delete-item" onclick="deletePhotoHandler('${p.id}')">
-                <i class="fa-solid fa-trash-can"></i> حذف من المعرض
+            <div class="item-card-actions" style="margin-top: 10px; display: flex; gap: 8px; justify-content: flex-end;">
+              <button type="button" class="btn-edit-item" onclick="openEditPhotoModal('${p.id}')" title="تعديل بيانات وصور المشروع">
+                <i class="fa-solid fa-pen-to-square"></i> تعديل
+              </button>
+              <button type="button" class="btn-delete-item" onclick="deletePhotoHandler('${p.id}')" title="حذف من المعرض">
+                <i class="fa-solid fa-trash-can"></i> حذف
               </button>
             </div>
           </div>
@@ -6323,10 +6434,159 @@
     window.deletePhotoHandler = async function(id) {
       if (confirm('هل تريد حذف هذه الصورة من المعرض؟')) {
         await SiteData.deleteCustomPhoto(id);
-        showToast('تم حذف الصورة');
+        showToast('تم حذف الصورة من المعرض');
         renderAdminPhotos();
       }
     };
+
+    // --- EDIT PHOTO MODAL LOGIC ---
+    let editPhotoImages = []; // Array of strings (data URLs or URLs)
+
+    function renderEditPhotoThumbs() {
+      const grid = document.getElementById('editPhotoThumbsGrid');
+      const badge = document.getElementById('editPhotoCountBadge');
+      if (!grid) return;
+
+      if (badge) {
+        badge.textContent = `${editPhotoImages.length} صور`;
+      }
+
+      if (editPhotoImages.length === 0) {
+        grid.innerHTML = '<p style="color: var(--c-muted); font-size: 0.8rem; margin: 10px 0;">لا توجد صور حالياً. يرجى إضافة صورة واحدة على الأقل للمشروع!</p>';
+        return;
+      }
+
+      grid.innerHTML = '';
+      editPhotoImages.forEach((imgUrl, idx) => {
+        const div = document.createElement('div');
+        div.className = 'multi-photo-item';
+        div.innerHTML = `
+          <img src="${imgUrl}" alt="صورة ${idx + 1}">
+          <span class="badge-idx">${idx === 0 ? '⭐ الرئيسية' : 'صورة ' + (idx + 1)}</span>
+          <button type="button" class="btn-del-thumb" onclick="removeEditPhotoImage(${idx})" title="حذف هذه الصورة من المشروع">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    window.removeEditPhotoImage = function(index) {
+      if (editPhotoImages.length <= 1) {
+        alert('يجب أن يحتوي المشروع على صورة واحدة على الأقل!');
+        return;
+      }
+      editPhotoImages.splice(index, 1);
+      renderEditPhotoThumbs();
+    };
+
+    // Device File Picker for Edit Photo Modal
+    const btnPickEditPhotoFiles = document.getElementById('btnPickEditPhotoFiles');
+    const editPhotoFileInput = document.getElementById('editPhotoFileInput');
+    if (btnPickEditPhotoFiles && editPhotoFileInput) {
+      btnPickEditPhotoFiles.addEventListener('click', () => editPhotoFileInput.click());
+      editPhotoFileInput.addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        showToast('جاري تجهيز وتحسين الصور المحددة... ⏳');
+        for (let i = 0; i < files.length; i++) {
+          try {
+            const res = await processImageFile(files[i]);
+            if (res && res.dataUrl) {
+              editPhotoImages.push(res.dataUrl);
+            }
+          } catch(err) {
+            console.warn('Error processing photo for edit modal:', err);
+          }
+        }
+        editPhotoFileInput.value = '';
+        renderEditPhotoThumbs();
+        showToast(`تمت إضافة الصور بنجاح! إجمالي الصور: ${editPhotoImages.length} 📸`);
+      });
+    }
+
+    window.openEditPhotoModal = async function(id) {
+      const photo = await SiteData.getCustomPhotoById(id);
+      if (!photo) {
+        showToast('لم يتم العثور على المشروع المحدد!');
+        return;
+      }
+
+      document.getElementById('editPhotoId').value = photo.id;
+      document.getElementById('editPhotoTitle').value = photo.title || '';
+      refreshChoiceSelect('editPhotoLocation', 'location', photo.location || '');
+      refreshChoiceSelect('editPhotoCategory', 'category', photo.category || '');
+      document.getElementById('editPhotoDesc').value = photo.description || '';
+
+      if (Array.isArray(photo.images) && photo.images.length > 0) {
+        editPhotoImages = [...photo.images];
+      } else if (photo.image_url) {
+        editPhotoImages = [photo.image_url];
+      } else {
+        editPhotoImages = [];
+      }
+
+      renderEditPhotoThumbs();
+
+      const modal = document.getElementById('editPhotoModal');
+      modal.classList.add('active');
+      modal.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeEditPhotoModal = function() {
+      const modal = document.getElementById('editPhotoModal');
+      if (modal) modal.classList.remove('active');
+      document.body.style.overflow = '';
+      editPhotoImages = [];
+    };
+
+    // Close on overlay click
+    document.getElementById('editPhotoModal').addEventListener('click', (e) => {
+      if (e.target.id === 'editPhotoModal') {
+        closeEditPhotoModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('editPhotoModal').classList.contains('active')) {
+        closeEditPhotoModal();
+      }
+    });
+
+    // Submit Edit Photo Form
+    document.getElementById('editPhotoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('editPhotoId').value;
+      const title = document.getElementById('editPhotoTitle').value.trim();
+      const location = document.getElementById('editPhotoLocation').value.trim();
+      const category = document.getElementById('editPhotoCategory').value;
+      const desc = document.getElementById('editPhotoDesc').value.trim();
+
+      if (editPhotoImages.length === 0) {
+        alert('يجب أن يحتوي المشروع على صورة واحدة على الأقل!');
+        return;
+      }
+
+      try {
+        await SiteData.updateCustomPhoto(id, {
+          title,
+          location,
+          category,
+          images: editPhotoImages,
+          image_url: editPhotoImages[0],
+          description: desc,
+        });
+
+        closeEditPhotoModal();
+        showToast('تم حفظ وتحديث بيانات وصور المشروع في المعرض بنجاح! 📸✨');
+        renderAdminPhotos();
+      } catch (err) {
+        console.error(err);
+        showToast('حدث خطأ أثناء حفظ التعديلات: ' + err.message);
+      }
+    });
 
     // --- HELPER: CURRENT PIN DISPLAY ---
     function updateCurrentPinDisplay() {

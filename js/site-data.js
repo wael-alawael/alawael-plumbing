@@ -513,19 +513,88 @@ const SiteData = (function () {
     const client = getSupabaseClient();
     if (client) {
       try {
-        await client.from('site_photos').insert([{
+        const { data: inserted, error: insErr } = await client.from('site_photos').insert([{
           title: newPhoto.title,
           location: newPhoto.location,
           category: newPhoto.category,
           image_url: newPhoto.image_url,
           tag: newPhoto.tag,
           description: newPhoto.description,
-        }]);
+        }]).select();
+
+        if (!insErr && inserted && inserted[0]) {
+          newPhoto.id = inserted[0].id;
+        }
       } catch (err) {
         console.error('Failed to sync photo to Supabase:', err);
       }
     }
     return newPhoto;
+  }
+
+  async function getCustomPhotoById(photoId) {
+    const photos = await getCustomPhotos();
+    return photos.find((p) => String(p.id) === String(photoId)) || null;
+  }
+
+  async function updateCustomPhoto(photoId, photoData) {
+    const currentPhotos = await getCustomPhotos();
+    const index = currentPhotos.findIndex((p) => String(p.id) === String(photoId));
+    if (index === -1) return null;
+
+    const existing = currentPhotos[index];
+    const imagesList = Array.isArray(photoData.images) && photoData.images.length > 0
+      ? photoData.images
+      : (photoData.image_url ? [photoData.image_url] : (existing.images || [existing.image_url]));
+
+    const updatedPhoto = {
+      ...existing,
+      title: photoData.title !== undefined ? photoData.title.trim() : existing.title,
+      location: photoData.location !== undefined ? photoData.location.trim() : existing.location,
+      category: photoData.category !== undefined ? photoData.category : existing.category,
+      image_url: imagesList.length > 0 ? imagesList[0] : (photoData.image_url || existing.image_url),
+      images: imagesList,
+      tag: photoData.tag !== undefined ? photoData.tag : existing.tag,
+      description: photoData.description !== undefined ? photoData.description.trim() : existing.description,
+    };
+
+    currentPhotos[index] = updatedPhoto;
+    localStorage.setItem(STORAGE_KEYS.PHOTOS, JSON.stringify(currentPhotos));
+
+    const client = getSupabaseClient();
+    if (client) {
+      try {
+        const payload = {
+          title: updatedPhoto.title,
+          location: updatedPhoto.location,
+          category: updatedPhoto.category,
+          image_url: updatedPhoto.image_url,
+          tag: updatedPhoto.tag || 'إشراف البشمهندس وائل',
+          description: updatedPhoto.description || '',
+        };
+
+        const numId = parseInt(photoId, 10);
+        let q = client.from('site_photos').update(payload);
+        if (!isNaN(numId)) {
+          q = q.eq('id', numId);
+        } else {
+          q = q.eq('title', existing.title);
+        }
+
+        const { error: sbErr } = await q;
+        if (sbErr) {
+          console.error('Failed to update photo in Supabase:', sbErr);
+        }
+      } catch (err) {
+        console.error('Failed to update photo in Supabase:', err);
+      }
+    }
+
+    try {
+      window.dispatchEvent(new CustomEvent('alawael_photos_changed', { detail: currentPhotos }));
+    } catch(e) {}
+
+    return updatedPhoto;
   }
 
   async function deleteCustomPhoto(photoId) {
@@ -538,9 +607,17 @@ const SiteData = (function () {
     } catch(e) {}
 
     const client = getSupabaseClient();
-    if (client && !String(photoId).startsWith('photo_')) {
+    if (client) {
       try {
-        await client.from('site_photos').delete().eq('id', photoId);
+        const numId = parseInt(photoId, 10);
+        if (!isNaN(numId)) {
+          await client.from('site_photos').delete().eq('id', numId);
+        } else {
+          const match = current.find((p) => String(p.id) === String(photoId));
+          if (match && match.title) {
+            await client.from('site_photos').delete().eq('title', match.title);
+          }
+        }
       } catch (err) {
         console.error('Failed to delete photo from Supabase:', err);
       }
@@ -1191,7 +1268,9 @@ const SiteData = (function () {
     updateVideo,
     deleteVideo,
     getCustomPhotos,
+    getCustomPhotoById,
     addCustomPhoto,
+    updateCustomPhoto,
     deleteCustomPhoto,
     getGalleryCategories,
     saveGalleryCategories,
