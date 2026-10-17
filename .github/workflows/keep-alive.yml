@@ -1,0 +1,20 @@
+name: Supabase Keep-Alive Ping
+
+on:
+  schedule:
+    # Runs every 3 days at 06:00 UTC
+    - cron: '0 6 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    name: Ping Supabase Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send keep-alive HTTP ping
+        run: |
+          curl -s -f \
+            -H "apikey: sb_publishable_goEdMQteSHIzmbtWUnnpRQ_L8Q2uPdA" \
+            -H "Authorization: Bearer sb_publishable_goEdMQteSHIzmbtWUnnpRQ_L8Q2uPdA" \
+            "https://ktegdbmxuykeedegarrs.supabase.co/rest/v1/site_announcements?select=id&limit=1" > /dev/null
+          echo "Supabase successfully pinged! Database will stay active forever."
