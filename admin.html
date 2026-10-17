@@ -2929,10 +2929,16 @@
               <p style="font-size: 0.82rem; color: var(--c-muted);">يدعم رفع الملفات من الهاتف أو روابط فيسبوك ريلز، يوتيوب، وتيك توك</p>
             </div>
           </div>
-          <!-- 15 Video Counter Badge -->
-          <div class="video-counter-badge" id="videoCountBadge" title="الحد الأقصى المسموح به في الموقع هو 15 فيديو للحفاظ على سرعة وسلاسة التصفح">
-            <i class="fa-solid fa-film"></i>
-            <span>الفيديوهات الحالية: <strong id="videoCountNum">0</strong> / 15 (الحد الأقصى)</span>
+          <!-- Video Counter Badges -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <div class="video-counter-badge" id="videoCountBadge" title="إجمالي الفيديوهات المسموح به في الموقع هو 15 فيديو">
+              <i class="fa-solid fa-film"></i>
+              <span>الإجمالي: <strong id="videoCountNum">0</strong> / 15</span>
+            </div>
+            <div class="video-counter-badge" id="videoUploadBadge" style="background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.4); color: #38bdf8;" title="الحد الأقصى للفيديوهات المرفوعة كملفات مباشرة هو 10 فيديوهات">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span>ملفات الجهاز: <strong id="videoUploadCountNum">0</strong> / 10</span>
+            </div>
           </div>
         </div>
 
@@ -4806,6 +4812,30 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       const maxBanner = document.getElementById('videoMaxLimitBanner');
       const btnSubmit = document.getElementById('btnSubmitVideo');
 
+      // Calculate uploaded device video files count
+      const uploadedCount = (videos || []).filter(v => {
+        const u1 = v.video_url || '';
+        const u2 = v.video_url_before || '';
+        const u3 = v.video_url_after || '';
+        return u1.includes('/storage/') || u1.startsWith('indexeddb:') ||
+               u2.includes('/storage/') || u2.startsWith('indexeddb:') ||
+               u3.includes('/storage/') || u3.startsWith('indexeddb:');
+      }).length;
+      const uploadCountEl = document.getElementById('videoUploadCountNum');
+      if (uploadCountEl) uploadCountEl.textContent = uploadedCount;
+      const uploadBadge = document.getElementById('videoUploadBadge');
+      if (uploadBadge) {
+        if (uploadedCount >= 10) {
+          uploadBadge.style.background = 'rgba(239, 68, 68, 0.2)';
+          uploadBadge.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+          uploadBadge.style.color = '#f87171';
+        } else {
+          uploadBadge.style.background = 'rgba(14, 165, 233, 0.15)';
+          uploadBadge.style.borderColor = 'rgba(14, 165, 233, 0.4)';
+          uploadBadge.style.color = '#38bdf8';
+        }
+      }
+
       if (count >= MAX_LIMIT) {
         if (badge) badge.classList.add('limit-reached');
         if (maxBanner) maxBanner.style.display = 'block';
@@ -5071,6 +5101,24 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
     // Direct Video Device File Upload Helper
     async function handleVideoFileUpload(file, hiddenInputId, previewWrapId, previewElId, fileNameId) {
       if (!file) return;
+
+      // Guard: Maximum 10 direct uploaded videos from device
+      try {
+        const existingVideos = await SiteData.getVideos();
+        const uploadedCount = (existingVideos || []).filter(v => {
+          const u1 = v.video_url || '';
+          const u2 = v.video_url_before || '';
+          const u3 = v.video_url_after || '';
+          return u1.includes('/storage/') || u1.startsWith('indexeddb:') ||
+                 u2.includes('/storage/') || u2.startsWith('indexeddb:') ||
+                 u3.includes('/storage/') || u3.startsWith('indexeddb:');
+        }).length;
+
+        if (uploadedCount >= 10) {
+          alert('تنبيه: تم الوصول للحد الأقصى للفيديوهات المرفوعة كملفات مباشرة من الجهاز (10 فيديوهات كحد أقصى) للحفاظ على مساحة التخزين المجانية وسرعة الموقع لسنوات طويلة.\n\n💡 نصيحة: يمكنك حذف فيديو مرفوع قديم، أو استخدام خيار "رابط فيسبوك ريلز / يوتيوب" حيث يمكنك إضافة المزيد بدون استهلاك أي مساحة!');
+          return;
+        }
+      } catch(e) {}
 
       const sizeMb = file.size / (1024 * 1024);
       if (sizeMb > 25) {
@@ -5814,8 +5862,8 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       'assets/pics/1000346031.jpg'
     ];
 
-    // Client-side image compressor: keeps images lightweight for instant saving
-    function processImageFile(file, maxWidth = 1400, quality = 0.85) {
+    // Client-side image compressor: keeps images lightweight (~120KB) for instant loading & infinite lifetime
+    function processImageFile(file, maxWidth = 1200, quality = 0.80) {
       return new Promise((resolve, reject) => {
         if (!file || !file.type.startsWith('image/')) {
           reject(new Error('الملف المختار ليس صورة صالحة'));
