@@ -951,11 +951,27 @@
       background: rgba(5, 19, 36, 0.88);
       backdrop-filter: blur(8px);
       display: none;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       z-index: 1050;
-      padding: 20px;
+      padding: 24px 16px 60px;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .edit-modal-overlay::-webkit-scrollbar {
+      width: 8px;
+    }
+    .edit-modal-overlay::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .edit-modal-overlay::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+    }
+    .edit-modal-overlay::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.7);
     }
 
     .edit-modal-overlay.active {
@@ -971,6 +987,7 @@
       max-width: 620px;
       box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7);
       position: relative;
+      margin: 16px auto 40px;
       animation: modalFadeIn 0.25s ease-out;
     }
 
@@ -986,6 +1003,11 @@
       margin-bottom: 20px;
       padding-bottom: 14px;
       border-bottom: 1px solid var(--c-border);
+      position: sticky;
+      top: -28px;
+      background: var(--c-card-bg);
+      z-index: 10;
+      padding-top: 6px;
     }
 
     .edit-modal-header h3 {
@@ -3844,10 +3866,6 @@
             <i class="fa-solid fa-cloud-arrow-up" style="color: #fbbf24; font-size: 1.15rem;"></i>
             <span>تغيير صورة الغلاف من التنزيلات أو الجهاز 🖼️</span>
           </button>
-          <button type="button" class="btn-picker-opt" id="btnPickGalleryForEditVideo" style="width: 100%; margin-top: 8px; padding: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-weight: 600; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
-            <i class="fa-solid fa-images" style="color: #38bdf8;"></i>
-            <span>أو اختيار صورة من معرض صور الموقع 📁</span>
-          </button>
           <input type="file" id="editVideoPosterFileInput" accept="image/*,.jpg,.jpeg,.png,.webp" style="display: none;">
           <input type="hidden" id="editVideoPoster" value="">
 
@@ -4944,7 +4962,9 @@
         switchVideoSource('editSingle', 'link');
       }
 
-      document.getElementById('editVideoModal').classList.add('active');
+      const editModal = document.getElementById('editVideoModal');
+      editModal.classList.add('active');
+      editModal.scrollTop = 0;
       document.body.style.overflow = 'hidden';
     };
 
