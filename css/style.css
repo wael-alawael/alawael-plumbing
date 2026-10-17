@@ -3843,7 +3843,7 @@ img[src*="wael_portrait"] {
    ========================================================================== */
 @media (max-width: 768px) {
   body {
-    padding-top: 52px; /* Offset for fixed navbar */
+    padding-top: 48px; /* Offset for fixed navbar */
   }
 
   /* Completely hide verbose desktop-only elements on phone */
@@ -3937,13 +3937,13 @@ img[src*="wael_portrait"] {
 
   /* Hero Section: Compact, Streamlined Mobile Header */
   .hero-box {
-    padding: 2px 0 10px !important;
+    padding: 0 0 8px !important;
     overflow: hidden;
   }
 
   .hero-grid-layout {
     grid-template-columns: 1fr;
-    gap: 6px !important;
+    gap: 4px !important;
     width: 100%;
   }
 
@@ -3963,9 +3963,9 @@ img[src*="wael_portrait"] {
     background: #ffffff;
     border: 1.5px solid var(--c-border-light);
     border-radius: var(--radius-md);
-    padding: 8px 12px !important;
-    margin-top: 0 !important;
-    margin-bottom: 4px !important;
+    padding: 6px 10px !important;
+    margin-top: -6px !important;
+    margin-bottom: 2px !important;
     box-shadow: 0 2px 10px rgba(15, 39, 68, 0.05);
     text-align: center;
     box-sizing: border-box;
@@ -4055,7 +4055,7 @@ img[src*="wael_portrait"] {
     display: flex !important;
     justify-content: center;
     width: 100%;
-    margin: 4px 0 14px;
+    margin: 0 0 10px;
     padding: 0;
   }
 
@@ -5585,11 +5585,11 @@ body.has-announcement .main-navbar {
   }
 
   body.has-announcement {
-    padding-top: calc(48px + var(--ad-height, 34px)) !important;
+    padding-top: calc(42px + var(--ad-height, 32px)) !important;
   }
 
   body.has-announcement .main-navbar {
-    top: var(--ad-height, 34px) !important;
+    top: var(--ad-height, 32px) !important;
   }
 }
 
