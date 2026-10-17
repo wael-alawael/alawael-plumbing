@@ -90,14 +90,26 @@ const SiteData = (function () {
     },
   ];
 
+  // Default Supabase project connection for Al-Awael (Live Cloud Database)
+  const DEFAULT_SUPABASE_CONFIG = {
+    url: 'https://ktegdbmxuykeedegarrs.supabase.co',
+    anonKey: 'sb_publishable_goEdMQteSHIzmbtWUnnpRQ_L8Q2uPdA',
+  };
+
   // Helper: Get Supabase client if configured
   function getSupabaseClient() {
     try {
+      let config = DEFAULT_SUPABASE_CONFIG;
       const configStr = localStorage.getItem(STORAGE_KEYS.SUPABASE_CONFIG);
-      if (!configStr) return null;
-      const config = JSON.parse(configStr);
-      if (!config.url || !config.anonKey) return null;
-      if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
+      if (configStr) {
+        try {
+          const parsed = JSON.parse(configStr);
+          if (parsed && parsed.url && parsed.anonKey) {
+            config = parsed;
+          }
+        } catch (e) {}
+      }
+      if (config && config.url && config.anonKey && typeof window.supabase !== 'undefined' && window.supabase.createClient) {
         return window.supabase.createClient(config.url, config.anonKey);
       }
     } catch (e) {
@@ -545,9 +557,13 @@ const SiteData = (function () {
   function getSupabaseConfig() {
     try {
       const configStr = localStorage.getItem(STORAGE_KEYS.SUPABASE_CONFIG);
-      return configStr ? JSON.parse(configStr) : { url: '', anonKey: '' };
+      if (configStr) {
+        const parsed = JSON.parse(configStr);
+        if (parsed && (parsed.url || parsed.anonKey)) return parsed;
+      }
+      return DEFAULT_SUPABASE_CONFIG;
     } catch (e) {
-      return { url: '', anonKey: '' };
+      return DEFAULT_SUPABASE_CONFIG;
     }
   }
 
@@ -578,6 +594,30 @@ const SiteData = (function () {
     } catch (err) {
       return { success: false, message: 'خطأ أثناء الاتصال: ' + err.message };
     }
+  }
+
+  // --- CLOUD STORAGE UPLOAD (Supabase Storage Bucket: 'media') ---
+  async function uploadMediaFile(file, folder = 'uploads') {
+    if (!file) throw new Error('لا يوجد ملف للرفع');
+    const client = getSupabaseClient();
+    if (!client || !client.storage) {
+      throw new Error('Supabase Storage غير متاح');
+    }
+    const ext = file.name ? file.name.split('.').pop() : (file.type && file.type.includes('video') ? 'mp4' : 'jpg');
+    const cleanExt = (ext || 'bin').replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || 'bin';
+    const fileName = `${folder}/${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${cleanExt}`;
+
+    const { data, error } = await client.storage
+      .from('media')
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
+
+    if (error) throw error;
+
+    const { data: pubData } = client.storage.from('media').getPublicUrl(fileName);
+    return pubData ? pubData.publicUrl : '';
   }
 
   // --- INDEXEDDB STORAGE FOR LOCAL MEDIA (VIDEOS & LARGE FILES) ---
@@ -1120,6 +1160,7 @@ const SiteData = (function () {
     saveMediaBlob,
     getMediaBlob,
     getMediaObjectUrl,
+    uploadMediaFile,
     getThemeSettings,
     saveThemeSettings,
     resetThemeSettings,

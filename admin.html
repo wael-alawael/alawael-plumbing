@@ -5071,27 +5071,51 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
     // Direct Video Device File Upload Helper
     async function handleVideoFileUpload(file, hiddenInputId, previewWrapId, previewElId, fileNameId) {
       if (!file) return;
+
+      const sizeMb = file.size / (1024 * 1024);
+      if (sizeMb > 25) {
+        const proceed = confirm(`تنبيه: حجم هذا الفيديو (${sizeMb.toFixed(1)} ميجابايت) كبير نسبياً.\nالمستحسن ألا يتجاوز الفيديو 10-15 ميجابايت لضمان سرعة الفتح على باقات موبايل العملاء.\n\nهل ترغب في المتابعة والرفع على أية حال؟`);
+        if (!proceed) return;
+      }
+
+      const nameEl = document.getElementById(fileNameId);
+      const wrap = document.getElementById(previewWrapId);
+      if (wrap) wrap.style.display = 'block';
+      if (nameEl) nameEl.textContent = '⏳ جاري تجهيز ورفع الفيديو إلى السحابة... ☁️';
+
       try {
-        const idbKey = 'vid_blob_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
-        await SiteData.saveMediaBlob(idbKey, file);
-        const storedRef = 'indexeddb:' + idbKey;
+        let storedRef = '';
+        try {
+          const pubUrl = await SiteData.uploadMediaFile(file, 'videos');
+          if (pubUrl) storedRef = pubUrl;
+        } catch (storageErr) {
+          console.warn('Cloud storage upload note (fallback to local):', storageErr);
+        }
+
+        if (!storedRef) {
+          const idbKey = 'vid_blob_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+          await SiteData.saveMediaBlob(idbKey, file);
+          storedRef = 'indexeddb:' + idbKey;
+        }
+
         const hiddenInp = document.getElementById(hiddenInputId);
         if (hiddenInp) hiddenInp.value = storedRef;
 
         const objectUrl = URL.createObjectURL(file);
-        const wrap = document.getElementById(previewWrapId);
         const videoEl = document.getElementById(previewElId);
-        const nameEl = document.getElementById(fileNameId);
 
         if (videoEl) {
           videoEl.src = objectUrl;
           videoEl.onerror = () => {
-            if (nameEl) nameEl.textContent = '✅ ' + (file.name || 'فيديو جاهز') + ' (محفوظ وجاهز للهواتف)';
+            if (nameEl) nameEl.textContent = '✅ ' + (file.name || 'فيديو جاهز') + ' (محفوظ وجاهز)';
           };
           try { videoEl.load(); } catch(e) {}
         }
-        if (nameEl) nameEl.textContent = '✅ ' + (file.name || 'فيديو جاهز');
-        if (wrap) wrap.style.display = 'block';
+        if (nameEl) {
+          nameEl.textContent = storedRef.startsWith('http')
+            ? '✅ ' + (file.name || 'فيديو جاهز') + ' (تم الرفع إلى السحابة بنجاح ☁️)'
+            : '✅ ' + (file.name || 'فيديو جاهز') + ' (محفوظ محلياً 📱)';
+        }
 
         // Auto-capture video poster thumbnail if none set
         const posterInput = document.getElementById('videoPoster');

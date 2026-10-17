@@ -65,17 +65,45 @@ CREATE TABLE IF NOT EXISTS site_settings (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 5. Hero Media alternating card configuration
+CREATE TABLE IF NOT EXISTS site_hero_media (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  mode TEXT DEFAULT 'both',
+  promo_type TEXT DEFAULT 'image',
+  duration INT DEFAULT 8,
+  portrait_url TEXT DEFAULT 'assets/wael_portrait.jpg',
+  portrait_name TEXT DEFAULT 'البشمهندس وائل',
+  portrait_sub TEXT DEFAULT 'مؤسس ومدير شركة الأوائل للسباكة الحديثة',
+  video_url TEXT DEFAULT '',
+  poster_url TEXT DEFAULT 'assets/wael_hero_banner.jpg',
+  promo_image_url TEXT DEFAULT 'assets/wael_hero_banner.jpg',
+  promo_label TEXT DEFAULT 'معاينة أعمالنا',
+  video_title TEXT DEFAULT 'شاهد أحدث أعمال وتأسيس السباكة على أرض الواقع 🛠️',
+  badge_text TEXT DEFAULT 'معاينة حية ومباشرة 🔥',
+  cta_text TEXT DEFAULT 'احجز نفس التشطيب على واتساب',
+  cta_link TEXT DEFAULT 'https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20شفت%20معاينة%20الواجهة%20ومحتاج%20تفاصيل%20المعاينة',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Insert default hero media row
+INSERT INTO site_hero_media (mode, promo_type, duration, portrait_url, portrait_name, portrait_sub, video_url, poster_url, promo_image_url, promo_label, video_title, badge_text, cta_text, cta_link)
+SELECT 'both', 'image', 8, 'assets/wael_portrait.jpg', 'البشمهندس وائل', 'مؤسس ومدير شركة الأوائل للسباكة الحديثة', '', 'assets/wael_hero_banner.jpg', 'assets/wael_hero_banner.jpg', 'معاينة أعمالنا', 'شاهد أحدث أعمال وتأسيس السباكة على أرض الواقع 🛠️', 'معاينة حية ومباشرة 🔥', 'احجز نفس التشطيب على واتساب', 'https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20شفت%20معاينة%20الواجهة%20ومحتاج%20تفاصيل%20المعاينة'
+WHERE NOT EXISTS (SELECT 1 FROM site_hero_media LIMIT 1);
+
 -- Enable Row Level Security (RLS)
 ALTER TABLE site_announcements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_videos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_photos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE site_hero_media ENABLE ROW LEVEL SECURITY;
 
 -- Allow Public Read Access (Everyone visiting website can view)
 CREATE POLICY "Allow public read access on announcements" ON site_announcements FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on videos" ON site_videos FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on photos" ON site_photos FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on settings" ON site_settings FOR SELECT USING (true);
+CREATE POLICY "Allow public read access on hero media" ON site_hero_media FOR SELECT USING (true);
 
 -- Allow Public / Anon Insert, Update, Delete for Admin Panel (Simple & Frictionless)
 CREATE POLICY "Allow anon insert on announcements" ON site_announcements FOR INSERT WITH CHECK (true);
@@ -91,3 +119,17 @@ CREATE POLICY "Allow anon delete on photos" ON site_photos FOR DELETE USING (tru
 
 CREATE POLICY "Allow anon insert on settings" ON site_settings FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow anon update on settings" ON site_settings FOR UPDATE USING (true);
+
+CREATE POLICY "Allow anon insert on hero media" ON site_hero_media FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow anon update on hero media" ON site_hero_media FOR UPDATE USING (true);
+
+-- 6. Storage Bucket for Media (Photos & Videos up to 20MB)
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES ('media', 'media', true, 20971520, ARRAY['image/*', 'video/*'])
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+-- Storage Policies
+CREATE POLICY "Public Read Media" ON storage.objects FOR SELECT USING (bucket_id = 'media');
+CREATE POLICY "Public Upload Media" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'media');
+CREATE POLICY "Public Update Media" ON storage.objects FOR UPDATE USING (bucket_id = 'media');
+CREATE POLICY "Public Delete Media" ON storage.objects FOR DELETE USING (bucket_id = 'media');
