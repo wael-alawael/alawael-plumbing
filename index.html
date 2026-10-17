@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="color-scheme" content="only light">
+  <meta name="supported-color-schemes" content="only light">
+  <meta name="theme-color" content="#091e36">
+  <title>شركة الأوائل لأعمال السباكة المتطورة | بإشراف البشمهندس وائل - القاهرة والجيزة</title>
+  <meta name="description"
+    content="شركة الأوائل لأعمال وتأسيس السباكة المتطورة والتشطيبات الفندقية بإشراف البشمهندس وائل. كشف تسريب المياه بدون تكسير، تأسيس بولي معتمد واختبار 16 بار. اتصل بنا: 01144867114">
+
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css?v=4.1">
+
+  <!-- Supabase JS Client & Site Data Layer -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/site-data.js?v=4.1"></script>
+</head>
+
+<body>
+
+  <!-- Top Announcement & Advertising Bar (Managed Dynamically by Eng. Wael) -->
+  <aside class="top-announcement-bar" id="topAnnouncementBar" aria-label="شريط العروض والإعلانات">
+    <div class="container announcement-flex">
+      <div class="announcement-content" id="adContentTrigger" role="button" tabindex="0" title="اضغط لقراءة تفاصيل العرض كاملة">
+        <span class="announcement-badge" id="adBadgeDisplay">عرض خاص 🔥</span>
+        <span class="announcement-text" id="adTextDisplay">خصم 15% على تأسيس وتشطيب السباكة وفحص التسريب مجاناً!</span>
+        <span class="announcement-click-link">اضغط هنا 👈</span>
+      </div>
+      <div class="announcement-actions">
+        <a href="https://wa.me/201144867114?text=عايز%20استفيد%20من%20العرض%20المعلن" target="_blank"
+          class="announcement-cta" id="adCtaDisplay">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span class="cta-full-text" id="adCtaTextDisplay">احجز العرض على واتساب</span>
+          <span class="cta-short-text">احجز الآن</span>
+        </a>
+        <button type="button" class="announcement-close-btn" id="adCloseBtn" aria-label="إغلاق الإعلان">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Clean Navbar -->
+  <nav class="main-navbar" id="navbar">
+    <div class="nav-container nav-flex">
+      <a href="#home" class="brand-identity">
+        <img src="assets/logo_alawael.jpg" alt="شعار شركة الأوائل للسباكة" class="brand-logo-img">
+        <div class="brand-titles">
+          <span class="brand-name">شركة الأوائـل للسباكة</span>
+          <span class="brand-sub">بإشراف البشمهندس وائل • تأسيس وتشطيب فندقي</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-item active">الرئيسية</a>
+        <a href="#services" class="nav-item">خدماتنا</a>
+        <a href="#areas" class="nav-item">المناطق</a>
+        <a href="#certifications" class="nav-item">الاعتمادات</a>
+        <a href="#projects" class="nav-item">معرض الأعمال</a>
+        <a href="#videos" class="nav-item">الفيديوهات</a>
+        <a href="#reviews" class="nav-item">التقييمات</a>
+        <a href="#faq" class="nav-item">الأسئلة الشائعة</a>
+        <a href="#contact" class="nav-item">اتصل بنا</a>
+
+        <!-- Mobile Drawer Social Links Strip -->
+        <div class="mobile-drawer-socials">
+          <span class="drawer-socials-label"><i class="fa-solid fa-share-nodes"></i> تواصل وتابعنا على منصاتنا:</span>
+          <div class="drawer-socials-grid">
+            <a href="https://wa.me/201144867114" target="_blank" rel="noopener noreferrer"
+              class="drawer-soc-badge soc-wa" title="واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="https://www.instagram.com/alawael_sanitaryware?rpxt=ZG5mZXNhY3o2Njdi" target="_blank"
+              rel="noopener noreferrer" class="drawer-soc-badge soc-ig" title="إنستغرام">
+              <i class="fa-brands fa-instagram"></i> إنستغرام
+            </a>
+            <a href="https://www.tiktok.com/@alawael_sanitaryware?_r=1&_t=ZS-9AO8quv2KXp" target="_blank"
+              rel="noopener noreferrer" class="drawer-soc-badge soc-tt" title="تيك توك">
+              <i class="fa-brands fa-tiktok"></i> تيك توك
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61581980519649" target="_blank" rel="noopener noreferrer"
+              class="drawer-soc-badge soc-fb" title="فيسبوك">
+              <i class="fa-brands fa-facebook-f"></i> فيسبوك
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/201144867114" target="_blank" rel="noopener noreferrer" class="nav-social-btn nav-wa-btn"
+          title="تواصل عبر واتساب" aria-label="واتساب">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/alawael_sanitaryware?rpxt=ZG5mZXNhY3o2Njdi" target="_blank"
+          rel="noopener noreferrer" class="nav-social-btn nav-ig-btn" title="حسابنا على إنستغرام" aria-label="إنستغرام">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@alawael_sanitaryware?_r=1&_t=ZS-9AO8quv2KXp" target="_blank"
+          rel="noopener noreferrer" class="nav-social-btn nav-tt-btn" title="حسابنا على تيك توك" aria-label="تيك توك">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61581980519649" target="_blank" rel="noopener noreferrer"
+          class="nav-social-btn nav-fb-btn" title="صفحتنا على فيسبوك" aria-label="فيسبوك">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="فتح القائمة">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section: Human, Clear, Trustworthy -->
+  <section class="hero-box" id="home">
+    <div class="container hero-grid-layout">
+
+      <!-- Text & Primary CTAs -->
+      <div class="hero-text-side">
+        <!-- Compact Mobile Header Row (Face clearly visible + Verified Badge) -->
+        <div class="mobile-hero-header-row">
+          <div class="mobile-avatar-wrap">
+            <img src="assets/wael_portrait.jpg" alt="البشمهندس وائل مؤسس ومدير شركة الأوائل للسباكة"
+              class="mobile-wael-avatar" id="mobileWaelAvatar">
+            <span class="verified-dot" title="إشراف هندسي وتنفيذي"><i class="fa-solid fa-check"></i></span>
+          </div>
+          <div class="mobile-header-text">
+            <span class="mobile-intro-badge"><i class="fa-solid fa-award text-gold"></i> خبرة أكثر من 15 سنة</span>
+            <h1 class="mobile-title">تشطيبات فندقية وتأسيس سباكة معتمد</h1>
+            <p class="mobile-tagline">بإشراف البشمهندس وائل • ضمان واختبار ضغط معتمد</p>
+          </div>
+        </div>
+
+        <div class="trust-badge desktop-only">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>شغل هندسي على أصوله بأيدٍ أمينة • خبرة أكثر من 15 سنة</span>
+        </div>
+
+        <h1 class="hero-headline desktop-only">
+          شركة الأوائل لأعمال السباكة المتطورة..<br>
+          <span class="accent-highlight">تشطيبات فندقية وتأسيس بأعلى المعايير</span>
+        </h1>
+
+        <p class="hero-subtext desktop-only">
+          معكم فريق <strong>شركة الأوائل</strong> بإشراف <strong>البشمهندس وائل</strong>. بنقدملكم حلول هندسية متكاملة
+          لأعمال وتأسيس السباكة: تأسيس شقق وفيلات بمواسير بولي معتمدة واختبار ضغط 16 بار، كشف تسريب المياه بأحدث الأجهزة
+          بدون تكسير عشوائي، وتشطيب الأدوات الصحية الفاخرة وخلاطات الدفن بدقة متناهية.
+        </p>
+
+        <!-- The 2 Big Obvious Conversion Buttons (Desktop Only - Mobile has fixed bottom bar) -->
+        <div class="hero-cta-buttons desktop-only">
+          <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20محتاج%20معاينة%20من%20شركة%20الأوائل"
+            target="_blank" class="btn btn-wa-giant">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>كلمنا على واتساب</strong>
+              <span class="desktop-only">رد سريع وتحديد ميعاد مباشر</span>
+            </div>
+          </a>
+
+          <a href="tel:01144867114" class="btn btn-call-giant">
+            <i class="fa-solid fa-phone-volume"></i>
+            <div>
+              <strong>اتصل الآن: <span dir="ltr">01144867114</span></strong>
+              <span class="desktop-only">متاحين 24 ساعة لحالات الطوارئ</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3 Simple Pillars (Desktop Only) -->
+        <div class="hero-trust-row desktop-only">
+          <div class="trust-pill">
+            <i class="fa-solid fa-star text-gold"></i>
+            <span>آراء وتقييمات العملاء (5/5)</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-graduation-cap text-blue"></i>
+            <span>دورة تدريبية من Ideal Standard</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-shield-halved text-green"></i>
+            <span>ضمان واختبار ضغط معتمد</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Founder & Promo Media Card (Responsive Dynamic Alternation) -->
+      <div class="hero-portrait-col" id="heroMediaCol">
+        <div class="portrait-card hero-media-card" id="heroMediaCard" data-mode="both"
+          aria-label="وسائط الواجهة الرئيسية">
+
+
+          <!-- Instagram Story Style Progress Timer Bars (Countdown Line - Minimalist Clean) -->
+          <div class="hero-story-progress-strip" id="heroStoryProgressStrip" aria-label="شريط وقت العرض">
+            <button type="button" class="story-progress-segment active" id="storySegPortrait" title="صورة البشمهندس وائل" aria-label="صورة البشمهندس وائل">
+              <span class="story-progress-bar"><span class="story-progress-fill" id="storyFillPortrait"></span></span>
+            </button>
+            <button type="button" class="story-progress-segment" id="storySegVideo" title="معاينة الأعمال بالفيديو" aria-label="معاينة الأعمال بالفيديو">
+              <span class="story-progress-bar"><span class="story-progress-fill" id="storyFillVideo"></span></span>
+            </button>
+          </div>
+
+          <!-- Slide 1: Engineer Wael Portrait (Words Under the Picture) -->
+          <div class="hero-media-slide slide-portrait active" id="heroSlidePortrait">
+            <div class="portrait-img-box">
+              <img src="assets/wael_portrait.jpg" alt="البشمهندس وائل مؤسس ومدير شركة الأوائل للسباكة"
+                class="portrait-img" id="heroPortraitImg">
+            </div>
+            <div class="portrait-tag portrait-tag-below" id="portraitBottomInfo">
+              <div class="portrait-name" id="heroPortraitName">البشمهندس وائل</div>
+              <div class="portrait-sub" id="heroPortraitSub">مؤسس ومدير شركة الأوائل للسباكة الحديثة</div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Promotional Video / Image & Live Work Preview -->
+          <div class="hero-media-slide slide-video" id="heroSlideVideo">
+            <div class="hero-promo-video-wrap" id="heroPromoVideoWrap">
+              <img src="assets/wael_hero_banner.jpg" alt="معاينة أعمال شركة الأوائل" class="hero-promo-img">
+            </div>
+            <button type="button" class="hero-video-sound-btn" id="heroVideoSoundBtn" title="تشغيل / كتم الصوت"
+              aria-label="الصوت">
+              <i class="fa-solid fa-volume-xmark"></i>
+            </button>
+            <div class="hero-promo-bottom-overlay">
+              <div class="hero-promo-title" id="heroPromoTitle">شاهد أحدث أعمال وتشطيبات السباكة الفندقية 🎥</div>
+              <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20شفت%20فيديو%20الواجهة%20ومحتاج%20تفاصيل%20المعاينة"
+                target="_blank" class="hero-promo-cta-btn" id="heroPromoCtaBtn">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span id="heroPromoCtaText">احجز نفس التشطيب على واتساب</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile Quick Hub Screen (شاشة الوصول السريع للأقسام) -->
+    <div class="mobile-quick-hub container">
+      <div class="mobile-hub-title">
+        <i class="fa-solid fa-compass"></i>
+        <span>اختر ما تبحث عنه للوصول المباشر:</span>
+      </div>
+      <div class="mobile-hub-grid">
+        <a href="#services" class="mobile-hub-card">
+          <div class="hub-icon icon-blue"><i class="fa-solid fa-wrench"></i></div>
+          <div class="hub-info">
+            <strong>خدمات السباكة</strong>
+            <span>تأسيس وصيانة</span>
+          </div>
+        </a>
+
+        <a href="#areas" class="mobile-hub-card">
+          <div class="hub-icon icon-green"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="hub-info">
+            <strong>مناطق التغطية</strong>
+            <span>القاهرة والجيزة</span>
+          </div>
+        </a>
+
+        <a href="#certifications" class="mobile-hub-card">
+          <div class="hub-icon icon-gold"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="hub-info">
+            <strong>الخبرة والتدريب</strong>
+            <span>اعتماد وخبرة 15 سنة</span>
+          </div>
+        </a>
+
+        <a href="#projects" class="mobile-hub-card">
+          <div class="hub-icon icon-purple"><i class="fa-solid fa-camera"></i></div>
+          <div class="hub-info">
+            <strong>معرض أعمالنا</strong>
+            <span>صور ومشاريع</span>
+          </div>
+        </a>
+
+        <a href="#videos" class="mobile-hub-card">
+          <div class="hub-icon icon-rose"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="hub-info">
+            <strong>فيديوهات الشغل</strong>
+            <span>معاينة حية ومباشرة</span>
+          </div>
+        </a>
+
+        <a href="#reviews" class="mobile-hub-card">
+          <div class="hub-icon icon-sky"><i class="fa-brands fa-facebook"></i></div>
+          <div class="hub-info">
+            <strong>آراء العملاء</strong>
+            <span>تقييمات موثقة</span>
+          </div>
+        </a>
+
+        <a href="#faq" class="mobile-hub-card">
+          <div class="hub-icon icon-teal"><i class="fa-solid fa-circle-question"></i></div>
+          <div class="hub-info">
+            <strong>الأسئلة الشائعة</strong>
+            <span>إجابات واستشارات</span>
+          </div>
+        </a>
+
+        <a href="#contact" class="mobile-hub-card">
+          <div class="hub-icon icon-amber"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="hub-info">
+            <strong>طلب معاينة</strong>
+            <span>حجز ميعاد مباشر</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Reassurance Strip (Desktop Only) -->
+  <section class="quick-reassurance desktop-only">
+    <div class="container reassurance-grid">
+      <div class="reassurance-item">
+        <div class="r-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        <div>
+          <h4>أسعار عادلة وضمير في الشغل</h4>
+          <p>بدون مبالغة أو مصاريف خفية، الاتفاق واضح من البداية.</p>
+        </div>
+      </div>
+      <div class="reassurance-item">
+        <div class="r-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div>
+          <h4>التزام بالمواعيد وسرعة وصول</h4>
+          <p>بنحترم وقت العميل وبنوصل في الميعاد المتفق عليه.</p>
+        </div>
+      </div>
+      <div class="reassurance-item">
+        <div class="r-icon"><i class="fa-solid fa-broom"></i></div>
+        <div>
+          <h4>نظافة المكان واحترام البيت</h4>
+          <p>فنيون محترمون ومؤدبون بيحافظوا على نظافة بيتك.</p>
+        </div>
+      </div>
+      <div class="reassurance-item">
+        <div class="r-icon"><i class="fa-solid fa-file-shield"></i></div>
+        <div>
+          <h4>أسعار عادلة وأمانة تامة</h4>
+          <p>معاينة صريحة وتكلفة واضحة بما يرضي الله بدون استغلال.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section: 4 Sleek Horizontal Row Cards with Arrow on the Whole Box -->
+  <section class="section-container" id="services">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge">خدماتنا</span>
+        <h2 class="title-main">كل اللي تحتاجه في السباكة تلاقيه عندنا</h2>
+        <p class="title-desc">اضغط على أي خدمة لاستعراض تفاصيل ما تشمله وما نقوم بتنفيذه:</p>
+      </div>
+
+      <!-- 4 Rows Under Each Other with Arrow on the whole box -->
+      <div class="services-rows-list">
+        <!-- Service Row 1 -->
+        <div class="service-row-card featured" id="serviceRow1">
+          <div class="service-row-header" role="button" tabindex="0" aria-expanded="false" aria-controls="serviceBody1">
+            <div class="row-icon-title">
+              <div class="s-row-icon"><i class="fa-solid fa-house-chimney-crack"></i></div>
+              <div class="s-row-text">
+                <div class="s-row-top">
+                  <h4>تأسيس سباكة الشقق والفيلات</h4>
+                  <span class="s-row-badge">الأكثر طلباً</span>
+                </div>
+                <p class="s-row-desc">شبكات تغذية وصرف بولي بروبلين أصلية مع اختبار 16 بار وضمان معتمد</p>
+              </div>
+            </div>
+            <div class="s-row-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="service-row-body" id="serviceBody1">
+            <ul class="s-checklist">
+              <li><i class="fa-solid fa-check"></i> تأسيس حمامات رئيسية، ماستر، ومطابخ</li>
+              <li><i class="fa-solid fa-check"></i> تأسيس وعزل صرف التكييفات</li>
+              <li><i class="fa-solid fa-check"></i> عزل مائي لأرضيات الحمامات</li>
+              <li><i class="fa-solid fa-check"></i> اختبار ضغط الشبكة بالبار بحضور مندوب الشركة</li>
+            </ul>
+            <a href="https://wa.me/201144867114?text=يا%20بشمهندس%20وائل%20عايز%20استفسر%20عن%20تأسيس%20سباكة%20شقة"
+              target="_blank" class="service-btn">
+              <span>طلب معاينة تأسيس</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Row 2 -->
+        <div class="service-row-card featured-thermal" id="serviceRow2">
+          <div class="service-row-header" role="button" tabindex="0" aria-expanded="false" aria-controls="serviceBody2">
+            <div class="row-icon-title">
+              <div class="s-row-icon icon-cyan"><i class="fa-solid fa-water"></i></div>
+              <div class="s-row-text">
+                <div class="s-row-top">
+                  <h4>كشف تسربات المياه بدون تكسير</h4>
+                  <span class="s-row-badge badge-tech"><i class="fa-solid fa-temperature-half"></i> فحص حراري</span>
+                </div>
+                <p class="s-row-desc">فحص دقيق بالأشعة تحت الحمراء لتحديد مكان التسريب بدقة وتفادي التكسير</p>
+              </div>
+            </div>
+            <div class="s-row-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="service-row-body" id="serviceBody2">
+            <div class="thermal-row-preview" id="openThermalModal" role="button" tabindex="0"
+              title="اضغط لمعاينة الكاميرا الحرارية">
+              <div class="thermal-img-frame">
+                <img src="assets/thermal_scanner.png" alt="جهاز الكاميرا الحرارية لكشف التسربات - شركة الأوائل"
+                  class="thermal-device-img">
+              </div>
+              <div class="thermal-preview-note">
+                <strong>الجهاز الأصلي لشركة الأوائل (Thermal Scanner)</strong>
+                <span>اضغط لمعاينة الجهاز وكيفية كشف الرطوبة والمواسير المدفونة</span>
+              </div>
+            </div>
+            <ul class="s-checklist">
+              <li><i class="fa-solid fa-check"></i> <strong>تصوير حراري للحوائط:</strong> كشف مسار الرطوبة والمواسير
+                المدفونة</li>
+              <li><i class="fa-solid fa-check"></i> <strong>تحديد دقيق بالسنتيمتر:</strong> إصلاح موضعي لبلاطة واحدة
+                بدلاً من هدم الحمام</li>
+              <li><i class="fa-solid fa-check"></i> فحص مواسير الصرف والتغذية وشبكات الدفن</li>
+              <li><i class="fa-solid fa-check"></i> حل مشكلة ارتفاع فواتير المياه والنشع عند الجيران</li>
+            </ul>
+            <a href="https://wa.me/201144867114?text=عندي%20تسريب%20مياه%20ومحتاج%20كشف%20بالكاميرا%20الحرارية"
+              target="_blank" class="service-btn">
+              <span>طلب كشف حراري فوري</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Row 3 -->
+        <div class="service-row-card" id="serviceRow3">
+          <div class="service-row-header" role="button" tabindex="0" aria-expanded="false" aria-controls="serviceBody3">
+            <div class="row-icon-title">
+              <div class="s-row-icon icon-purple"><i class="fa-solid fa-bath"></i></div>
+              <div class="s-row-text">
+                <div class="s-row-top">
+                  <h4>تشطيب وتركيب الأدوات الصحية</h4>
+                </div>
+                <p class="s-row-desc">تركيب أطقم الحمامات الفاخرة، كبائن الشاور، الأحواض المعلقة والخلاطات بميزان ليزر
+                </p>
+              </div>
+            </div>
+            <div class="s-row-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="service-row-body" id="serviceBody3">
+            <ul class="s-checklist">
+              <li><i class="fa-solid fa-check"></i> تركيب خلاطات وأطقم كافة الماركات العالمية والمحلية (جروهي، أيديال،
+                ديورافيت، روكا، وغيرها)</li>
+              <li><i class="fa-solid fa-check"></i> تركيب بانيوهات وكبائن شاور زجاج</li>
+              <li><i class="fa-solid fa-check"></i> تركيب وحدات الأحواض والمرايات الـ LED</li>
+              <li><i class="fa-solid fa-check"></i> توصيل وصيانة فلاتر المياه</li>
+            </ul>
+            <a href="https://wa.me/201144867114?text=عايز%20أركب%20أدوات%20صحية%20وتشطيب%20حمام" target="_blank"
+              class="service-btn">
+              <span>طلب تركيب وتشطيب</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Row 4 -->
+        <div class="service-row-card" id="serviceRow4">
+          <div class="service-row-header" role="button" tabindex="0" aria-expanded="false" aria-controls="serviceBody4">
+            <div class="row-icon-title">
+              <div class="s-row-icon icon-amber"><i class="fa-solid fa-gauge-high"></i></div>
+              <div class="s-row-text">
+                <div class="s-row-top">
+                  <h4>تركيب وصيانة مواتير المياه والخزانات</h4>
+                </div>
+                <p class="s-row-desc">حلول متكاملة لضعف ضغط المياه: توريد مواتير الرفع، ضبط الفلوماك والبالونات، وصيانة
+                  الخزانات</p>
+              </div>
+            </div>
+            <div class="s-row-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="service-row-body" id="serviceBody4">
+            <ul class="s-checklist">
+              <li><i class="fa-solid fa-check"></i> تركيب مواتير كالبيدا ومختلف القدرات بالأمانات</li>
+              <li><i class="fa-solid fa-check"></i> تركيب وضبط أوتوماتيك الفلوماك وبالونات الضغط</li>
+              <li><i class="fa-solid fa-check"></i> توصيل وعزل خزانات مياه الشرب العلوية</li>
+              <li><i class="fa-solid fa-check"></i> تركيب وتغيير شمعات فلاتر المياه المنزلية</li>
+            </ul>
+            <a href="https://wa.me/201144867114?text=محتاج%20استفسر%20عن%20تركيب%20أو%20صيانة%20موتور%20مياه%20أو%20خزان"
+              target="_blank" class="service-btn">
+              <span>طلب معاينة موتور أو خزان</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas We Cover: Clear, Familiar Cairo & Giza Locations -->
+  <section class="section-container bg-light" id="areas">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge"><i class="fa-solid fa-location-dot"></i> التغطية</span>
+        <h2 class="title-main">بنوصلك في أي مكان في القاهرة الكبرى والجيزة</h2>
+        <p class="title-desc">فريق فني متكامل مجهز بكافة الأدوات والمعدات اللازمة للمعاينة والتنفيذ في الميعاد المحدد
+        </p>
+      </div>
+
+      <div class="areas-chips-container">
+        <!-- Mobile Header (Hidden on Desktop, Visible on Phone) -->
+        <div class="areas-mobile-header">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>المناطق التي نغطيها بالكامل:</span>
+        </div>
+
+        <!-- Area 1: Fifth Settlement -->
+        <div class="area-chip featured-chip">
+          <div class="chip-icon"><i class="fa-solid fa-building"></i></div>
+          <div class="chip-content">
+            <h4>التجمع الخامس والقاهرة الجديدة</h4>
+            <p>تشطيبات وفيلات وكمبوندات وتأسيس معتمد</p>
+          </div>
+          <span class="chip-tag">سابقة أعمال مميزة</span>
+        </div>
+
+        <!-- Area 2: Giza & Haram -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-city"></i></div>
+          <div class="chip-content">
+            <h4>الجيزة والهرم وفيصل والدقي</h4>
+            <p>كشف تسريبات، صيانة فورية، وتأسيس شقق</p>
+          </div>
+          <span class="chip-tag">خدمة يومية</span>
+        </div>
+
+        <!-- Area 3: Shubra -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-house"></i></div>
+          <div class="chip-content">
+            <h4>شبرا الخيمة وشبرا مصر</h4>
+            <p>المركز الرئيسي وسرعة وصول وتلبية لكافة الطلبات</p>
+          </div>
+          <span class="chip-tag">وصول فوري</span>
+        </div>
+
+        <!-- Area 4: Sheikh Zayed & October -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-tree"></i></div>
+          <div class="chip-content">
+            <h4>الشيخ زايد ومدينة 6 أكتوبر</h4>
+            <p>فيلات وشقق ومواتير مياه وشبكات صرف</p>
+          </div>
+          <span class="chip-tag">مواعيد دقيقة</span>
+        </div>
+
+        <!-- Area 5: Nasr City & Heliopolis -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <div class="chip-content">
+            <h4>مدينة نصر ومصر الجديدة</h4>
+            <p>تجديد شبكات قديمة وتشطيبات أدوات صحية</p>
+          </div>
+          <span class="chip-tag">تغطية شاملة</span>
+        </div>
+
+        <!-- Area 6: Maadi & Mokattam -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-mountain"></i></div>
+          <div class="chip-content">
+            <h4>المعادي والمقطم ودجلة</h4>
+            <p>تشطيبات راقية وصيانة سخانات ومحابس</p>
+          </div>
+          <span class="chip-tag">خدمة سريعة</span>
+        </div>
+
+        <!-- Area 7: Rehab & Madinaty -->
+        <div class="area-chip">
+          <div class="chip-icon"><i class="fa-solid fa-road"></i></div>
+          <div class="chip-content">
+            <h4>الرحاب، مدينتي، والشروق</h4>
+            <p>التزام باشتراطات التجمعات السكنية وجودة عالية</p>
+          </div>
+          <span class="chip-tag">التزام تام</span>
+        </div>
+
+        <!-- Area 8: All Other Places -->
+        <div class="area-chip highlight-all-chip">
+          <div class="chip-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div class="chip-content">
+            <h4>وكافة مناطق وأحياء القاهرة الأخرى</h4>
+            <p>الزمالك، وسط البلد، العبور، بدر، حلوان، وعين شمس</p>
+          </div>
+          <span class="chip-tag tag-gold">100% تغطية</span>
+        </div>
+      </div>
+
+      <!-- Simple Area Contact Banner -->
+      <div class="area-simple-action">
+        <div class="action-text">
+          <i class="fa-solid fa-truck-fast"></i>
+          <span>محتاج فني متخصص في منطقتك دلوقتي؟ تواصل مع شركة الأوائل وسنرسل لك أقرب فريق فني مجهز فوراً.</span>
+        </div>
+        <div class="action-btns">
+          <a href="tel:01144867114" class="btn btn-call-sm">
+            <i class="fa-solid fa-phone"></i>
+            <span>01144867114</span>
+          </a>
+          <a href="https://wa.me/201144867114?text=السلام%20عليكم،%20محتاج%20فريق%20شركة%20الأوائل%20في%20منطقتي"
+            target="_blank" class="btn btn-wa-sm">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>واتساب</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dedicated Training & Professional Experience Section -->
+  <section class="section-container cert-section" id="certifications">
+    <div class="container">
+      <div class="cert-card-layout">
+
+        <div class="cert-img-col">
+          <div class="cert-frame">
+            <img src="assets/ideal_standard_honor.jpg"
+              alt="البشمهندس وائل أثناء حضور دورة تدريبية فنية من Ideal Standard" class="cert-img">
+          </div>
+          <div class="cert-below-tag">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>دورة تدريبية من Ideal Standard</span>
+          </div>
+        </div>
+
+        <div class="cert-content-col">
+          <span class="sub-badge"><i class="fa-solid fa-graduation-cap"></i> التدريب والتطوير المهني</span>
+          <h2 class="title-main">حاصل على دورة تدريبية من Ideal Standard في تقنيات وخلاطات الدفن</h2>
+          <p class="cert-intro">
+            البشمهندس وائل هو مؤسس ومدير <strong>شركة الأوائل لأعمال السباكة</strong> ويدير فريقاً هندسياً وتنفيذياً من
+            أمهر الفنيين المحترفين لتنفيذ المشروعات في كافة مناطق القاهرة والجيزة. واهتماماً منه بالتطوير الفني الدائم،
+            اجتاز دورة تدريبية فنية متقدمة من شركة <strong>Ideal Standard</strong> لتطبيق أعلى معايير الدقة الهندسية في
+            تركيب خلاطات الدفن والأنظمة المعلقة، مع خبرة عملية واسعة في التعامل مع <strong>كافة الماركات والشركات
+              العالمية والمحلية</strong> بدون استثناء.
+          </p>
+
+          <div class="cert-points-grid">
+            <div class="c-point">
+              <div class="c-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div>
+                <strong>التعامل مع كافة الماركات العالمية والمحلية:</strong>
+                <p>إتقان تركيب أطقم وخلاطات وشاسيهات جميع الشركات (Grohe, Duravit, Ideal Standard, Roca وغيرها) بأعلى
+                  درجات الجودة.</p>
+              </div>
+            </div>
+
+            <div class="c-point">
+              <div class="c-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div>
+                <strong>عمل مستقل وإشراف مباشر مع فريق عمل متكامل:</strong>
+                <p>البشمهندس وائل يشرف على فريق عمله الفني بنفسه في الموقع، مع ضمان شامل والتزام كامل من التأسيس وحتى
+                  التشطيب النهائي.</p>
+              </div>
+            </div>
+
+            <div class="c-point">
+              <div class="c-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div>
+                <strong>معايير الأمان وضغط الشبكة:</strong>
+                <p>تطبيق أحدث اشتراطات الأمان ومنع ارتداد المياه واختبار المحابس تحت أقصى ضغط تشغيلي لتجنب أي تسريب
+                  مستقبلي.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-action-row">
+            <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20محتاج%20استشارة%20فنية%20لتشطيب%20أو%20تأسيس%20سباكة"
+              target="_blank" class="btn btn-wa-sm">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>استشارة فنية لتشطيب وتأسيس السباكة</span>
+            </a>
+            <span class="cert-guarantee-note">
+              <i class="fa-solid fa-shield-halved text-green"></i>
+              <span>ضمان كامل على سلامة ودقة التركيب</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Work Showcase (100% Real photos - Zero AI) -->
+  <section class="section-container" id="projects">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge"><i class="fa-solid fa-camera"></i> سابقة أعمال حقيقية 100%</span>
+        <h2 class="title-main">معرض الأعمال والمشاريع المنفذة</h2>
+        <p class="title-desc">نماذج حقيقية تم اختيارها بعناية من تنفيذ وإشراف البشمهندس وائل وفريق شركة الأوائل في فيلات
+          وشقق القاهرة والجيزة</p>
+      </div>
+
+      <!-- Mobile-Friendly Gallery Search & Category Selector -->
+      <div class="gallery-search-select-wrap">
+        <div class="gallery-search-bar" id="gallerySearchBar">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="gallerySearchInput" class="gallery-search-input" placeholder="ابحث في سابقة الأعمال أو اختر القسم..." aria-label="بحث في سابقة الأعمال" autocomplete="off">
+          <button type="button" id="clearGallerySearchBtn" class="clear-search-btn" aria-label="مسح البحث" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <button type="button" id="toggleGalleryDropdownBtn" class="dropdown-toggle-btn" aria-label="عرض أقسام المعرض">
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </button>
+        </div>
+
+        <!-- Interactive Genre Dropdown Menu -->
+        <div class="gallery-genre-dropdown" id="galleryGenreDropdown" style="display: none;">
+          <div class="genre-option active" data-filter="all">
+            <span class="genre-icon"><i class="fa-solid fa-layer-group"></i></span>
+            <div class="genre-text">
+              <strong>الكل (المعرض الشامل)</strong>
+              <small>عرض جميع المشاريع المنفذة (9 مشاريع)</small>
+            </div>
+            <span class="genre-tag">الكل</span>
+          </div>
+          <div class="genre-option" data-filter="luxury">
+            <span class="genre-icon"><i class="fa-solid fa-crown"></i></span>
+            <div class="genre-text">
+              <strong>حمامات فندقية وماستر</strong>
+              <small>تشطيبات راقية وفيلات ووحدات معلقة</small>
+            </div>
+            <span class="genre-tag">فندقي</span>
+          </div>
+          <div class="genre-option" data-filter="concealed">
+            <span class="genre-icon"><i class="fa-solid fa-shield-halved"></i></span>
+            <div class="genre-text">
+              <strong>أنظمة دفن وأطقم معلقة</strong>
+              <small>جروهي ودورافيت وشاسيهات دفن ليزر</small>
+            </div>
+            <span class="genre-tag">دفن معتمد</span>
+          </div>
+          <div class="genre-option" data-filter="tubs">
+            <span class="genre-icon"><i class="fa-solid fa-bath"></i></span>
+            <div class="genre-text">
+              <strong>بانيوهات مستقلة وكبائن</strong>
+              <small>بانيو ديكور بيضاوي وكبائن شاور زجاجي</small>
+            </div>
+            <span class="genre-tag">بانيوهات</span>
+          </div>
+          <div class="genre-option" data-filter="kitchen-heaters">
+            <span class="genre-icon"><i class="fa-solid fa-fire-burner"></i></span>
+            <div class="genre-text">
+              <strong>مطابخ وسخانات</strong>
+              <small>سخانات ومحابس أمان وأحواض مطابخ</small>
+            </div>
+            <span class="genre-tag">مطابخ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="gallery-filter-tabs" role="tablist">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>الكل (المعرض الشامل)</span>
+        </button>
+        <button class="filter-tab" data-filter="luxury" role="tab" aria-selected="false">
+          <i class="fa-solid fa-crown"></i>
+          <span>حمامات فندقية وماستر</span>
+        </button>
+        <button class="filter-tab" data-filter="concealed" role="tab" aria-selected="false">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>أنظمة دفن وأطقم معلقة</span>
+        </button>
+        <button class="filter-tab" data-filter="tubs" role="tab" aria-selected="false">
+          <i class="fa-solid fa-bath"></i>
+          <span>بانيوهات مستقلة وكبائن</span>
+        </button>
+        <button class="filter-tab" data-filter="kitchen-heaters" role="tab" aria-selected="false">
+          <i class="fa-solid fa-fire-burner"></i>
+          <span>مطابخ وسخانات</span>
+        </button>
+      </div>
+
+      <div class="real-gallery-grid" id="galleryGrid">
+        <!-- Project 1: Ultra Luxury Master Suite with Tub & Vanity -->
+        <div class="gallery-card" data-category="luxury tubs" data-images='["assets/pics/1000346031.jpg","assets/pics/1000346028.jpg","assets/pics/1000346027.jpg"]'>
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000346031.jpg" alt="تشطيب حمام ماستر فيلا ألترا سوبر لوكس مع بانيو مستقل"
+              class="gallery-img" loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> التجمع الخامس</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="حمام ماستر فيلا ألترا سوبر لوكس" data-loc="التجمع الخامس"
+              data-desc="تنفيذ متكامل ببانيو بيضاوي فاخر، خلاط شلال، وحدة حوض عائمة بأدراج رخامية، ومرآة مضيئة تعمل باللمس مع بيبة صرف رخامية مدفونة."
+              data-tags="بانيو ديكور بيضاوي,وحدة حوض معلقة,مرآة LED ذكية,دش مطري">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">بانيو ديكور بيضاوي</span>
+              <span class="gtag">وحدة حوض معلقة</span>
+              <span class="gtag">مرآة LED ذكية</span>
+            </div>
+            <h4>حمام ماستر فيلا ألترا سوبر لوكس</h4>
+            <p>تنفيذ متكامل ببانيو بيضاوي فاخر، خلاط شلال، وحدة حوض عائمة بأدراج رخامية، ومرآة مضيئة تعمل باللمس مع بيبة
+              صرف رخامية مدفونة.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أعمل%20تشطيب%20زي%20مشروع%20حمام%20التجمع%20الماستر"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: 5-Star Hotel Glass Shower Suite -->
+        <div class="gallery-card" data-category="luxury concealed tubs" data-images='["assets/pics/1000345976.jpg","assets/pics/1000345977.jpg","assets/pics/1000345978.jpg"]'>
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000345976.jpg" alt="تشطيب حمام فندقي 5 نجوم مع كابينة شاور زجاجية"
+              class="gallery-img" loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> الشيخ زايد</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="حمام فندقي 5 نجوم مع كابينة شاور زجاجية" data-loc="الشيخ زايد"
+              data-desc="كابينة شاور زجاجية فندقية مع دش مطري دفن وسيفون مسطري ستانلس ستيل في الأرضية، حوائط مدمج بها بيوت إضاءة ديكورية (Niches)، وقاعدة معلقة."
+              data-tags="كابينة زجاج سيكوريت,سيفون دش طولي مدفون,شاسيه معلق جروهي,مرآة ليد">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">كابينة سيكوريت</span>
+              <span class="gtag">سيفون دش مسطري</span>
+              <span class="gtag">قاعدة معلقة جروهي</span>
+            </div>
+            <h4>تشطيب فندقي 5 نجوم مع كابينة شاور</h4>
+            <p>كابينة شاور زجاجية مع دش مطري دفن وسيفون مسطري ستانلس ستيل في الأرضية، بيوت إضاءة ديكورية (Niches) في
+              الحوائط، وقاعدة معلقة.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أعمل%20حمام%20فندقي%20زي%20مشروع%20الشيخ%20زايد%20بكابينة%20شاور"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Calacatta Marble Suite with Italian Soaking Tub -->
+        <div class="gallery-card" data-category="luxury tubs concealed" data-images='["assets/pics/1000318833.jpg","assets/pics/1000318836.jpg","assets/pics/1000318838.jpg"]'>
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000318833.jpg" alt="جناح رخام كلكتا مع بانيو إيطالي مستقل ورفوف ليد"
+              class="gallery-img" loading="lazy" decoding="async">
+            <span class="gallery-badge badge-gold"><i class="fa-solid fa-location-dot"></i> بالم هيلز أكتوبر</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="جناح رخام كلكتا مع بانيو إيطالي مستقل" data-loc="بالم هيلز أكتوبر"
+              data-desc="قمة الفخامة بتشطيب رخامي كامل وبانيو حر في المنتصف، مع 3 رفوف ديكورية جدارية مضاءة بنظام LED دافئ وخلاط دفن إيطالي معتمد."
+              data-tags="رخام كلكتا فاخر,بانيو انسيابي إيطالي,3 رفوف LED دافئة,خلاط دفن">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">رخام كلكتا فاخر</span>
+              <span class="gtag">بانيو انسيابي إيطالي</span>
+              <span class="gtag">3 رفوف LED دافئة</span>
+            </div>
+            <h4>جناح رخام كلكتا مع بانيو إيطالي مستقل</h4>
+            <p>قمة الفخامة بتشطيب رخامي كامل وبانيو حر في المنتصف، مع 3 رفوف ديكورية جدارية مضاءة بنظام LED دافئ وخلاط
+              دفن إيطالي معتمد.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20استفسر%20عن%20تشطيب%20رخام%20كلكتا%20مع%20بانيو%20إيطالي"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Modern Powder Room with Grohe Wall-Hung Toilet -->
+        <div class="gallery-card gallery-card-extra" data-category="luxury concealed">
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000346007.jpg" alt="حمام ضيوف عصري مع شاسيه دفن جروهي ومرآة تاتش" class="gallery-img"
+              loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> المعادي دجلة</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="حمام ضيوف عصري مع شاسيه دفن جروهي" data-loc="المعادي دجلة"
+              data-desc="استغلال هندسي ذكي ومريح للمساحات المحدودة، قاعدة تواليت معلقة ريملس مع زر طرد ثنائي كروم، مرآة ذكية، وتأسيس وتوصيل مخفي بالكامل."
+              data-tags="شاسيه دفن جروهي,مرآة مضيئة تاتش,حوض عمود ديكور,توصيل سخان مخفي">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">شاسيه جروهي دفن</span>
+              <span class="gtag">مرآة مضيئة تاتش</span>
+              <span class="gtag">تواليت معلق ريملس</span>
+            </div>
+            <h4>حمام ضيوف عصري مع قاعدة معلقة</h4>
+            <p>استغلال هندسي ذكي للمساحات المحدودة، قاعدة تواليت معلقة ريملس مع زر طرد ثنائي كروم، مرآة ذكية، وتأسيس
+              وتوصيل مخفي بالكامل.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أعمل%20تواليت%20معلق%20وشاسيه%20دفن%20زي%20حمام%20المعادي"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Grohe Concealed Chassis & Duravit Wall-Hung Toilet -->
+        <div class="gallery-card gallery-card-extra" data-category="concealed">
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000346012.jpg" alt="تثبيت هندسي لشاسيه وصندوق طرد معلق جروهي مع قاعدة معلقة"
+              class="gallery-img" loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> مدينة نصر</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="تثبيت هندسي لشاسيه وصندوق طرد معلق جروهي" data-loc="مدينة نصر"
+              data-desc="تركيب دقيق لشاسيه الدفن داخل الجدار مع وزن ليزري، ربط قاعدة معلقة ديورافيت مانعة لتراكم البكتيريا، وشطاف ستانلس ستيل حراري."
+              data-tags="شاسيه جروهي دفن,قاعدة ديورافيت ريملس,زر ضغط ثنائي كروم,شطاف تركي">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">شاسيه جروهي أصلي</span>
+              <span class="gtag">قاعدة ديورافيت ريملس</span>
+              <span class="gtag">ميزان ليزري دقيق</span>
+            </div>
+            <h4>تثبيت شاسيه جروهي وقاعدة معلقة</h4>
+            <p>تركيب دقيق لشاسيه الدفن داخل الجدار بوزن ليزري، ربط قاعدة معلقة ديورافيت ريملس، وشطاف ستانلس ستيل كروم مع
+              زر طرد ثنائي أصلي.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> إشراف: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=محتاج%20تركيب%20شاسيه%20دفن%20جروهي%20وقاعدة%20معلقة"
+                target="_blank" class="gallery-link">
+                <span>حجز تركيب شاسيه</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: Modern Kitchen Sink with Pull-Out Dual-Spray Faucet -->
+        <div class="gallery-card gallery-card-extra" data-category="kitchen-heaters">
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000345996.jpg" alt="تركيب حوض مطبخ تركي مع خلاط سحاب متحرك" class="gallery-img"
+              loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> مصر الجديدة</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="تركيب حوض مطبخ تركي مع خلاط شجرة سحاب" data-loc="مصر الجديدة"
+              data-desc="تركيب حوض تركي ساقط في رخام جلاكسي أسود، خلاط متحرك بخرطوم سحاب قابل للمد بوضعين لتدفق المياه، مع صمامات أمان ومحابس إيطالية متينة."
+              data-tags="حوض تركي ستانلس,خلاط سحاب متحرك,صرف مانع للانسداد,محابس إيطالية">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">حوض تركي سقط رخام</span>
+              <span class="gtag">خلاط سحاب Dual-Spray</span>
+              <span class="gtag">صرف مانع للرائحة</span>
+            </div>
+            <h4>حوض مطبخ تركي مع خلاط سحاب</h4>
+            <p>تركيب حوض تركي ساقط برخام جلاكسي أسود، خلاط متحرك بخرطوم سحاب قابل للمد بوضعين لتدفق المياه، مع محابس
+              أمان إيطالية مانعة للتسريب.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أركب%20حوض%20مطبخ%20وخلاط%20سحاب%20زي%20مصر%20الجديدة"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7: Shower Zone Detail & Concealed Drain -->
+        <div class="gallery-card gallery-card-extra" data-category="tubs concealed">
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000345981.jpg" alt="منطقة الاستحمام: دش مطري وسيفون شاور طولي مخفي"
+              class="gallery-img" loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> الرحاب</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="منطقة شاور فندقية مع سيفون دش طولي مخفي" data-loc="الرحاب"
+              data-desc="تنفيذ ميول أرضية ليزرية تضمن تصريف فوري للمياه داخل سيفون الشاور المخفي، مع رأس دش مطري كبير يعطي تدفق شلالي مريح، ومقبض أمان ستانلس ستيل."
+              data-tags="دش مطري مربع دفن,جريلية صرف مسطرية,مقبض أمان كبار السن,عزل 100%">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">دش مطري مربع دفن</span>
+              <span class="gtag">جريلية صرف مسطرية</span>
+              <span class="gtag">مقبض أمان ستانلس</span>
+            </div>
+            <h4>منطقة شاور فندقية وسيفون مسطري</h4>
+            <p>ميول أرضية ليزرية تضمن تصريف فوري للمياه داخل جريلية صرف مسطرية ستانلس 304، مع رأس دش مطري دفن ومقبض أمان
+              لكبار السن.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أركب%20دش%20مطري%20دفن%20وجريلية%20شاور%20مسطرية"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس الشغل</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8: Safe Water Heater Piping & Safety Check -->
+        <div class="gallery-card gallery-card-extra" data-category="kitchen-heaters">
+          <div class="gallery-img-wrap">
+            <img src="assets/pics/1000345986.jpg" alt="توصيل سخان مياه بمحابس أمان وخراطيم معتمدة" class="gallery-img"
+              loading="lazy" decoding="async">
+            <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> حدائق الأهرام</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="توصيل وتثبيت سخان مياه بمحابس أمان ورداد" data-loc="حدائق الأهرام"
+              data-desc="تثبيت صلب بمسامير فيشر حديد في خرسانة الحائط، تزويد السخان بصمام أمان ورداد لعدم الرجوع لمنع زيادة الضغط، ومحابس زاوية نيكل أصلية تمنع أي تسريب."
+              data-tags="صمام أمان Check Valve,خراطيم ستانلس مجدولة,تثبيت خرساني صلب,مفتاح نيكل أصلي">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">صمام أمان رداد</span>
+              <span class="gtag">خراطيم ستانلس مجدولة</span>
+              <span class="gtag">تثبيت خرساني آمن</span>
+            </div>
+            <h4>توصيل وتثبيت سخان مياه آمن</h4>
+            <p>تثبيت صلب بمسامير فيشر حديد بالخرسانة، صمام أمان لعدم الرجوع لمنع زيادة ضغط البخار، ومحابس زاوية نيكل
+              أصلية مانعة للتسريب تماماً.</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ: البشمهندس وائل وفريق
+                الأوائل</span>
+              <a href="https://wa.me/201144867114?text=محتاج%20تركيب%20سخان%20مياه%20بشكل%20آمن%20ومحابس%20أصلية"
+                target="_blank" class="gallery-link">
+                <span>طلب تركيب سخان</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9: Master Wael in Delivered Luxury Bathroom -->
+        <div class="gallery-card gallery-card-extra" data-category="luxury">
+          <div class="gallery-img-wrap">
+            <img src="assets/before_after/case3_master_wael_delivered.jpg"
+              alt="تسليم حمام مودرن فاخر بإشراف وحضور البشمهندس وائل" class="gallery-img" loading="lazy"
+              decoding="async">
+            <span class="gallery-badge badge-gold"><i class="fa-solid fa-location-dot"></i> الشيخ زايد</span>
+            <button class="gallery-zoom-btn" aria-label="عرض الصورة عالية الدقة"
+              data-title="تسليم حمام مودرن فاخر بإشراف وحضور البشمهندس وائل" data-loc="الشيخ زايد"
+              data-desc="صورة موثقة للبشمهندس وائل داخل حمام مودرن تم تسليمه للعميل: قاعدة معلقة ريملس، حوض ديكور معلق، عمود شاور أسود مات، وسيراميك ثري دي حديث."
+              data-tags="تسليم على المفتاح,قاعدة معلقة ريملس,حوض ديكور معلق,إشراف البشمهندس وائل">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="gallery-details">
+            <div class="gallery-tags">
+              <span class="gtag">تسليم على المفتاح</span>
+              <span class="gtag">إشراف البشمهندس وائل</span>
+              <span class="gtag">أطقم صحية مودرن</span>
+            </div>
+            <h4>تسليم حمام مودرن فاخر بإشراف وحضور البشمهندس وائل</h4>
+            <p>لقطة حقيقية للبشمهندس وائل داخل حمام مودرن فاخر بعد الانتهاء من تركيبه وتسليمه بالكامل على الليزر (قاعدة
+              معلقة ريملس، حوض معلق، وعمود شاور أسود فاخر).</p>
+            <div class="gallery-foot">
+              <span class="worker-note"><i class="fa-solid fa-user-check"></i> تنفيذ وإشراف: البشمهندس وائل</span>
+              <a href="https://wa.me/201144867114?text=عايز%20أشطب%20حمام%20مودرن%20كامل%20زي%20مشروع%20شركة%20الأوائل"
+                target="_blank" class="gallery-link">
+                <span>طلب نفس التشطيب</span>
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery 6x6 Load More Button -->
+      <div class="gallery-load-more-wrap" id="galleryLoadMoreWrap">
+        <button id="loadMoreGalleryBtn" class="btn-load-more-projects" aria-expanded="false" data-action="more">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>عرض المزيد من سابقة الأعمال</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+
+      <!-- Real On-Site Proof Banner with Master Wael -->
+      <div class="gallery-proof-banner">
+        <div class="proof-banner-grid">
+          <div class="proof-img-side">
+            <img src="assets/wael_hero_banner.jpg" alt="البشمهندس وائل في موقع العمل - شركة الأوائل للسباكة"
+              class="proof-img" loading="lazy">
+            <span class="proof-badge"><i class="fa-solid fa-circle-check"></i> شغل على أصول بأيد أمينة</span>
+          </div>
+          <div class="proof-content-side">
+            <div class="proof-tag"><i class="fa-solid fa-award"></i> مصداقية وجودة شركة الأوائل</div>
+            <h3>جميع الصور من مواقع عملنا الحقيقية وليست صوراً من الإنترنت</h3>
+            <p>من أول التكسير والتأسيس بشبكات بولي بروبلين أصلية معتمدة واختبار ضغط 16 بار، وحتى التشطيبات الفندقية
+              والكبائن وتركيبات الشاسيهات المعلقة والبانيوهات.. بنسلمك شغلك على ميزان مياه وليزر بضمان كامل وبدون أي
+              عيوب.</p>
+            <div class="proof-features-chips">
+              <span><i class="fa-solid fa-check"></i> بدون تسريب نهائياً</span>
+              <span><i class="fa-solid fa-check"></i> اختبار ضغط 16 بار معتمد</span>
+              <span><i class="fa-solid fa-check"></i> دقة ملليمترية في المقاسات</span>
+              <span><i class="fa-solid fa-check"></i> إشراف البشمهندس وائل بنفسه</span>
+            </div>
+            <div class="proof-cta-row">
+              <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20شفت%20معرض%20أعمالك%20ومحتاج%20معاينة"
+                target="_blank" class="btn btn-whatsapp-proof">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>تواصل لحجز معاينة في موقعك</span>
+              </a>
+              <a href="tel:01144867114" class="btn btn-call-proof">
+                <i class="fa-solid fa-phone"></i>
+                <span>اتصال فوري: 01144867114</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Field Work & Before-and-After Video Showcase (Managed Dynamically by Master Wael) -->
+  <section class="section-container bg-navy-rich" id="videos">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge sub-badge-gold"><i class="fa-solid fa-play"></i> توثيق فيديو حي من قلب الموقع</span>
+        <h2 class="title-main text-white">فيديوهات حية قبل وبعد من مواقع العمل</h2>
+        <p class="title-desc text-muted-light">شاهد بالفيديو خطوات كشف الأعطال بالأجهزة، تعديل شبكات المواسير الصدئة،
+          وتسليم الحمامات المودرن خطوة بخطوة</p>
+      </div>
+
+      <!-- Real Video Cards Grid (Populated Dynamically via SiteData) -->
+      <div class="real-video-grid" id="realVideosGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <!-- Videos 6x6 Load More Button -->
+      <div class="videos-load-more-wrap" id="videosLoadMoreWrap"
+        style="display: none; justify-content: center; margin-top: 28px;">
+        <button id="loadMoreVideosBtn" class="btn-load-more-projects btn-load-more-dark" aria-expanded="false"
+          data-action="more">
+          <i class="fa-solid fa-film"></i>
+          <span>عرض المزيد من الفيديوهات</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Facebook Customer Reviews Section (Actual Screenshots & Genuine Words) -->
+  <section class="section-container bg-light" id="reviews">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge"><i class="fa-solid fa-star text-gold"></i> آراء وتجارب العملاء</span>
+        <h2 class="title-main">شهادات وتجارب موثقة من عملاء شركة الأوائل</h2>
+        <p class="title-desc">توصيات حقيقية وآراء موثقة من عملائنا الكرام على صفحتنا الرسمية بعد الانتهاء من أعمال
+          السباكة والتأسيس والتشطيب</p>
+      </div>
+
+      <!-- Real Facebook Screenshots Carousel / Grid -->
+      <div class="fb-reviews-scroll">
+        <!-- Review 1: Mahran Hafez & Ahmed Hany -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/IMG_0271.jpg" alt="رأي مهران حافظ وأحمد هاني في البشمهندس وائل"
+            class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"المهندس وائل من احسن واشطر السباكين في شغل السباكه.. ناس محترمه جدا في التعامل واحترام
+              المواعيد وشغلهم ممتاز عن تجربه."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>مهران حافظ & أحمد هاني (توصية موثقة)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2: Khedr Abd Elhameed & Allah Al-Mustaan -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/IMG_0272.jpg" alt="رأي خضر عبد الحميد والله المستعان في البشمهندس وائل"
+            class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"شغلو جميل جدا والله العظيم ومتقى الله فى عمله واسعاره غير اى حد.. ومصداقيه فى التعامل
+              خامات وتركيبات كويسه جدا ربنا يبارك."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>خضر عبد الحميد (توصية موثقة)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3: Islam Amer Abu Hammouda -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/IMG_0270.jpg" alt="رأي إسلام عامر في البشمهندس وائل" class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"بشمهندس وائل شخص محترم وعنده اتقان ف عمله واسعاره كويسه.. وعنده حل لأي مشكلة وبيهتم
+              بالتفاصيل ومش بيسيب الشغل غير على أكمل وجه."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>إسلام عامر أبو حموده (عميل موثق)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4: Fasber Sabran Gameelan (Helping without charge) -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/media_1791386628678.jpg" alt="شهادة أمانة ومساعدة لوجه الله من عميل"
+            class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"كفايه أن حضرتك عندك ضمير وبتبسط المعلومه.. زعلت ان حضرتك مش نفس محافظتي بس ساعدتنى من
+              غير مقابل وفهمتنى أعمل ايه."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>استشارة وأمانة مهنية (عميل موثق)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5: More Facebook Reviews -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/IMG_0273.jpg" alt="تقييمات وتوصيات إضافية لشركة الأوائل" class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"بدون مجاملات شغله ممتاز وأسعاره روعه وعنده خبرة في إنجاز الشغل وبيهتم بالتفاصيل."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>توصية عملاء التجمع الخامس</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 6: Additional Reviews -->
+        <div class="fb-screenshot-card">
+          <img src="assets/reviews/IMG_0274.jpg" alt="تقييمات إضافية على فيسبوك" class="fb-screenshot-img">
+          <div class="fb-quote-box">
+            <p class="fb-quote">"أمانة ودقة ونظافة في الشغل.. ربنا يوسع رزقك يا بشمهندس وائل."</p>
+            <div class="fb-author">
+              <i class="fa-brands fa-facebook text-blue"></i>
+              <span>تقييم ممتاز 5 نجوم على فيسبوك</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile-Only Reviews Toggle (Show More / Show Less for Phone UX) -->
+      <div class="reviews-load-more-wrap mobile-only-reviews-toggle">
+        <button id="loadMoreReviewsBtn" class="btn-load-more-reviews" aria-expanded="false" type="button">
+          <i class="fa-solid fa-chevron-down"></i>
+          <span>عرض المزيد من آراء العملاء (3 تقييمات إضافية)</span>
+        </button>
+      </div>
+
+      <div class="review-facebook-banner">
+        <div class="fb-banner-brand">
+          <div class="fb-icon-circle">
+            <i class="fa-brands fa-facebook"></i>
+          </div>
+          <div class="banner-text">
+            <div class="fb-trust-stars">
+              <span class="stars-gold">★★★★★</span>
+              <span class="trust-label">توصيات موثقة 100%</span>
+            </div>
+            <h4>صفحة شركة الأوائل الرسمية على فيسبوك</h4>
+            <p>مجتمع يضم أكثر من 2,700 متابع مع مئات التجارب والآراء المصورة لعملائنا في القاهرة والجيزة</p>
+          </div>
+        </div>
+        <a href="https://www.facebook.com/profile.php?id=61581980519649" target="_blank" rel="noopener noreferrer"
+          class="btn-fb-visit">
+          <i class="fa-brands fa-facebook"></i>
+          <span>مشاهدة جميع التقييمات على فيسبوك</span>
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Wael: 3 Simple Honest Pillars -->
+  <section class="section-container" id="why-us">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge">ليه تختارنا؟</span>
+        <h2 class="title-main">ليه عملاؤنا بيثقوا في شركة الأوائل والبشمهندس وائل؟</h2>
+        <p class="title-desc">السباكة محتاجة أمانة وضمير قبل أي حاجة.. وده عهدنا مع كل عميل</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-num">1</div>
+          <h3>ضمير وأمانة في الشغل والأسعار</h3>
+          <p>مش بنبالغ في الأسعار ومش بنزود خامات بدون داعي. بنوضحلك التكلفة بكل أمانة قبل ما نلمس مسمار واحد، وبنشتغل
+            بما يرضي الله كأنه بيتنا بالظبط.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-num">2</div>
+          <h3>احترام المواعيد وخصوصية بيتك</h3>
+          <p>الميعاد كلمة شرف. بنوصل في الوقت المتفق عليه، فنيونا ملتزمون بأخلاق عالية والزي الموحد، ومش بنسيب الشغل إلا
+            والمكان نضيف ومترتب تماماً.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-num">3</div>
+          <h3>خبرة فنية وضمان حقيقي</h3>
+          <p>خبرة أكثر من 15 سنة وحضور دورات تدريبية فنية متقدمة في أحدث الأنظمة الصحية وخلاطات الدفن. اختبار ضغط الشبكة
+            بالبار وشهادة ضمان معتمدة تريح بالك لسنين طويلة قدام.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (الأسئلة الشائعة وإجابات البشمهندس وائل) -->
+  <section class="section-container" id="faq">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="sub-badge"><i class="fa-solid fa-circle-question text-blue"></i> إجابات شافية</span>
+        <h2 class="title-main">الأسئلة الشائعة وإجابات البشمهندس وائل ❓</h2>
+        <p class="title-desc">كل ما تحتاج معرفته عن كشف التسريب بدون تكسير، مدة الضمان، ومراحل استلام الأعمال</p>
+      </div>
+
+      <div class="faq-accordion-wrap">
+        <div class="faq-item active">
+          <button type="button" class="faq-question" aria-expanded="true">
+            <span><i class="fa-solid fa-magnifying-glass-location text-gold"></i> كيف يتم كشف تسريب المياه بدون تكسير
+              عشوائي؟</span>
+            <i class="fa-solid fa-chevron-down faq-arrow"></i>
+          </button>
+          <div class="faq-answer">
+            <p>نستخدم أحدث الكاميرات الحرارية الألمانية وأجهزة التحسس الصوتي بالنيتروجين، والتي تحدد موضع الكسر في
+              مواسير التغذية أو الصرف تحت السيراميك بدقة سنتيمترية، مما يوفر عليك تكسير الحمام أو المطبخ بالكامل ويكتفي
+              بفتحة صغيرة عند موضع العطل فقط.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span><i class="fa-solid fa-certificate text-gold"></i> ما هي شروط ومدة الضمان المقدم من شركة
+              الأوائل؟</span>
+            <i class="fa-solid fa-chevron-down faq-arrow"></i>
+          </button>
+          <div class="faq-answer">
+            <p>نقدم ضماناً رسمياً لمدة 10 سنوات على شبكات التأسيس المنفذة بمواسير بولي بروبلين معتمدة (مثل أكوا ثيرم أو
+              مصر الحجاز أو بي آر)، ويتضمن الضمان تسليم شهادة اختبار ضغط معتمدة من مندوب الشركة المصنعة لضمان سلامة
+              اللحامات بنسبة 100%.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span><i class="fa-solid fa-gauge-high text-gold"></i> كيف يتم اختبار ضغط شبكة السباكة قبل تركيب
+              السيراميك؟</span>
+            <i class="fa-solid fa-chevron-down faq-arrow"></i>
+          </button>
+          <div class="faq-answer">
+            <p>يتم كبس شبكة التغذية بمضخة هيدروليكية حتى ضغط 16 بار ومراقبة مؤشر المانومتر لمدة لا تقل عن 24 إلى 48 ساعة
+              للتأكد من عدم وجود أي هبوط في الضغط أو أي تسريب دقيق، ولا يتم السماح ببدء أعمال السيراميك إلا بعد اجتياز
+              هذا الاختبار بنجاح تام.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span><i class="fa-solid fa-location-dot text-gold"></i> ما هي المناطق التي تغطيها شركة الأوائل في القاهرة
+              والجيزة؟</span>
+            <i class="fa-solid fa-chevron-down faq-arrow"></i>
+          </button>
+          <div class="faq-answer">
+            <p>نغطي جميع مناطق القاهرة الكبرى والجيزة، مع تركيز خاص وسرعة وصول لمناطق: التجمع الخامس، الرحاب، مدينتي،
+              الشيخ زايد، 6 أكتوبر، المعادي، مصر الجديدة، مدينة نصر، وحدائق الأهرام، وفريقنا مجهز للتحرك الفوري لحالات
+              الطوارئ.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span><i class="fa-solid fa-handshake-angle text-gold"></i> هل تقدمون استشارة هندسية قبل شراء الأطقم الصحية
+              وخلاطات الدفن؟</span>
+            <i class="fa-solid fa-chevron-down faq-arrow"></i>
+          </button>
+          <div class="faq-answer">
+            <p>نعم، يسعد البشمهندس وائل بتقديم استشارة فنية مجانية لاختيار أنسب المقاسات والموديلات الملائمة لمساحة
+              حمامك (مثل شاسيهات جروهي الدفن، كبائن الشاور، وأنظمة الصرف الرخامية الحديثة) لتفادي أي أخطاء في الميول أو
+              مقاسات التأسيس.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Inspection Request Section (طلب معاينة فورية وتواصل مباشر) -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-box-wrap">
+      <div class="contact-box">
+        <span class="contact-top-tag"><i class="fa-solid fa-calendar-check"></i> طلب معاينة فورية وتنسيق ميعاد</span>
+        <h2>احجز ميعاد معاينة مع شركة الأوائل (البشمهندس وائل)</h2>
+        <p class="contact-desc">بنرد عليك في دقايق ونحدد الميعاد المناسب لمعاينة شقتك أو فيلتك في أي مكان في القاهرة أو
+          الجيزة، مع فحص دقيق وتسعير واضح بما يرضي الله.</p>
+
+        <!-- Two Clear Direct Primary Choices: Direct Phone Call or WhatsApp -->
+        <div class="booking-two-choices-grid">
+          <!-- Choice 1: Phone Direct Call -->
+          <a href="tel:01144867114" class="booking-choice-card choice-phone" id="bookingCallBtn"
+            aria-label="اتصال هاتفياً بشركة الأوائل والبشمهندس وائل">
+            <div class="choice-badge"><i class="fa-solid fa-phone-volume"></i> خيار 1: اتصال هاتفي فوري</div>
+            <div class="choice-icon-wrap phone-pulse">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="choice-info">
+              <span class="choice-title">اتصال هاتفياً مباشر</span>
+              <strong class="choice-phone-num" dir="ltr">01144867114</strong>
+              <span class="choice-sub">محادثة صوتية فورية لتنسيق الميعاد والرد على استفسارك</span>
+            </div>
+            <div class="choice-cta-btn btn-call-style">
+              <i class="fa-solid fa-phone"></i>
+              <span>اتصل الآن</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+          </a>
+
+          <!-- Choice 2: WhatsApp Chat -->
+          <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20محتاج%20حجز%20معاينة%20في%20القاهرة/الجيزة"
+            target="_blank" rel="noopener noreferrer" class="booking-choice-card choice-whatsapp" id="bookingWaBtn"
+            aria-label="مراسلة عبر واتساب">
+            <div class="choice-badge wa-badge"><i class="fa-brands fa-whatsapp"></i> خيار 2: محادثة واتساب فورية</div>
+            <div class="choice-icon-wrap wa-pulse">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="choice-info">
+              <span class="choice-title">مراسلة فورية عبر واتساب</span>
+              <strong class="choice-phone-num" dir="ltr">01144867114</strong>
+              <span class="choice-sub">إرسال صور وتفاصيل وتحديد الميعاد باللوكيشن</span>
+            </div>
+            <div class="choice-cta-btn btn-wa-style">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>راسل واتساب</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3 Pillars of Trust (From the original cards, styled into a sleek guarantee ribbon) -->
+        <div class="seq-guarantees-bar">
+          <div class="seq-guar-item">
+            <div class="seq-guar-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <div class="seq-guar-text">
+              <strong>تنسيق ميعاد سريع</strong>
+              <span>مواعيد مضبوطة بالدقيقة بدون تأخير</span>
+            </div>
+          </div>
+          <div class="seq-guar-divider"></div>
+          <div class="seq-guar-item">
+            <div class="seq-guar-icon"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+            <div class="seq-guar-text">
+              <strong>فحص شامل بالمعدات</strong>
+              <span>تحديد المطلوب بدقة لتجنب التكسير</span>
+            </div>
+          </div>
+          <div class="seq-guar-divider"></div>
+          <div class="seq-guar-item">
+            <div class="seq-guar-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="seq-guar-text">
+              <strong>اتفاق واضح وأمانة</strong>
+              <span>تسعير صريح للخامات والمصنعية قبل البدء</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Contacts Bar -->
+        <div class="seq-secondary-contacts">
+          <a href="tel:01146946816" class="seq-sec-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>الرقم البديل للطوارئ: <strong dir="ltr">01146946816</strong></span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61581980519649" target="_blank" rel="noopener noreferrer"
+            class="seq-sec-item">
+            <i class="fa-brands fa-facebook text-blue"></i>
+            <span>فيسبوك: <strong>شركة الأوائل لأعمال السباكة</strong></span>
+          </a>
+          <a href="https://www.instagram.com/alawael_sanitaryware?rpxt=ZG5mZXNhY3o2Njdi" target="_blank"
+            rel="noopener noreferrer" class="seq-sec-item">
+            <i class="fa-brands fa-instagram text-gold"></i>
+            <span>إنستغرام: <strong>alawael_sanitaryware</strong></span>
+          </a>
+          <a href="https://www.tiktok.com/@alawael_sanitaryware?_r=1&_t=ZS-9AO8quv2KXp" target="_blank"
+            rel="noopener noreferrer" class="seq-sec-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>تيك توك: <strong>alawael_sanitaryware</strong></span>
+          </a>
+          <div class="seq-sec-item non-interactive">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>شبرا الخيمة، القاهرة الكبرى والجيزة</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Simple Clean Footer -->
+  <footer class="clean-footer">
+    <div class="container footer-content">
+      <div class="footer-logo-row">
+        <img src="assets/logo_alawael.jpg" alt="الأوائل للسباكة" class="footer-logo-img">
+        <div>
+          <h3>شركة الأوائـل لأعمال السباكة والأدوات الصحية</h3>
+          <p>بإشراف البشمهندس وائل • جودة .. التزام .. ثقة</p>
+        </div>
+      </div>
+      <div class="footer-social-strip">
+        <span class="footer-social-title"><i class="fa-solid fa-share-nodes"></i> تابعنا وتواصل معنا عبر منصاتنا
+          الرسمية:</span>
+        <div class="footer-social-pills">
+          <a href="https://wa.me/201144867114" target="_blank" rel="noopener noreferrer"
+            class="footer-soc-badge soc-wa">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>واتساب</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61581980519649" target="_blank" rel="noopener noreferrer"
+            class="footer-soc-badge soc-fb">
+            <i class="fa-brands fa-facebook-f"></i>
+            <span>فيسبوك</span>
+          </a>
+          <a href="https://www.instagram.com/alawael_sanitaryware?rpxt=ZG5mZXNhY3o2Njdi" target="_blank"
+            rel="noopener noreferrer" class="footer-soc-badge soc-ig">
+            <i class="fa-brands fa-instagram"></i>
+            <span>إنستغرام</span>
+          </a>
+          <a href="https://www.tiktok.com/@alawael_sanitaryware?_r=1&_t=ZS-9AO8quv2KXp" target="_blank"
+            rel="noopener noreferrer" class="footer-soc-badge soc-tt">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>تيك توك</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-copy-row">
+        <p class="footer-copy">© 2026 جميع الحقوق محفوظة — شركة الأوائل للسباكة | بإشراف البشمهندس وائل بالقاهرة
+          والجيزة.</p>
+        <a href="admin.html" class="footer-admin-link" title="لوحة تحكم الموقع"><i class="fa-solid fa-lock"></i> دخول
+          الإدارة</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile Action Bar (Call & WhatsApp) -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <a href="tel:01144867114" class="bar-btn bar-call">
+      <i class="fa-solid fa-phone"></i>
+      <span>اتصال فوري</span>
+    </a>
+    <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20محتاج%20استفسر%20عن%20خدمة%20سباكة"
+      target="_blank" class="bar-btn bar-wa">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>واتساب</span>
+    </a>
+  </div>
+
+  <!-- Real Work Gallery Lightbox Modal -->
+  <div class="gallery-modal-overlay" id="galleryModal" aria-hidden="true" role="dialog"
+    aria-label="معاينة تفاصيل المشروع الفاخر">
+    <div class="gallery-modal-box">
+      <button class="gallery-modal-close" id="closeGalleryModal" aria-label="إغلاق">&times;</button>
+      <div class="gallery-modal-grid">
+        <div class="gallery-modal-img-col" id="modalGalleryImgCol">
+          <img src="" alt="" id="modalGalleryImg" class="gallery-modal-img">
+          <button type="button" class="modal-slide-btn modal-prev" id="modalGalleryPrevBtn" aria-label="الصورة السابقة" style="display: none;"><i class="fa-solid fa-chevron-right"></i></button>
+          <button type="button" class="modal-slide-btn modal-next" id="modalGalleryNextBtn" aria-label="الصورة التالية" style="display: none;"><i class="fa-solid fa-chevron-left"></i></button>
+          <span class="modal-photo-counter" id="modalGalleryCounter" style="display: none;"><i class="fa-solid fa-images"></i> <span>1 / 1</span></span>
+          <span class="gallery-modal-location-badge" id="modalGalleryLoc"><i class="fa-solid fa-location-dot"></i>
+            <span></span></span>
+        </div>
+        <div class="gallery-modal-info-col">
+          <div class="gallery-modal-header">
+            <span class="sub-badge"><i class="fa-solid fa-certificate"></i> تنفيذ شركة الأوائل</span>
+            <h3 id="modalGalleryTitle" class="modal-gallery-title"></h3>
+            <div class="modal-gallery-tags" id="modalGalleryTags"></div>
+          </div>
+          <p id="modalGalleryDesc" class="modal-gallery-desc"></p>
+          <div class="modal-gallery-specs">
+            <div class="modal-spec-item">
+              <i class="fa-solid fa-shield-halved text-blue"></i>
+              <div>
+                <strong>ضمان وجودة التأسيس</strong>
+                <span>اختبار ضغط مياه 16 بار ومواسير معتمدة</span>
+              </div>
+            </div>
+            <div class="modal-spec-item">
+              <i class="fa-solid fa-user-check text-green"></i>
+              <div>
+                <strong>إشراف هندسي وتنفيذي</strong>
+                <span>تنفيذ مباشر وإشراف من البشمهندس وائل وفريق الأوائل المتخصص</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-gallery-actions">
+            <a href="" target="_blank" id="modalGalleryWaBtn" class="btn btn-wa-modal">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>اطلب تنفيذ نفس المستوى على واتساب</span>
+            </a>
+            <a href="tel:01144867114" class="btn btn-call-modal">
+              <i class="fa-solid fa-phone"></i>
+              <span>اتصال للمعاينة: 01144867114</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thermal Scanner Lightbox Modal Overlay -->
+  <div class="thermal-modal-overlay" id="thermalModal" aria-hidden="true" role="dialog"
+    aria-label="معاينة الكاميرا الحرارية">
+    <div class="thermal-modal-box">
+      <button class="modal-close-btn" id="closeThermalModal" aria-label="إغلاق">&times;</button>
+      <div class="modal-body-grid">
+        <div class="modal-img-col">
+          <img src="assets/thermal_scanner.png" alt="الكاميرا الحرارية الأصلية لشركة الأوائل لأعمال السباكة"
+            class="modal-thermal-img">
+          <div class="modal-screen-tag">
+            <i class="fa-solid fa-circle-check"></i> شاشة الفحص الفعلية لشركة الأوائل
+          </div>
+        </div>
+        <div class="modal-info-col">
+          <span class="sub-badge">تكنولوجيا الفحص بالأشعة تحت الحمراء</span>
+          <h3>كشف تسربات المياه بدون تكسير</h3>
+          <p>أحدث كاميرا تصوير حراري مخصصة لشبكات المياه والصرف. ترصد فارق درجات الحرارة خلف الجدران والخرسانات لتحديد
+            مسار النشع وبؤرة التسريب بدقة تامة.</p>
+          <ul class="modal-feature-list">
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>دقة بالسنتيمتر:</strong> معرفة مكان الكسر
+              بدقة لعلاجه دون تكسير الحمام بالكامل</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>توفير آلاف الجنيهات:</strong> حماية
+              السيراميك والديكورات من التكسير العشوائي</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>تقرير فحص فوري:</strong> توضيح المشكلة
+              بالفيديو والصور أمام العميل</li>
+          </ul>
+          <div class="modal-action-row">
+            <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20عندي%20تسريب%20ومحتاج%20فحص%20بالكاميرا%20الحرارية"
+              target="_blank" class="btn btn-wa-giant">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <strong>احجز كشف بالكاميرا الحرارية</strong>
+                <span>رد سريع وتحديد موعد مباشر</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Universal Video Player Modal -->
+  <div class="video-modal-overlay" id="videoModal" aria-hidden="true" role="dialog" aria-label="مشاهدة الفيديو">
+    <div class="video-modal-box">
+      <button class="video-modal-close" id="closeVideoModal" aria-label="إغلاق">&times;</button>
+      
+      <!-- Dual Before/After Toggle Tabs (shown dynamically when video has dual before & after) -->
+      <div class="video-modal-dual-switcher" id="videoModalDualSwitcher" style="display: none;">
+        <button type="button" class="btn-dual-modal-tab tab-before active" id="modalBtnBefore">
+          <span>فيديو قبل</span>
+        </button>
+        <button type="button" class="btn-dual-modal-tab tab-after" id="modalBtnAfter">
+          <span>فيديو بعد التشطيب</span>
+        </button>
+      </div>
+
+      <div class="video-modal-player-wrap" id="videoPlayerContainer">
+        <!-- Dynamic iframe or video element -->
+      </div>
+      <div class="video-modal-info">
+        <div class="video-modal-tags">
+          <span class="vtag" id="videoModalTag">قبل وبعد</span>
+          <span class="vtag vloc" id="videoModalLoc"><i class="fa-solid fa-location-dot"></i>
+            <span>القاهرة</span></span>
+        </div>
+        <h3 id="videoModalTitle"></h3>
+        <p id="videoModalDesc"></p>
+        <div class="video-modal-actions">
+          <a href="https://wa.me/201144867114?text=السلام%20عليكم%20يا%20بشمهندس%20وائل،%20شفت%20فيديو%20الشغل%20ومحتاج%20معاينة"
+            target="_blank" class="btn btn-wa-modal" id="videoModalWaBtn">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>طلب معاينة لنفس الشغل على واتساب</span>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-watch-external" id="videoModalDirectBtn"
+            style="display: none;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>مشاهدة المصدر الأصلي</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offer / Advertisement Details Pop-up Modal Box -->
+  <div class="ad-offer-modal-overlay" id="adOfferModal" aria-hidden="true" role="dialog" aria-labelledby="modalOfferTitle">
+    <div class="ad-offer-modal-card">
+      <button type="button" class="ad-offer-modal-close" id="closeAdOfferModal" aria-label="إغلاق تفاصيل العرض">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="ad-offer-modal-header">
+        <span class="ad-modal-badge" id="modalOfferBadge">عرض خاص 🔥</span>
+        <h3 class="ad-modal-title" id="modalOfferTitle">عرض وتخفيض شركة الأوائل للسباكة</h3>
+      </div>
+
+      <div class="ad-offer-modal-body">
+        <div class="ad-modal-message-box">
+          <i class="fa-solid fa-bullhorn ad-modal-icon"></i>
+          <p class="ad-modal-message" id="modalOfferText">خصم 15% على تأسيس وتشطيب شبكات السباكة وفحص تسريب المياه مجاناً بمناسبة التوسعات الجديدة في الشيخ زايد والتجمع!</p>
+        </div>
+
+        <div class="ad-modal-perks">
+          <div class="ad-modal-perk-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>إشراف هندسي وتنفيذي مباشر من البشمهندس وائل شخصياً</span>
+          </div>
+          <div class="ad-modal-perk-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>ضمان كتابي معتمد واختبار كامل لضغط المواسير بالبار</span>
+          </div>
+          <div class="ad-modal-perk-item">
+            <i class="fa-solid fa-camera"></i>
+            <span>فحص وكشف تسريب المياه خفي بدون تكسير بأحدث كاميرا حرارية</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-offer-modal-footer">
+        <a href="https://wa.me/201144867114?text=عايز%20استفيد%20من%20العرض%20المعلن" target="_blank"
+          class="ad-modal-cta-btn" id="modalOfferCta">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span id="modalOfferCtaText">احجز هذا العرض الآن على واتساب</span>
+        </a>
+        <button type="button" class="ad-modal-secondary-btn" id="dismissAdOfferModalBtn">
+          <span>إغلاق</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=4.0"></script>
+</body>
+
+</html>
