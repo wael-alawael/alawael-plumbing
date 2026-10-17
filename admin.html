@@ -2550,7 +2550,12 @@
       <h2>لوحة إدارة شركة الأوائل</h2>
       <p>إشراف البشمهندس وائل • أدخل الرقم السري للتحكم في الموقع</p>
       
-      <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="6" autofocus>
+      <div style="position: relative; width: 100%; max-width: 280px; margin: 0 auto 16px;">
+        <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="12" autofocus autocomplete="off" style="margin-bottom: 0;">
+        <button type="button" id="btnTogglePinVisibility" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1rem; padding: 4px;" title="إظهار / إخفاء الرقم السري">
+          <i class="fa-solid fa-eye" id="pinEyeIcon"></i>
+        </button>
+      </div>
       
       <button type="button" class="btn-unlock" id="unlockBtn">
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
@@ -3969,27 +3974,39 @@
     const pinInput = document.getElementById('pinInput');
     const unlockBtn = document.getElementById('unlockBtn');
     const loginErrorMsg = document.getElementById('loginErrorMsg');
+    const btnTogglePin = document.getElementById('btnTogglePinVisibility');
+    const pinEyeIcon = document.getElementById('pinEyeIcon');
+
+    if (btnTogglePin && pinInput && pinEyeIcon) {
+      btnTogglePin.addEventListener('click', () => {
+        if (pinInput.type === 'password') {
+          pinInput.type = 'text';
+          pinEyeIcon.className = 'fa-solid fa-eye-slash';
+        } else {
+          pinInput.type = 'password';
+          pinEyeIcon.className = 'fa-solid fa-eye';
+        }
+      });
+    }
 
     function checkAuth() {
-      const isAuth = localStorage.getItem('alawael_admin_authenticated') === 'true' ||
-                     sessionStorage.getItem('alawael_admin_authenticated') === 'true';
-      if (isAuth) {
-        loginOverlay.style.display = 'none';
-        initAdminData();
-      } else {
-        loginOverlay.style.display = 'flex';
-        pinInput.focus();
-      }
+      // Clean any persistent authentication: ALWAYS require entering the PIN on every visit/refresh
+      try {
+        localStorage.removeItem('alawael_admin_authenticated');
+        sessionStorage.removeItem('alawael_admin_authenticated');
+      } catch(e) {}
+
+      loginOverlay.style.display = 'flex';
+      pinInput.value = '';
+      setTimeout(() => pinInput.focus(), 120);
     }
 
     function doUnlock() {
       const currentPin = SiteData.getAdminPin();
-      if (pinInput.value === currentPin) {
-        localStorage.setItem('alawael_admin_authenticated', 'true');
-        sessionStorage.setItem('alawael_admin_authenticated', 'true');
+      if (pinInput.value.trim() === currentPin) {
         loginOverlay.style.display = 'none';
         loginErrorMsg.style.display = 'none';
-        showToast('مرحباً بك يا بشمهندس وائل! تم تسجيل الدخول بنجاح');
+        showToast('مرحباً بك يا بشمهندس وائل! تم تسجيل الدخول بنجاح 🔐✨');
         initAdminData();
       } else {
         loginErrorMsg.style.display = 'block';
@@ -4003,9 +4020,7 @@
       if (e.key === 'Enter') doUnlock();
     });
 
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem('alawael_admin_authenticated');
-      sessionStorage.removeItem('alawael_admin_authenticated');
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
       window.location.reload();
     });
 
