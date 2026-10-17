@@ -3891,6 +3891,10 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
             <i class="fa-solid fa-cloud-arrow-up" style="color: #fbbf24; font-size: 1.15rem;"></i>
             <span>تغيير صورة الغلاف من التنزيلات أو الجهاز 🖼️</span>
           </button>
+          <button type="button" class="btn-picker-opt" id="btnPickGalleryForEditVideo" style="width: 100%; margin-top: 8px; padding: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-weight: 600; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+            <i class="fa-solid fa-images" style="color: #38bdf8;"></i>
+            <span>أو اختيار صورة من معرض صور الموقع 📁</span>
+          </button>
           <input type="file" id="editVideoPosterFileInput" accept="image/*,.jpg,.jpeg,.png,.webp" style="display: none;">
           <input type="hidden" id="editVideoPoster" value="">
 
@@ -6047,8 +6051,15 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       videoPosterFileInput.addEventListener('change', async (e) => {
         if (e.target.files && e.target.files[0]) {
           try {
-            const res = await processImageFile(e.target.files[0]);
+            const file = e.target.files[0];
+            const res = await processImageFile(file);
             setVideoPosterSelection(res.dataUrl, res.name);
+            try {
+              const pubUrl = await SiteData.uploadMediaFile(file, 'posters');
+              if (pubUrl) setVideoPosterSelection(pubUrl, res.name);
+            } catch (storageErr) {
+              console.warn('Storage poster upload note:', storageErr);
+            }
           } catch (err) {
             alert(err.message);
           }
@@ -6100,8 +6111,15 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       editVideoPosterFileInput.addEventListener('change', async (e) => {
         if (e.target.files && e.target.files[0]) {
           try {
-            const res = await processImageFile(e.target.files[0]);
+            const file = e.target.files[0];
+            const res = await processImageFile(file);
             setEditVideoPosterSelection(res.dataUrl, res.name);
+            try {
+              const pubUrl = await SiteData.uploadMediaFile(file, 'posters');
+              if (pubUrl) setEditVideoPosterSelection(pubUrl, res.name);
+            } catch (storageErr) {
+              console.warn('Storage edit poster upload note:', storageErr);
+            }
           } catch (err) {
             alert(err.message);
           }

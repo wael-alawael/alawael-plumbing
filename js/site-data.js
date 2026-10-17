@@ -332,15 +332,22 @@ const SiteData = (function () {
     const client = getSupabaseClient();
     if (client) {
       try {
-        await client.from('site_videos').insert([{
+        const { data: inserted, error: insErr } = await client.from('site_videos').insert([{
           title: newVideo.title,
           location: newVideo.location,
           tag: newVideo.tag,
           video_type: newVideo.video_type,
           video_url: newVideo.video_url,
-          poster_url: newVideo.poster_url,
-          description: newVideo.description,
-        }]);
+          video_url_before: newVideo.video_url_before || '',
+          video_url_after: newVideo.video_url_after || '',
+          has_dual_videos: Boolean(newVideo.has_dual_videos),
+          poster_url: newVideo.poster_url || '',
+          description: newVideo.description || '',
+        }]).select();
+
+        if (!insErr && inserted && inserted[0]) {
+          newVideo.id = inserted[0].id;
+        }
       } catch (err) {
         console.error('Failed to sync video to Supabase:', err);
       }
@@ -394,18 +401,33 @@ const SiteData = (function () {
     localStorage.setItem(STORAGE_KEYS.VIDEOS, JSON.stringify(currentVideos));
 
     const client = getSupabaseClient();
-    if (client && !String(videoId).startsWith('vid_') && !String(videoId).startsWith('v')) {
+    if (client) {
       try {
-        await client.from('site_videos').update({
+        const payload = {
           title: updatedVideo.title,
           location: updatedVideo.location,
           tag: updatedVideo.tag,
           video_type: updatedVideo.video_type,
           video_url: updatedVideo.video_url,
-          poster_url: updatedVideo.poster_url,
-          description: updatedVideo.description,
-          updated_at: updatedVideo.updated_at,
-        }).eq('id', videoId);
+          video_url_before: updatedVideo.video_url_before || '',
+          video_url_after: updatedVideo.video_url_after || '',
+          has_dual_videos: Boolean(updatedVideo.has_dual_videos),
+          poster_url: updatedVideo.poster_url || '',
+          description: updatedVideo.description || '',
+        };
+
+        const numId = parseInt(videoId, 10);
+        let q = client.from('site_videos').update(payload);
+        if (!isNaN(numId)) {
+          q = q.eq('id', numId);
+        } else {
+          q = q.eq('title', currentVideos[index].title);
+        }
+
+        const { error: sbErr } = await q;
+        if (sbErr) {
+          console.error('Failed to update video in Supabase:', sbErr);
+        }
       } catch (err) {
         console.error('Failed to update video in Supabase:', err);
       }
@@ -424,9 +446,12 @@ const SiteData = (function () {
     localStorage.setItem(STORAGE_KEYS.VIDEOS, JSON.stringify(updated));
 
     const client = getSupabaseClient();
-    if (client && !String(videoId).startsWith('vid_') && !String(videoId).startsWith('v')) {
+    if (client) {
       try {
-        await client.from('site_videos').delete().eq('id', videoId);
+        const numId = parseInt(videoId, 10);
+        if (!isNaN(numId)) {
+          await client.from('site_videos').delete().eq('id', numId);
+        }
       } catch (err) {
         console.error('Failed to delete video from Supabase:', err);
       }
