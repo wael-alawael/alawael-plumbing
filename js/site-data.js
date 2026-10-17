@@ -575,6 +575,26 @@ const SiteData = (function () {
     try {
       window.dispatchEvent(new CustomEvent('alawael_categories_changed', { detail: unique }));
     } catch(e) {}
+
+    // Cloud sync to Supabase site_settings
+    (async () => {
+      const client = getSupabaseClient();
+      if (client) {
+        try {
+          const { data: existing } = await client.from('site_settings').select('id, settings').limit(1).maybeSingle();
+          if (existing && existing.id) {
+            const current = existing.settings || {};
+            await client.from('site_settings').update({
+              settings: { ...current, categories: unique },
+              updated_at: new Date().toISOString()
+            }).eq('id', existing.id);
+          }
+        } catch(err) {
+          console.warn('Sync categories to Supabase note:', err);
+        }
+      }
+    })();
+
     return unique;
   }
 
