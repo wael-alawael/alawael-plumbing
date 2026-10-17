@@ -1499,40 +1499,64 @@
       transform: scale(1.08);
     }
 
+    .admin-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .edit-modal-card .admin-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .edit-modal-card .form-group {
+      margin-bottom: 14px;
+    }
+
     /* Label with Action Buttons (+ Add, Edit, Delete) */
     .label-with-actions {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
+      min-height: 30px;
     }
 
     .label-with-actions .form-label {
       margin-bottom: 0;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
     }
 
     .choice-actions-toolbar {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
     .btn-choice-action {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--c-border);
       color: #cbd5e1;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 6px;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .btn-choice-action:hover {
@@ -2278,17 +2302,21 @@
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        flex-wrap: wrap !important;
-        gap: 4px !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        min-height: 30px !important;
       }
       .label-with-actions .form-label {
-        font-size: 0.8rem !important;
+        font-size: 0.82rem !important;
         margin-bottom: 0 !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
       }
       .choice-actions-toolbar {
         display: flex !important;
         align-items: center !important;
         gap: 3px !important;
+        flex-shrink: 0 !important;
       }
       .btn-choice-action {
         padding: 3px 6px !important;
@@ -3753,10 +3781,10 @@
           <input type="text" id="editVideoTitle" class="form-control" required placeholder="عنوان الفيديو">
         </div>
 
-        <div class="admin-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="admin-grid-2col">
           <div class="form-group">
             <div class="label-with-actions">
-              <label class="form-label" for="editVideoLocation">المنطقة أو المكان</label>
+              <label class="form-label" for="editVideoLocation">المنطقة</label>
               <div class="choice-actions-toolbar">
                 <button type="button" class="btn-choice-action btn-add-choice" title="إضافة منطقة جديدة" onclick="promptAddChoice('location', 'editVideoLocation')">
                   <i class="fa-solid fa-plus"></i> إضافة
@@ -3776,7 +3804,7 @@
 
           <div class="form-group">
             <div class="label-with-actions">
-              <label class="form-label" for="editVideoTag">نوع وتصنيف الفيديو</label>
+              <label class="form-label" for="editVideoTag">تصنيف الفيديو</label>
               <div class="choice-actions-toolbar">
                 <button type="button" class="btn-choice-action btn-add-choice" title="إضافة تصنيف جديد" onclick="promptAddChoice('videoTag', 'editVideoTag')">
                   <i class="fa-solid fa-plus"></i> إضافة
@@ -3926,10 +3954,10 @@
           <input type="text" id="editPhotoTitle" class="form-control" required placeholder="مثال: تأسيس سباكة فيلا بالشيخ زايد">
         </div>
 
-        <div class="admin-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="admin-grid-2col">
           <div class="form-group">
             <div class="label-with-actions">
-              <label class="form-label" for="editPhotoLocation">المنطقة أو المكان</label>
+              <label class="form-label" for="editPhotoLocation">المنطقة</label>
               <div class="choice-actions-toolbar">
                 <button type="button" class="btn-choice-action btn-add-choice" title="إضافة منطقة جديدة" onclick="promptAddChoice('location', 'editPhotoLocation')">
                   <i class="fa-solid fa-plus"></i> إضافة
@@ -3949,7 +3977,7 @@
 
           <div class="form-group">
             <div class="label-with-actions">
-              <label class="form-label" for="editPhotoCategory">قسم وتصنيف المعرض</label>
+              <label class="form-label" for="editPhotoCategory">قسم المعرض</label>
               <div class="choice-actions-toolbar">
                 <button type="button" class="btn-choice-action btn-add-choice" title="إضافة قسم جديد" onclick="promptAddChoice('category', 'editPhotoCategory')">
                   <i class="fa-solid fa-plus"></i> إضافة
