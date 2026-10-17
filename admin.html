@@ -2578,10 +2578,6 @@
         <i class="fa-solid fa-images"></i>
         <span>معرض الصور</span>
       </button>
-      <button type="button" class="tab-btn" data-tab="tab-cloud">
-        <i class="fa-solid fa-cloud-bolt"></i>
-        <span>الربط السحابي</span>
-      </button>
       <button type="button" class="tab-btn" data-tab="tab-settings">
         <i class="fa-solid fa-sliders"></i>
         <span>إعدادات النظام</span>
@@ -3439,78 +3435,7 @@
       </div>
     </section>
 
-    <!-- TAB 4: CLOUD SYNC & SETTINGS -->
-    <section class="tab-panel" id="tab-cloud">
-      <div class="panel-card">
-        <div class="card-header-flex">
-          <div class="card-title-wrap">
-            <div class="card-title-icon"><i class="fa-solid fa-cloud"></i></div>
-            <div>
-              <h3>الربط السحابي (Supabase Cloud Sync)</h3>
-              <p style="font-size: 0.82rem; color: var(--c-muted);">لحفظ وتحديث الإعلانات والفيديوهات فورياً من هاتفك لكل زوار الموقع (مجاني 100%)</p>
-            </div>
-          </div>
-        </div>
-
-        <form id="supabaseConfigForm">
-          <div class="form-group">
-            <label class="form-label" for="sbUrl">رابط المشروع (Project URL)</label>
-            <input type="url" id="sbUrl" class="form-control" placeholder="https://xxxxxxxx.supabase.co" dir="ltr">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="sbAnonKey">مفتاح الوصول العام (Anon Public Key)</label>
-            <input type="text" id="sbAnonKey" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..." dir="ltr">
-          </div>
-
-          <div style="display: flex; gap: 10px; margin-top: 14px;">
-            <button type="submit" class="btn-save-main" style="flex: 2;">
-              <i class="fa-solid fa-check"></i>
-              <span>حفظ إعدادات الربط السحابي</span>
-            </button>
-            <button type="button" class="btn-save-main" id="testConnectionBtn" style="flex: 1; background: #0284c7;">
-              <i class="fa-solid fa-plug"></i>
-              <span>فحص الاتصال</span>
-            </button>
-          </div>
-        </form>
-
-        <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--c-border);">
-          <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: #fff;">📋 كود تهيئة الجداول السحابية (SQL Schema)</h4>
-          <p style="font-size: 0.82rem; color: var(--c-muted);">انسخ هذا الكود والصقه مرة واحدة فقط في SQL Editor داخل موقع Supabase لإنشاء الجداول:</p>
-          <div class="sql-code-box" id="sqlBox">-- الملف متوفر بالكامل داخل المشروع باسم supabase_schema.sql
-CREATE TABLE IF NOT EXISTS site_announcements (...);
-CREATE TABLE IF NOT EXISTS site_videos (...);
-CREATE TABLE IF NOT EXISTS site_photos (...);</div>
-          <button type="button" class="badge-chip-btn" id="copySqlBtn" style="margin-top: 8px;">
-            <i class="fa-solid fa-copy"></i> نسخ كود SQL كاملاً
-          </button>
-        </div>
-      </div>
-
-      <!-- Security / PIN Settings -->
-      <div class="panel-card">
-        <div class="card-header-flex">
-          <div class="card-title-wrap">
-            <div class="card-title-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <div>
-              <h3>تغيير الرقم السري (PIN)</h3>
-              <p style="font-size: 0.82rem; color: var(--c-muted);">الرقم السري الحالي هو: 1234</p>
-            </div>
-          </div>
-        </div>
-
-        <form id="changePinForm" style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <input type="password" id="newPinInput" class="form-control" placeholder="أدخل الرقم السري الجديد (4 أرقام على الأقل)" style="flex: 1; min-width: 200px;" maxlength="8" required>
-          <button type="submit" class="btn-save-main" style="width: auto; padding: 12px 24px;">
-            <i class="fa-solid fa-key"></i>
-            <span>تحديث الرقم السري</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- TAB 5: SITE THEMES & APPEARANCE SETTINGS -->
+    <!-- TAB 4: SITE THEMES & APPEARANCE SETTINGS -->
     <section class="tab-panel" id="tab-settings">
       <div class="panel-card">
         <div class="card-header-flex">
@@ -3744,6 +3669,34 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
               <i class="fa-solid fa-arrows-rotate fa-spin" style="--fa-animation-duration: 4s;"></i>
               <span>استعادة إعدادات المصنع الأصلية</span>
             </button>
+          </div>
+
+          <!-- 6. SECURITY & ADMIN PIN SETTINGS -->
+          <div class="panel-card" style="margin-top: 20px; border: 1px solid rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%); border-radius: 12px; padding: 22px;">
+            <div class="card-header-flex" style="margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+              <div class="card-title-wrap">
+                <div class="card-title-icon" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 4px; font-weight: 700;">أمان الدخول وتغيير الرقم السري (Admin PIN)</h4>
+                  <p style="font-size: 0.82rem; color: var(--c-muted); margin: 0;">
+                    الرقم السري الحالي للوحة التحكم هو: <strong id="currentPinDisplay" style="color: #fbbf24; font-family: monospace; font-size: 1rem; background: rgba(245, 158, 11, 0.15); padding: 2px 10px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">1234</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <form id="changePinForm" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 10px;">
+              <div style="flex: 1; min-width: 240px; position: relative;">
+                <input type="text" id="newPinInput" class="form-control" placeholder="أدخل الرقم السري الجديد (4 أرقام أو حروف على الأقل)" maxlength="12" required style="padding-left: 40px; font-size: 0.95rem;">
+                <i class="fa-solid fa-key" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.95rem;"></i>
+              </div>
+              <button type="submit" class="btn-save-main" style="width: auto; padding: 12px 24px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border: none; font-weight: 700; color: #fff; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);">
+                <i class="fa-solid fa-check"></i>
+                <span>تحديث وحفظ الرقم السري</span>
+              </button>
+            </form>
           </div>
 
         </div>
@@ -4198,15 +4151,23 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       // 0. Refresh all choice select dropdowns (Locations, Categories, Video Tags)
       refreshAllChoiceSelects();
 
-      // 1. Check Cloud Sync Status
+      // 1. Check Cloud Sync Status & PIN Display
       const config = SiteData.getSupabaseConfig();
       const statusEl = document.getElementById('cloudSyncStatus');
-      if (config.url && config.anonKey) {
-        statusEl.innerHTML = '<i class="fa-solid fa-circle" style="color: #10b981; font-size: 8px;"></i> متصل بالسحابة (Supabase Live)';
-        document.getElementById('sbUrl').value = config.url;
-        document.getElementById('sbAnonKey').value = config.anonKey;
-      } else {
-        statusEl.innerHTML = '<i class="fa-solid fa-circle" style="color: #f59e0b; font-size: 8px;"></i> وضع التخزين المحلي (Local)';
+      if (statusEl) {
+        if (config.url && config.anonKey) {
+          statusEl.innerHTML = '<i class="fa-solid fa-circle" style="color: #10b981; font-size: 8px;"></i> متصل بالسحابة (Supabase Live)';
+        } else {
+          statusEl.innerHTML = '<i class="fa-solid fa-circle" style="color: #f59e0b; font-size: 8px;"></i> وضع التخزين المحلي (Local)';
+        }
+      }
+      const sbUrlEl = document.getElementById('sbUrl');
+      if (sbUrlEl && config.url) sbUrlEl.value = config.url;
+      const sbAnonEl = document.getElementById('sbAnonKey');
+      if (sbAnonEl && config.anonKey) sbAnonEl.value = config.anonKey;
+
+      if (typeof updateCurrentPinDisplay === 'function') {
+        updateCurrentPinDisplay();
       }
 
       // 2. Load Announcement
@@ -6308,101 +6269,63 @@ CREATE TABLE IF NOT EXISTS site_photos (...);</div>
       }
     };
 
-    // --- SUPABASE CONFIG ---
-    document.getElementById('supabaseConfigForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const url = document.getElementById('sbUrl').value.trim();
-      const anon = document.getElementById('sbAnonKey').value.trim();
-      SiteData.setSupabaseConfig(url, anon);
-      showToast('تم حفظ بيانات الربط السحابي بنجاح');
-      initAdminData();
-    });
-
-    document.getElementById('testConnectionBtn').addEventListener('click', async () => {
-      const url = document.getElementById('sbUrl').value.trim();
-      const anon = document.getElementById('sbAnonKey').value.trim();
-      showToast('جاري فحص الاتصال بقاعدة البيانات...');
-      const res = await SiteData.testSupabaseConnection(url, anon);
-      alert(res.message);
-      if (res.success) initAdminData();
-    });
-
-    // --- COPY SQL SCHEMA ---
-    document.getElementById('copySqlBtn').addEventListener('click', () => {
-      const fullSql = `-- انسخ وشغّل في Supabase SQL Editor:
-CREATE TABLE IF NOT EXISTS site_announcements (
-  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  is_active BOOLEAN NOT NULL DEFAULT TRUE,
-  badge_text TEXT NOT NULL DEFAULT 'عرض خاص 🔥',
-  message_text TEXT NOT NULL,
-  cta_text TEXT NOT NULL DEFAULT 'احجز العرض الآن على واتساب',
-  cta_link TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE IF NOT EXISTS site_videos (
-  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title TEXT NOT NULL,
-  location TEXT DEFAULT 'القاهرة والجيزة',
-  tag TEXT DEFAULT 'قبل وبعد',
-  video_type TEXT NOT NULL DEFAULT 'youtube',
-  video_url TEXT NOT NULL,
-  poster_url TEXT DEFAULT '',
-  description TEXT DEFAULT '',
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE IF NOT EXISTS site_photos (
-  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title TEXT NOT NULL,
-  location TEXT DEFAULT 'القاهرة والجيزة',
-  category TEXT DEFAULT 'luxury',
-  image_url TEXT NOT NULL,
-  description TEXT DEFAULT '',
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE IF NOT EXISTS site_settings (
-  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  settings JSONB NOT NULL DEFAULT '{}'::jsonb,
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-ALTER TABLE site_announcements ENABLE ROW LEVEL SECURITY;
-ALTER TABLE site_videos ENABLE ROW LEVEL SECURITY;
-ALTER TABLE site_photos ENABLE ROW LEVEL SECURITY;
-ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "public_read_announcements" ON site_announcements FOR SELECT USING (true);
-CREATE POLICY "public_read_videos" ON site_videos FOR SELECT USING (true);
-CREATE POLICY "public_read_photos" ON site_photos FOR SELECT USING (true);
-CREATE POLICY "public_read_settings" ON site_settings FOR SELECT USING (true);
-
-CREATE POLICY "anon_all_announcements" ON site_announcements FOR ALL USING (true);
-CREATE POLICY "anon_all_videos" ON site_videos FOR ALL USING (true);
-CREATE POLICY "anon_all_photos" ON site_photos FOR ALL USING (true);
-CREATE POLICY "anon_all_settings" ON site_settings FOR ALL USING (true);`;
-
-      navigator.clipboard.writeText(fullSql).then(() => {
-        showToast('تم نسخ كود SQL إلى الحافظة بنجاح!');
-      }).catch(() => {
-        alert('تم نسخ الكود. تجده أيضاً داخل ملف supabase_schema.sql');
-      });
-    });
+    // --- HELPER: CURRENT PIN DISPLAY ---
+    function updateCurrentPinDisplay() {
+      const pinEl = document.getElementById('currentPinDisplay');
+      if (pinEl && typeof SiteData !== 'undefined') {
+        pinEl.textContent = SiteData.getAdminPin();
+      }
+    }
 
     // --- CHANGE PIN ---
-    document.getElementById('changePinForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const newPin = document.getElementById('newPinInput').value.trim();
-      if (newPin.length < 4) {
-        alert('الرقم السري يجب أن يتكون من 4 أرقام أو أحرف على الأقل');
-        return;
-      }
-      SiteData.setAdminPin(newPin);
-      document.getElementById('newPinInput').value = '';
-      showToast('تم تغيير الرقم السري بنجاح!');
-    });
+    const changePinForm = document.getElementById('changePinForm');
+    if (changePinForm) {
+      changePinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newPinInput = document.getElementById('newPinInput');
+        const newPin = newPinInput ? newPinInput.value.trim() : '';
+        if (newPin.length < 4) {
+          alert('الرقم السري يجب أن يتكون من 4 أرقام أو أحرف على الأقل');
+          return;
+        }
+        SiteData.setAdminPin(newPin);
+        if (newPinInput) newPinInput.value = '';
+        updateCurrentPinDisplay();
+        showToast('تم تحديث وحفظ الرقم السري الجديد بنجاح! 🔑✨');
+      });
+    }
+
+    // --- SUPABASE CONFIG (Optional / Internal) ---
+    const supabaseConfigForm = document.getElementById('supabaseConfigForm');
+    if (supabaseConfigForm) {
+      supabaseConfigForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const url = document.getElementById('sbUrl')?.value.trim() || '';
+        const anon = document.getElementById('sbAnonKey')?.value.trim() || '';
+        SiteData.setSupabaseConfig(url, anon);
+        showToast('تم حفظ بيانات الربط السحابي بنجاح');
+        initAdminData();
+      });
+    }
+
+    const testConnectionBtn = document.getElementById('testConnectionBtn');
+    if (testConnectionBtn) {
+      testConnectionBtn.addEventListener('click', async () => {
+        const url = document.getElementById('sbUrl')?.value.trim() || '';
+        const anon = document.getElementById('sbAnonKey')?.value.trim() || '';
+        showToast('جاري فحص الاتصال بقاعدة البيانات...');
+        const res = await SiteData.testSupabaseConnection(url, anon);
+        alert(res.message);
+        if (res.success) initAdminData();
+      });
+    }
+
+    const copySqlBtn = document.getElementById('copySqlBtn');
+    if (copySqlBtn) {
+      copySqlBtn.addEventListener('click', () => {
+        showToast('تم نسخ كود SQL إلى الحافظة بنجاح!');
+      });
+    }
 
     // --- SONY PSP THEME & APPEARANCE CONTROLLER ---
     const THEME_NAMES = {
