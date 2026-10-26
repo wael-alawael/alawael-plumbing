@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://alawael-plumbing.vercel.app/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://alawael-plumbing.vercel.app/assets/wael_hero_banner.jpg</image:loc>
+      <image:title>شركة الأوائل لأعمال السباكة المتطورة - بإشراف البشمهندس وائل</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://alawael-plumbing.vercel.app/assets/wael_portrait.jpg</image:loc>
+      <image:title>البشمهندس وائل - مؤسس ومدير شركة الأوائل للسباكة الحديثة</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://alawael-plumbing.vercel.app/assets/thermal_scanner.png</image:loc>
+      <image:title>كشف تسربات المياه بدون تكسير بأحدث كاميرا تصوير حراري</image:title>
+    </image:image>
+  </url>
+</urlset>

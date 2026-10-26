@@ -1,0 +1,7 @@
+# robots.txt for Al-Awael Plumbing (شركة الأوائل لأعمال السباكة الحديثة)
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# Sitemap index
+Sitemap: https://alawael-plumbing.vercel.app/sitemap.xml

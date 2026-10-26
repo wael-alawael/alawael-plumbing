@@ -11,6 +11,67 @@
   <meta name="description"
     content="شركة الأوائل لأعمال وتأسيس السباكة المتطورة والتشطيبات الفندقية بإشراف البشمهندس وائل. كشف تسريب المياه بدون تكسير، تأسيس بولي معتمد واختبار 16 بار. اتصل بنا: 01144867114">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/logo_alawael.jpg">
+  <link rel="apple-touch-icon" href="assets/logo_alawael.jpg">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://alawael-plumbing.vercel.app/">
+
+  <!-- OpenGraph / Facebook / WhatsApp Rich Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alawael-plumbing.vercel.app/">
+  <meta property="og:title" content="شركة الأوائل لأعمال السباكة المتطورة | بإشراف البشمهندس وائل">
+  <meta property="og:description" content="تأسيس وتشطيبات سباكة فندقية معتمدة، كشف تسريب المياه بالكاميرا الحرارية بدون تكسير، اختبار ضغط 16 بار. اتصل بنا: 01144867114">
+  <meta property="og:image" content="https://alawael-plumbing.vercel.app/assets/wael_hero_banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ar_EG">
+  <meta property="og:site_name" content="شركة الأوائل للسباكة الحديثة">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="شركة الأوائل لأعمال السباكة المتطورة | بإشراف البشمهندس وائل">
+  <meta name="twitter:description" content="تأسيس وتشطيبات سباكة فندقية معتمدة، كشف تسريب المياه بالكاميرا الحرارية بدون تكسير، اختبار ضغط 16 بار.">
+  <meta name="twitter:image" content="https://alawael-plumbing.vercel.app/assets/wael_hero_banner.jpg">
+
+  <!-- Google Structured Data (Schema.org Plumber / LocalBusiness) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Plumber",
+    "name": "شركة الأوائل لأعمال السباكة المتطورة - بإشراف البشمهندس وائل",
+    "image": "https://alawael-plumbing.vercel.app/assets/wael_hero_banner.jpg",
+    "@id": "https://alawael-plumbing.vercel.app/",
+    "url": "https://alawael-plumbing.vercel.app/",
+    "telephone": "+201144867114",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "شبرا الخيمة، القاهرة الكبرى والجيزة",
+      "addressLocality": "القاهرة",
+      "addressRegion": "القاهرة الكبرى",
+      "addressCountry": "EG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.1286,
+      "longitude": 31.2422
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "08:00",
+      "closes": "23:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61581980519649",
+      "https://www.instagram.com/alawael_sanitaryware",
+      "https://www.tiktok.com/@alawael_sanitaryware"
+    ]
+  }
+  </script>
+
   <!-- Google Fonts: Cairo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +80,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="css/style.css?v=4.2">
+  <link rel="stylesheet" href="css/style.css?v=4.3">
 
   <!-- Supabase JS Client & Site Data Layer -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1544,10 +1605,13 @@
         </div>
       </div>
       <div class="footer-copy-row">
-        <p class="footer-copy">© 2026 جميع الحقوق محفوظة — شركة الأوائل للسباكة | بإشراف البشمهندس وائل بالقاهرة
-          والجيزة.</p>
-        <a href="admin.html" class="footer-admin-link" title="لوحة تحكم الموقع"><i class="fa-solid fa-lock"></i> دخول
-          الإدارة</a>
+        <p class="footer-copy">© 2026 جميع الحقوق محفوظة — شركة الأوائل للسباكة | بإشراف البشمهندس وائل بالقاهرة والجيزة.</p>
+        <div class="footer-legal-links">
+          <a href="#privacy" id="openPrivacyBtn">سياسة الخصوصية</a>
+          <span class="sep">•</span>
+          <a href="#terms" id="openTermsBtn">شروط الاستخدام</a>
+        </div>
+        <a href="admin.html" class="footer-admin-link" title="لوحة تحكم الموقع"><i class="fa-solid fa-lock"></i> دخول الإدارة</a>
       </div>
     </div>
   </footer>
@@ -1745,7 +1809,99 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=4.2"></script>
+  <!-- Privacy Policy & User Agreement Modal -->
+  <div class="legal-modal-overlay" id="legalModal" aria-hidden="true" role="dialog" aria-labelledby="legalModalTitle">
+    <div class="legal-modal-box">
+      <div class="legal-modal-header">
+        <div class="legal-modal-title-wrap">
+          <div class="legal-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div>
+            <h3 id="legalModalTitle">سياسة الخصوصية وشروط الاستخدام</h3>
+            <p>شركة الأوائل لأعمال السباكة الحديثة • بإشراف البشمهندس وائل</p>
+          </div>
+        </div>
+        <button type="button" class="legal-modal-close" id="closeLegalModal" aria-label="إغلاق">&times;</button>
+      </div>
+
+      <!-- Legal Tabs Switcher -->
+      <div class="legal-tabs-bar">
+        <button type="button" class="legal-tab-btn active" id="tabBtnPrivacy" data-target="legalSecPrivacy">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>سياسة الخصوصية وحماية البيانات</span>
+        </button>
+        <button type="button" class="legal-tab-btn" id="tabBtnTerms" data-target="legalSecTerms">
+          <i class="fa-solid fa-file-contract"></i>
+          <span>شروط الخدمة والاتفاقية</span>
+        </button>
+      </div>
+
+      <div class="legal-modal-body">
+        <!-- Privacy Section -->
+        <div class="legal-section active" id="legalSecPrivacy">
+          <div class="legal-badge-notice">
+            <i class="fa-solid fa-lock"></i>
+            <span>نلتزم بحماية خصوصيتك وسلامة بياناتك بنسبة 100% وفق أعلى معايير الأمان الرقمي.</span>
+          </div>
+
+          <div class="legal-clause">
+            <h4>1. البيانات التي يتم التعامل معها</h4>
+            <p>موقع شركة الأوائل منصة ترويجية واستشارية مجانية، ولا نطلب منك تسجيل حساب أو إدخال أي بيانات بطاقات بنكية أو تفاصيل دفع إلكتروني. البيانات التي تقدمها بمحض إرادتك عند الضغط على أزرار الاتصال أو الواتساب (كالاسم ورقم الهاتف وموقع المعاينة المطلوب) تُستخدم حصرياً للتنسيق وتحديد موعد تقديم الخدمة.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>2. سرية تامة وعدم مشاركة البيانات مع أي طرف ثالث</h4>
+            <p>نلتزم بعدم بيع أو تأجير أو مشاركة أو الإفصاح عن بياناتك أو أرقام هواتفك لأي شركة إعلانات أو طرف ثالث على الإطلاق. التواصل يكون مباشراً وسرياً بينك وبين إدارة البشمهندس وائل وفريق الأوائل فقط.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>3. التخزين المحلي الآمن وتجربة التصفح</h4>
+            <p>يستخدم الموقع تقنيات التخزين المحلي السريع على جهازك (LocalStorage) لحفظ تفضيلات التصفح فقط (مثل نمط الألوان المفضل وسرعة العرض لضمان تحميل الموقع في أجزاء من الثانية)، دون أي تتبع لسلوكك خارج نطاق موقعنا.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>4. التشفير الكامل (SSL / HTTPS)</h4>
+            <p>جميع الاتصالات بين متصفحك وخوادم الموقع محمية ومشفّرة ببروتوكول الأمان القياسي العالمي (HTTPS)، مما يمنع أي اعتراض أو تنصت على تصفحك.</p>
+          </div>
+        </div>
+
+        <!-- Terms Section -->
+        <div class="legal-section" id="legalSecTerms">
+          <div class="legal-badge-notice notice-blue">
+            <i class="fa-solid fa-certificate"></i>
+            <span>تضمن شركة الأوائل تطبيق أعلى المواصفات الهندسية والكود المصري والألماني في السباكة.</span>
+          </div>
+
+          <div class="legal-clause">
+            <h4>1. طبيعة الخدمات وعروض الأسعار</h4>
+            <p>يقدم الموقع عرضاً شاملاً لخدمات التأسيس والتشطيب والصيانة وكشف التسريبات بالكاميرا الحرارية. أي أسعار أو تقديرات معلنة تُعتبر استرشادية، ويتم اعتماد المقايسة النهائية بدقة بعد الفحص الميداني لطبيعة الموقع وحجم الأعمال المطلوب تنفيذها بموافقة العميل المسبقة.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>2. حقوق الملكية الفكرية وسابقة الأعمال</h4>
+            <p>كافة صور المشاريع، المقاطع المصورة (قبل وبعد)، النصوص التوضيحية، والشعارات المعروضة في المعرض هي ملكية فكرية حصرية لـ "شركة الأوائل" وموثقة لأعمال فعلية نفذها البشمهندس وائل. يُحظر تماماً نسخ أو إعادة نشر أي مادة بصرية لأغراض تجارية أخرى تحت طائلة المسؤولية القانونية.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>3. معايير الضمان واختبار 16 بار</h4>
+            <p>تلتزم الشركة بتسليم شبكات التغذية باختبار ضغط المياه حتى 16 بار بحضور مهندسي ومندوبي الشركات المعتمدة (BR / أكواثيرم / الشريف / مصر الحجاز) مع تسليم شهادة الضمان المعتمدة للعميل.</p>
+          </div>
+
+          <div class="legal-clause">
+            <h4>4. التواصل والدعم الفني</h4>
+            <p>نحرص على سرعة الرد وتقديم الاستشارات الفنية على مدار الساعة عبر أرقام هواتفنا الرسمية وخدمة عملاء واتساب المعتمدة 01144867114.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-modal-footer">
+        <button type="button" class="btn-agree-legal" id="confirmLegalModal">
+          <i class="fa-solid fa-check"></i> فهمت وموافق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=4.3"></script>
 </body>
 
 </html>

@@ -2298,6 +2298,81 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ==========================================================================
+  // LEGAL & PRIVACY MODAL CONTROLLER
+  // ==========================================================================
+  function initLegalModal() {
+    const legalModal = document.getElementById('legalModal');
+    if (!legalModal) return;
+
+    const openPrivacyBtn = document.getElementById('openPrivacyBtn');
+    const openTermsBtn = document.getElementById('openTermsBtn');
+    const closeLegalModal = document.getElementById('closeLegalModal');
+    const confirmLegalModal = document.getElementById('confirmLegalModal');
+    const tabBtnPrivacy = document.getElementById('tabBtnPrivacy');
+    const tabBtnTerms = document.getElementById('tabBtnTerms');
+    const legalSecPrivacy = document.getElementById('legalSecPrivacy');
+    const legalSecTerms = document.getElementById('legalSecTerms');
+
+    function switchLegalTab(tab) {
+      if (tab === 'privacy') {
+        if (tabBtnPrivacy) tabBtnPrivacy.classList.add('active');
+        if (tabBtnTerms) tabBtnTerms.classList.remove('active');
+        if (legalSecPrivacy) legalSecPrivacy.classList.add('active');
+        if (legalSecTerms) legalSecTerms.classList.remove('active');
+      } else {
+        if (tabBtnTerms) tabBtnTerms.classList.add('active');
+        if (tabBtnPrivacy) tabBtnPrivacy.classList.remove('active');
+        if (legalSecTerms) legalSecTerms.classList.add('active');
+        if (legalSecPrivacy) legalSecPrivacy.classList.remove('active');
+      }
+    }
+
+    function openModal(tab) {
+      switchLegalTab(tab);
+      legalModal.classList.add('active');
+      legalModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      legalModal.classList.remove('active');
+      legalModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (openPrivacyBtn) {
+      openPrivacyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal('privacy');
+      });
+    }
+
+    if (openTermsBtn) {
+      openTermsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal('terms');
+      });
+    }
+
+    if (tabBtnPrivacy) tabBtnPrivacy.addEventListener('click', () => switchLegalTab('privacy'));
+    if (tabBtnTerms) tabBtnTerms.addEventListener('click', () => switchLegalTab('terms'));
+
+    if (closeLegalModal) closeLegalModal.addEventListener('click', closeModal);
+    if (confirmLegalModal) confirmLegalModal.addEventListener('click', closeModal);
+
+    legalModal.addEventListener('click', (e) => {
+      if (e.target === legalModal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && legalModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+  initLegalModal();
 });
 
 
