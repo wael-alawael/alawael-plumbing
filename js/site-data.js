@@ -90,6 +90,122 @@ const SiteData = (function () {
     },
   ];
 
+  // Default initial 9 gallery project blocks
+  const DEFAULT_PHOTOS = [
+    {
+      id: 'photo_init_1',
+      title: 'حمام ماستر فيلا ألترا سوبر لوكس',
+      location: 'التجمع الخامس',
+      category: 'luxury',
+      image_url: 'assets/pics/1000346031.jpg',
+      images: [
+        'assets/pics/1000346031.jpg',
+        'assets/pics/1000346028.jpg',
+        'assets/pics/1000346027.jpg'
+      ],
+      tag: 'بانيو ديكور بيضاوي',
+      description: 'تنفيذ متكامل ببانيو بيضاوي فاخر، خلاط شلال، وحدة حوض عائمة بأدراج رخامية، ومرآة مضيئة تعمل باللمس مع بيبة صرف رخامية مدفونة.'
+    },
+    {
+      id: 'photo_init_2',
+      title: 'تشطيب فندقي 5 نجوم مع كابينة شاور',
+      location: 'الشيخ زايد',
+      category: 'luxury',
+      image_url: 'assets/pics/1000345976.jpg',
+      images: [
+        'assets/pics/1000345976.jpg'
+      ],
+      tag: 'كابينة سيكوريت',
+      description: 'كابينة شاور زجاجية مع دش مطري دفن وسيفون مسطري ستانلس ستيل في الأرضية، بيوت إضاءة ديكورية (Niches) في الحوائط، وقاعدة معلقة.'
+    },
+    {
+      id: 'photo_init_3',
+      title: 'جناح رخام كلكتا مع بانيو إيطالي مستقل',
+      location: 'بالم هيلز أكتوبر',
+      category: 'luxury',
+      image_url: 'assets/pics/1000318833.jpg',
+      images: [
+        'assets/pics/1000318833.jpg',
+        'assets/pics/1000318836.jpg',
+        'assets/pics/1000318838.jpg'
+      ],
+      tag: 'رخام كلكتا فاخر',
+      description: 'قمة الفخامة بتشطيب رخامي كامل وبانيو حر في المنتصف، مع 3 رفوف ديكورية جدارية مضاءة بنظام LED دافئ وخلاط دفن إيطالي معتمد.'
+    },
+    {
+      id: 'photo_init_4',
+      title: 'حمام ضيوف عصري مع قاعدة معلقة',
+      location: 'المعادي دجلة',
+      category: 'concealed',
+      image_url: 'assets/pics/1000346007.jpg',
+      images: [
+        'assets/pics/1000346007.jpg'
+      ],
+      tag: 'شاسيه جروهي دفن',
+      description: 'استغلال هندسي ذكي للمساحات المحدودة، قاعدة تواليت معلقة ريملس مع زر طرد ثنائي كروم، مرآة ذكية، وتأسيس وتوصيل مخفي بالكامل.'
+    },
+    {
+      id: 'photo_init_5',
+      title: 'تثبيت شاسيه جروهي وقاعدة معلقة',
+      location: 'مدينة نصر',
+      category: 'concealed',
+      image_url: 'assets/pics/1000346012.jpg',
+      images: [
+        'assets/pics/1000346012.jpg'
+      ],
+      tag: 'شاسيه جروهي أصلي',
+      description: 'تركيب دقيق لشاسيه الدفن داخل الجدار بوزن ليزري، ربط قاعدة معلقة ديورافيت ريملس، وشطاف ستانلس ستيل كروم مع زر طرد ثنائي أصلي.'
+    },
+    {
+      id: 'photo_init_6',
+      title: 'حوض مطبخ تركي مع خلاط سحاب',
+      location: 'مصر الجديدة',
+      category: 'kitchen-heaters',
+      image_url: 'assets/pics/1000345996.jpg',
+      images: [
+        'assets/pics/1000345996.jpg'
+      ],
+      tag: 'حوض تركي سقط رخام',
+      description: 'تركيب حوض تركي ساقط برخام جلاكسي أسود، خلاط متحرك بخرطوم سحاب قابل للمد بوضعين لتدفق المياه، مع محابس أمان إيطالية مانعة للتسريب.'
+    },
+    {
+      id: 'photo_init_7',
+      title: 'منطقة شاور فندقية وسيفون مسطري',
+      location: 'الرحاب',
+      category: 'tubs',
+      image_url: 'assets/pics/1000345981.jpg',
+      images: [
+        'assets/pics/1000345981.jpg'
+      ],
+      tag: 'دش مطري مربع دفن',
+      description: 'ميول أرضية ليزرية تضمن تصريف فوري للمياه داخل جريلية صرف مسطرية ستانلس 304، مع رأس دش مطري دفن ومقبض أمان لكبار السن.'
+    },
+    {
+      id: 'photo_init_8',
+      title: 'توصيل وتثبيت سخان مياه آمن',
+      location: 'حدائق الأهرام',
+      category: 'kitchen-heaters',
+      image_url: 'assets/pics/1000345986.jpg',
+      images: [
+        'assets/pics/1000345986.jpg'
+      ],
+      tag: 'صمام أمان رداد',
+      description: 'تثبيت صلب بمسامير فيشر حديد بالخرسانة، صمام أمان لعدم الرجوع لمنع زيادة ضغط البخار، ومحابس زاوية نيكل أصلية مانعة للتسريب تماماً.'
+    },
+    {
+      id: 'photo_init_9',
+      title: 'تسليم حمام مودرن فاخر بإشراف وحضور البشمهندس وائل',
+      location: 'الشيخ زايد',
+      category: 'luxury',
+      image_url: 'assets/before_after/case3_master_wael_delivered.jpg',
+      images: [
+        'assets/before_after/case3_master_wael_delivered.jpg'
+      ],
+      tag: 'تسليم على المفتاح',
+      description: 'لقطة حقيقية للبشمهندس وائل داخل حمام مودرن فاخر بعد الانتهاء من تركيبه وتسليمه بالكامل على الليزر (قاعدة معلقة ريملس، حوض معلق، وعمود شاور أسود فاخر).'
+    }
+  ];
+
   // Default Supabase project connection for Al-Awael (Live Cloud Database)
   const DEFAULT_SUPABASE_CONFIG = {
     url: 'https://ktegdbmxuykeedegarrs.supabase.co',
@@ -461,17 +577,36 @@ const SiteData = (function () {
 
   // --- PHOTOS API ---
   async function getCustomPhotos() {
+    let list = null;
     const client = getSupabaseClient();
     if (client) {
       try {
         const { data, error } = await client
           .from('site_photos')
           .select('*')
-          .order('id', { ascending: false });
+          .order('id', { ascending: true });
 
-        if (!error && data) {
-          localStorage.setItem(STORAGE_KEYS.PHOTOS, JSON.stringify(data));
-          return data;
+        if (!error && data && data.length > 0) {
+          list = data.map((item) => {
+            let imagesArr = [];
+            if (Array.isArray(item.images) && item.images.length > 0) {
+              imagesArr = item.images;
+            } else {
+              // Check if matching DEFAULT_PHOTOS by title or id to preserve multi-images
+              const defMatch = DEFAULT_PHOTOS.find(d => d.title === item.title || String(d.id) === String(item.id));
+              if (defMatch && Array.isArray(defMatch.images) && defMatch.images.length > 0) {
+                imagesArr = defMatch.images;
+              } else if (item.image_url) {
+                imagesArr = [item.image_url];
+              }
+            }
+            return {
+              ...item,
+              images: imagesArr
+            };
+          });
+          localStorage.setItem(STORAGE_KEYS.PHOTOS, JSON.stringify(list));
+          return list;
         }
       } catch (err) {
         console.warn('Supabase fetch photos failed:', err);
@@ -480,9 +615,37 @@ const SiteData = (function () {
 
     const local = localStorage.getItem(STORAGE_KEYS.PHOTOS);
     if (local) {
-      try { return JSON.parse(local); } catch (e) {}
+      try {
+        const parsed = JSON.parse(local);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch (e) {}
     }
-    return [];
+
+    // Default Fallback: Seed with the 9 initial gallery blocks!
+    list = [...DEFAULT_PHOTOS];
+    try {
+      localStorage.setItem(STORAGE_KEYS.PHOTOS, JSON.stringify(list));
+    } catch (e) {}
+
+    // Seed to Supabase if client available and empty
+    if (client) {
+      try {
+        const rows = DEFAULT_PHOTOS.map((p, idx) => ({
+          title: p.title,
+          location: p.location,
+          category: p.category,
+          image_url: p.image_url,
+          tag: p.tag,
+          description: p.description,
+          display_order: idx + 1
+        }));
+        client.from('site_photos').insert(rows).then(() => {});
+      } catch (e) {}
+    }
+
+    return list;
   }
 
   async function addCustomPhoto(photoData) {

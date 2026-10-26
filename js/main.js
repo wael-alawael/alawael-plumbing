@@ -2180,14 +2180,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryGrid = document.getElementById('galleryGrid');
     if (!galleryGrid) return;
 
-    // Remove any previously injected custom cards to prevent duplicates on refresh
-    galleryGrid.querySelectorAll('.custom-photo-card').forEach((c) => c.remove());
+    const photos = await SiteData.getCustomPhotos();
+    if (!photos || photos.length === 0) return;
 
-    const customPhotos = await SiteData.getCustomPhotos();
-    if (!customPhotos || customPhotos.length === 0) return;
+    // Render all gallery projects dynamically from SiteData so any edits made in admin reflect immediately
+    galleryGrid.innerHTML = '';
 
-    // Prepend so newly uploaded projects appear first in the gallery
-    [...customPhotos].reverse().forEach((p) => {
+    photos.forEach((p) => {
       const card = document.createElement('div');
       card.className = 'gallery-card custom-photo-card';
       card.setAttribute('data-category', p.category || 'luxury');
@@ -2233,8 +2232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card._currentImageIndex = 0;
       }
 
-      // Prepend so the newest project is displayed at the top of the gallery
-      galleryGrid.prepend(card);
+      galleryGrid.appendChild(card);
     });
 
     if (typeof window.updateGalleryPagination === 'function') {
