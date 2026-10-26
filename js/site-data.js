@@ -503,6 +503,10 @@ const SiteData = (function () {
     };
 
     const currentPhotos = await getCustomPhotos();
+    if (currentPhotos && currentPhotos.length >= 400) {
+      console.warn('Reached maximum allowed blocks quota (400 blocks).');
+      return null;
+    }
     const updated = [newPhoto, ...currentPhotos];
     localStorage.setItem(STORAGE_KEYS.PHOTOS, JSON.stringify(updated));
 

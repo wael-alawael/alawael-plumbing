@@ -3356,9 +3356,33 @@
           <div class="card-title-wrap">
             <div class="card-title-icon"><i class="fa-solid fa-camera-retro"></i></div>
             <div>
-              <h3>إضافة صورة جديدة لمعرض الأعمال</h3>
-              <p style="font-size: 0.82rem; color: var(--c-muted);">أضف صور تشطيباتك الجديدة لتظهر في المعرض الرئيسي</p>
+              <h3>إضافة مشروع / بلوك جديد لمعرض الأعمال</h3>
+              <p style="font-size: 0.82rem; color: var(--c-muted);">أضف صور تشطيباتك الجديدة لتظهر في المعرض الرئيسي (بحد أقصى 400 بلوك)</p>
             </div>
+          </div>
+        </div>
+
+        <!-- 400 Blocks Quota & Progress Bar -->
+        <div class="block-quota-card" style="margin-bottom: 20px; padding: 14px 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.85) 100%); border: 1.5px solid rgba(56, 189, 248, 0.35);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 9px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.2rem; color: #38bdf8;"><i class="fa-solid fa-cubes-stacked"></i></span>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem; color: #fff;">
+                  إجمالي البلوكات المضافة: <strong id="adminPhotoBlockCountText" style="color: #38bdf8; font-size: 1.1rem;">0</strong> <span style="color: var(--c-muted); font-size: 0.85rem;">من أصل 400 بلوك كحد أقصى</span>
+                </div>
+                <div style="font-size: 0.77rem; color: var(--c-muted); margin-top: 2px;">
+                  كل بلوك يضم حتى 4+ صور مضغوطة لحفظ مساحة السيرفر وسرعة التحميل للأبد
+                </div>
+              </div>
+            </div>
+            <span id="adminPhotoBlockRemainingBadge" style="font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 999px; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">
+              متبقي 400 بلوك متاح 🛡️
+            </span>
+          </div>
+          <!-- Visual Progress Bar -->
+          <div style="height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+            <div id="adminPhotoBlockProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #0284c7 0%, #10b981 100%); border-radius: 999px; transition: width 0.35s ease, background 0.35s ease;"></div>
           </div>
         </div>
 
@@ -3472,13 +3496,17 @@
 
       <!-- Photos List -->
       <div class="panel-card">
-        <div class="card-header-flex">
+        <div class="card-header-flex" style="align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
           <div class="card-title-wrap">
             <div class="card-title-icon"><i class="fa-solid fa-images"></i></div>
             <div>
-              <h3>الصور الإضافية المضافة حديثاً</h3>
+              <h3>المشاريع والبلوكات المعروضة في المعرض</h3>
+              <p style="font-size: 0.8rem; color: var(--c-muted); margin: 0;">يمكنك مراجعة، تعديل صور أو بيانات، أو حذف أي مشروع بنقرة واحدة</p>
             </div>
           </div>
+          <span id="adminPhotosCountBadge" style="font-size: 0.82rem; font-weight: 700; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(56, 189, 248, 0.3); display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-layer-group"></i> 0 / 400 بلوك
+          </span>
         </div>
 
         <div class="items-grid" id="adminPhotosList">
@@ -6384,10 +6412,58 @@
       });
     }
 
+    // --- 400 BLOCKS QUOTA & PROGRESS BAR LOGIC ---
+    function updatePhotoBlockQuota(count) {
+      const maxBlocks = 400;
+      const safeCount = Math.max(0, count || 0);
+      const remaining = Math.max(0, maxBlocks - safeCount);
+      const pct = Math.min(100, Math.round((safeCount / maxBlocks) * 100));
+
+      const countText = document.getElementById('adminPhotoBlockCountText');
+      const badgeRemain = document.getElementById('adminPhotoBlockRemainingBadge');
+      const pBar = document.getElementById('adminPhotoBlockProgressBar');
+      const headerBadge = document.getElementById('adminPhotosCountBadge');
+
+      if (countText) countText.textContent = safeCount;
+      if (headerBadge) {
+        headerBadge.innerHTML = `<i class="fa-solid fa-layer-group"></i> ${safeCount} / ${maxBlocks} بلوك`;
+      }
+      if (badgeRemain) {
+        if (remaining === 0) {
+          badgeRemain.textContent = 'اكتمل الحد الأقصى (400/400) 🔒';
+          badgeRemain.style.background = 'rgba(239, 68, 68, 0.2)';
+          badgeRemain.style.color = '#f87171';
+          badgeRemain.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        } else if (remaining <= 40) {
+          badgeRemain.textContent = `متبقي ${remaining} بلوك فقط ⚠️`;
+          badgeRemain.style.background = 'rgba(245, 158, 11, 0.2)';
+          badgeRemain.style.color = '#fbbf24';
+          badgeRemain.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+        } else {
+          badgeRemain.textContent = `متبقي ${remaining} بلوك متاح 🛡️`;
+          badgeRemain.style.background = 'rgba(16, 185, 129, 0.15)';
+          badgeRemain.style.color = '#34d399';
+          badgeRemain.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        }
+      }
+      if (pBar) {
+        pBar.style.width = `${pct}%`;
+        if (pct >= 95) {
+          pBar.style.background = 'linear-gradient(90deg, #f59e0b 0%, #ef4444 100%)';
+        } else if (pct >= 75) {
+          pBar.style.background = 'linear-gradient(90deg, #0284c7 0%, #f59e0b 100%)';
+        } else {
+          pBar.style.background = 'linear-gradient(90deg, #0284c7 0%, #10b981 100%)';
+        }
+      }
+    }
+
     // --- RENDER PHOTOS ---
     async function renderAdminPhotos() {
       const container = document.getElementById('adminPhotosList');
-      const photos = await SiteData.getCustomPhotos();
+      const photos = (await SiteData.getCustomPhotos()) || [];
+      updatePhotoBlockQuota(photos.length);
+
       if (!photos || photos.length === 0) {
         container.innerHTML = '<p style="color: var(--c-muted); grid-column: 1/-1;">لم تتم إضافة صور مخصصة جديدة بعد.</p>';
         return;
@@ -6429,6 +6505,13 @@
     // --- ADD PHOTO ---
     document.getElementById('addPhotoForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const currentPhotos = (await SiteData.getCustomPhotos()) || [];
+      if (currentPhotos.length >= 400) {
+        alert('عفواً، لقد وصلت إلى الحد الأقصى المسموح به (400 بلوك) لضمان بقاء قاعدة البيانات مجانية وسريعة للأبد 🛡️\n\nيمكنك حذف أي مشروع قديم لإضافة مشروع جديد.');
+        return;
+      }
+
       const title = document.getElementById('photoTitle').value.trim();
       const location = document.getElementById('photoLocation').value.trim();
       const category = document.getElementById('photoCategory').value;
@@ -6452,7 +6535,7 @@
 
       document.getElementById('addPhotoForm').reset();
       resetPhotoSelection();
-      showToast(`تم نشر المشروع مع ${images.length} صور في المعرض بنجاح! 📸`);
+      showToast(`تم نشر المشروع (${images.length} صور) بنجاح! 📸`);
       renderAdminPhotos();
     });
 
