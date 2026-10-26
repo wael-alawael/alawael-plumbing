@@ -2373,6 +2373,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   initLegalModal();
+
+  // ==========================================================================
+  // DISCREET ADMIN ACCESS (SECRET TRIPLE-CLICK ON FOOTER LOGO)
+  // ==========================================================================
+  const footerSecretLogo = document.getElementById('footerSecretLogo');
+  if (footerSecretLogo) {
+    let secretClicks = 0;
+    let secretTimer = null;
+    footerSecretLogo.addEventListener('click', () => {
+      secretClicks++;
+      clearTimeout(secretTimer);
+      if (secretClicks >= 3) {
+        window.location.href = 'admin.html';
+        secretClicks = 0;
+      } else {
+        secretTimer = setTimeout(() => {
+          secretClicks = 0;
+        }, 900);
+      }
+    });
+  }
 });
 
 
