@@ -840,8 +840,8 @@ const SiteData = (function () {
       cleaned.portrait_url = 'assets/wael_portrait.jpg';
     }
 
-    // Rule 2: Ensure mode is active and alternates between founder and advertisement
-    if (!cleaned.mode || cleaned.mode === 'none' || cleaned.mode === 'portrait') {
+    // Rule 2: Ensure mode is valid: 'both' | 'portrait' | 'video'
+    if (!cleaned.mode || cleaned.mode === 'none') {
       cleaned.mode = 'both';
     }
 

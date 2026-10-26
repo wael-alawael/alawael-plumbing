@@ -1404,7 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroConfig = await SiteData.getHeroMedia();
     const rawMode = heroConfig.mode || 'both';
     // Mode 'both' is default (Dual Story timer rotation), 'portrait' is clean photo only, 'video' is promo only
-    const effectiveMode = (rawMode === 'none' || rawMode === 'portrait') ? 'both' : rawMode;
+    const effectiveMode = (rawMode === 'none') ? 'both' : rawMode;
     heroConfig.mode = effectiveMode;
     mediaCard.setAttribute('data-mode', effectiveMode);
     heroDurationMs = Math.max(3000, Math.min(60000, (Number(heroConfig.duration) || 8) * 1000));
