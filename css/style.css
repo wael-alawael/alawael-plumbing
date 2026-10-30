@@ -6808,88 +6808,88 @@ html[data-theme="sapphire"],
   --theme-accent: #38bdf8;
 }
 
-/* 2. Royal Gold & Navy - كحلي أندلسي بلمسات الذهب الملكي */
+/* 2. Nero & Champagne - أسود كربوني وذهب شمبانيا */
 html[data-theme="royal-gold"] {
-  --c-navy: #0e1e38;
-  --c-navy-dark: #07101f;
-  --c-navy-light: #1a325c;
-  --c-blue: #d97706;
-  --c-blue-dark: #b45309;
-  --c-blue-light: #fef3c7;
-  --c-gold: #f59e0b;
-  --theme-primary: #d97706;
-  --theme-gradient: linear-gradient(135deg, #0e1e38 0%, #1a325c 50%, #d97706 100%);
-  --theme-accent: #fbbf24;
+  --c-navy: #111622;
+  --c-navy-dark: #090d14;
+  --c-navy-light: #1b2333;
+  --c-blue: #c59b27;
+  --c-blue-dark: #a17a18;
+  --c-blue-light: #fdfbf7;
+  --c-gold: #c59b27;
+  --theme-primary: #c59b27;
+  --theme-gradient: linear-gradient(135deg, #090d14 0%, #161f30 50%, #c59b27 100%);
+  --theme-accent: #e5c05d;
 }
 
-/* 3. Royal Emerald - زمرد هندسي فندقي فاخر */
+/* 3. Nordic Sage - زمرد نورديك وسيج فندقي */
 html[data-theme="emerald"] {
-  --c-navy: #064e3b;
-  --c-navy-dark: #022c22;
-  --c-navy-light: #065f46;
-  --c-blue: #059669;
-  --c-blue-dark: #047857;
-  --c-blue-light: #d1fae5;
-  --c-gold: #fbbf24;
-  --theme-primary: #059669;
-  --theme-gradient: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #059669 100%);
-  --theme-accent: #34d399;
-}
-
-/* 4. Aqua Teal & Cyan - فيروز مائي بحري ناصع */
-html[data-theme="teal-cyan"] {
-  --c-navy: #134e4a;
-  --c-navy-dark: #042f2e;
-  --c-navy-light: #115e59;
+  --c-navy: #0f241d;
+  --c-navy-dark: #081712;
+  --c-navy-light: #18362b;
   --c-blue: #0d9488;
   --c-blue-dark: #0f766e;
-  --c-blue-light: #ccfbf1;
+  --c-blue-light: #f0fdf4;
   --c-gold: #f59e0b;
   --theme-primary: #0d9488;
-  --theme-gradient: linear-gradient(135deg, #134e4a 0%, #115e59 50%, #0d9488 100%);
+  --theme-gradient: linear-gradient(135deg, #081712 0%, #0f241d 50%, #0d9488 100%);
   --theme-accent: #2dd4bf;
 }
 
-/* 5. Imperial Ruby - عقيق إمبراطوري أحمر */
-html[data-theme="imperial-ruby"] {
-  --c-navy: #4c0519;
-  --c-navy-dark: #2c020d;
-  --c-navy-light: #881337;
-  --c-blue: #e11d48;
-  --c-blue-dark: #be123c;
-  --c-blue-light: #ffe4e6;
-  --c-gold: #fbbf24;
-  --theme-primary: #e11d48;
-  --theme-gradient: linear-gradient(135deg, #4c0519 0%, #881337 50%, #e11d48 100%);
-  --theme-accent: #fb7185;
-}
-
-/* 6. Deep Amethyst Purple - أرجواني مخملي أرستقراطي */
-html[data-theme="amethyst-purple"] {
-  --c-navy: #2e1065;
-  --c-navy-dark: #1e0942;
-  --c-navy-light: #4c1d95;
-  --c-blue: #7c3aed;
-  --c-blue-dark: #6d28d9;
-  --c-blue-light: #ede9fe;
-  --c-gold: #facc15;
-  --theme-primary: #7c3aed;
-  --theme-gradient: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #7c3aed 100%);
-  --theme-accent: #a78bfa;
-}
-
-/* 7. Copper Bronze & Amber - برونز ونحاس هندسي دافئ */
-html[data-theme="bronze-amber"] {
-  --c-navy: #451a03;
-  --c-navy-dark: #270e02;
-  --c-navy-light: #78350f;
-  --c-blue: #ea580c;
-  --c-blue-dark: #c2410c;
-  --c-blue-light: #ffedd5;
+/* 4. Aqua Marine - فيروز أكوا ومياه كريستالية */
+html[data-theme="teal-cyan"] {
+  --c-navy: #082032;
+  --c-navy-dark: #04131f;
+  --c-navy-light: #0e2e47;
+  --c-blue: #0891b2;
+  --c-blue-dark: #0e7490;
+  --c-blue-light: #ecfeff;
   --c-gold: #f59e0b;
-  --theme-primary: #ea580c;
-  --theme-gradient: linear-gradient(135deg, #451a03 0%, #78350f 50%, #ea580c 100%);
-  --theme-accent: #fb923c;
+  --theme-primary: #0891b2;
+  --theme-gradient: linear-gradient(135deg, #04131f 0%, #082032 50%, #06b6d4 100%);
+  --theme-accent: #06b6d4;
+}
+
+/* 5. Tuscan Terracotta - تيراكوتا إيطالية وترافنتينو */
+html[data-theme="imperial-ruby"] {
+  --c-navy: #221513;
+  --c-navy-dark: #140c0a;
+  --c-navy-light: #33201d;
+  --c-blue: #c25e38;
+  --c-blue-dark: #9e4423;
+  --c-blue-light: #fdf6f0;
+  --c-gold: #f59e0b;
+  --theme-primary: #c25e38;
+  --theme-gradient: linear-gradient(135deg, #140c0a 0%, #221513 50%, #c25e38 100%);
+  --theme-accent: #e07a5f;
+}
+
+/* 6. Industrial Copper - نحاس ألماني وجانميتال */
+html[data-theme="amethyst-purple"] {
+  --c-navy: #18191e;
+  --c-navy-dark: #0f1014;
+  --c-navy-light: #25262e;
+  --c-blue: #b85d34;
+  --c-blue-dark: #944622;
+  --c-blue-light: #fef5ee;
+  --c-gold: #f59e0b;
+  --theme-primary: #b85d34;
+  --theme-gradient: linear-gradient(135deg, #0f1014 0%, #18191e 50%, #b85d34 100%);
+  --theme-accent: #dd7e50;
+}
+
+/* 7. Warm Amber & Walnut - عنبر دافئ وجوز فاخر */
+html[data-theme="bronze-amber"] {
+  --c-navy: #1c1712;
+  --c-navy-dark: #120d09;
+  --c-navy-light: #2c241c;
+  --c-blue: #d97706;
+  --c-blue-dark: #b45309;
+  --c-blue-light: #fefce8;
+  --c-gold: #f59e0b;
+  --theme-primary: #d97706;
+  --theme-gradient: linear-gradient(135deg, #120d09 0%, #1c1712 50%, #d97706 100%);
+  --theme-accent: #f59e0b;
 }
 
 /* 8. Midnight Titanium - تيتانيوم ليلي داكن حديث */
@@ -6902,53 +6902,53 @@ html[data-theme="midnight-titanium"] {
   --c-blue-light: #e0f2fe;
   --c-gold: #38bdf8;
   --theme-primary: #3b82f6;
-  --theme-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #3b82f6 100%);
+  --theme-gradient: linear-gradient(135deg, #020617 0%, #1e293b 50%, #3b82f6 100%);
   --theme-accent: #60a5fa;
 }
 
-/* 9. Platinum Slate - بلاتينيوم رمادي ناصع ومعماري */
+/* 9. Basalt & Chrome - سليت بازلتي وكروم فولاذي */
 html[data-theme="platinum-silver"] {
-  --c-navy: #182230;
-  --c-navy-dark: #0b1118;
-  --c-navy-light: #334155;
+  --c-navy: #151c27;
+  --c-navy-dark: #0c121a;
+  --c-navy-light: #202a3a;
   --c-blue: #475569;
   --c-blue-dark: #334155;
   --c-blue-light: #f1f5f9;
   --c-gold: #0284c7;
   --theme-primary: #475569;
-  --theme-gradient: linear-gradient(135deg, #182230 0%, #334155 50%, #64748b 100%);
-  --theme-accent: #94a3b8;
+  --theme-gradient: linear-gradient(135deg, #0c121a 0%, #151c27 50%, #475569 100%);
+  --theme-accent: #64748b;
 }
 
-/* 10. Rose Gold Luxe - روز جولد فاخر معاصر */
+/* 10. Brushed Rose Bronze - برونز وردي معتّق وكشمير */
 html[data-theme="rose-gold"] {
-  --c-navy: #3b1828;
-  --c-navy-dark: #210c16;
-  --c-navy-light: #5d253f;
-  --c-blue: #be185d;
-  --c-blue-dark: #9d174d;
-  --c-blue-light: #fce7f3;
+  --c-navy: #1f161c;
+  --c-navy-dark: #140c11;
+  --c-navy-light: #2d2028;
+  --c-blue: #a85d6d;
+  --c-blue-dark: #874452;
+  --c-blue-light: #fdf6f7;
   --c-gold: #f59e0b;
-  --theme-primary: #be185d;
-  --theme-gradient: linear-gradient(135deg, #3b1828 0%, #5d253f 50%, #be185d 100%);
-  --theme-accent: #f472b6;
+  --theme-primary: #a85d6d;
+  --theme-gradient: linear-gradient(135deg, #140c11 0%, #1f161c 50%, #a85d6d 100%);
+  --theme-accent: #c97f8f;
 }
 
-/* 11. Pure White & Ceramic Luxury - أبيض سيراميك ناصع وفندقي */
+/* 11. Calacatta Porcelain - رخام كلكتا وبورسلين ناصع */
 html[data-theme="white-pure"] {
-  --c-navy: #0f2744;
-  --c-navy-dark: #091e36;
-  --c-navy-light: #1e3a5f;
+  --c-navy: #0c1b2e;
+  --c-navy-dark: #060f1c;
+  --c-navy-light: #152942;
   --c-blue: #0284c7;
   --c-blue-dark: #0369a1;
-  --c-blue-light: #f0f9ff;
+  --c-blue-light: #f8fafc;
   --c-gold: #f59e0b;
   --c-bg: #ffffff;
   --c-bg-alt: #ffffff;
   --c-card: #ffffff;
   --theme-primary: #0284c7;
   --theme-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
-  --theme-accent: #0284c7;
+  --theme-accent: #38bdf8;
 }
 
 html[data-theme="white-pure"] .main-navbar {
@@ -7400,15 +7400,16 @@ html[data-radius="modern"] {
 
 /* Swatch gradient definitions */
 .pill-sapphire      { background: linear-gradient(90deg, #0f2744 0%, #0284c7 100%); }
-.pill-royal-gold    { background: linear-gradient(90deg, #0e1e38 0%, #d97706 100%); }
-.pill-emerald       { background: linear-gradient(90deg, #064e3b 0%, #059669 100%); }
-.pill-teal-cyan     { background: linear-gradient(90deg, #134e4a 0%, #0d9488 100%); }
-.pill-imperial-ruby { background: linear-gradient(90deg, #4c0519 0%, #e11d48 100%); }
-.pill-amethyst      { background: linear-gradient(90deg, #2e1065 0%, #7c3aed 100%); }
-.pill-bronze-amber  { background: linear-gradient(90deg, #451a03 0%, #ea580c 100%); }
+.pill-royal-gold    { background: linear-gradient(90deg, #111622 0%, #c59b27 100%); }
+.pill-emerald       { background: linear-gradient(90deg, #0f241d 0%, #0d9488 100%); }
+.pill-teal-cyan     { background: linear-gradient(90deg, #082032 0%, #0891b2 100%); }
+.pill-imperial-ruby { background: linear-gradient(90deg, #221513 0%, #c25e38 100%); }
+.pill-amethyst      { background: linear-gradient(90deg, #18191e 0%, #b85d34 100%); }
+.pill-bronze-amber  { background: linear-gradient(90deg, #1c1712 0%, #d97706 100%); }
 .pill-midnight      { background: linear-gradient(90deg, #0f172a 0%, #3b82f6 100%); }
-.pill-platinum      { background: linear-gradient(90deg, #182230 0%, #64748b 100%); }
-.pill-rose-gold     { background: linear-gradient(90deg, #3b1828 0%, #be185d 100%); }
+.pill-platinum      { background: linear-gradient(90deg, #151c27 0%, #475569 100%); }
+.pill-rose-gold     { background: linear-gradient(90deg, #1f161c 0%, #a85d6d 100%); }
+.pill-white-pure    { background: linear-gradient(90deg, #0c1b2e 0%, #0284c7 100%); border: 2px solid #e2e8f0; }
 
 /* ==========================================================================
    FONT SIZE & ACCESSIBILITY CONTROLS CARD
