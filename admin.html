@@ -1967,7 +1967,6 @@
     .pill-midnight      { background: linear-gradient(90deg, #0f172a 0%, #3b82f6 100%); }
     .pill-platinum      { background: linear-gradient(90deg, #151c27 0%, #475569 100%); }
     .pill-rose-gold     { background: linear-gradient(90deg, #1f161c 0%, #a85d6d 100%); }
-    .pill-white-pure    { background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important; border: 2px solid #0284c7 !important; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.15); }
 
     /* Font Scale Stepper */
     .font-scale-control-box {
@@ -3718,18 +3717,6 @@
                 <div class="psp-card-info">
                   <h4>10. برونز وردي معتّق وكشمير</h4>
                   <p>لمسات خلاطات الروز جولد المطفأة (Brushed Rose) مع خلفيات الكشمير الهادئة لأجنحة الماستر الفاخرة.</p>
-                </div>
-              </div>
-
-              <!-- Swatch 11: Pure White Background -->
-              <div class="psp-theme-card" data-theme-id="white-pure" onclick="selectPspTheme('white-pure')">
-                <div class="psp-card-top-row">
-                  <div class="psp-color-pill pill-white-pure"></div>
-                  <div class="psp-check-indicator"><i class="fa-solid fa-check"></i></div>
-                </div>
-                <div class="psp-card-info">
-                  <h4>11. أبيض سيراميك ناصع (Pure White Background)</h4>
-                  <p>خلفية بيضاء نقية ومشرقة مستوحاة من أطقم السيراميك والبورسلين الفاخر وأحدث معارض الأدوات الصحية العالمية.</p>
                 </div>
               </div>
 
@@ -7011,17 +6998,16 @@
 
     // --- SONY PSP THEME & APPEARANCE CONTROLLER ---
     const THEME_NAMES = {
-      'sapphire': 'ياقوت نيلي ملكي (Sapphire) - الافتراضي',
-      'royal-gold': 'كحلي أندلسي بذهب ملكي (Royal Gold)',
-      'emerald': 'زمرد هندسي فندقي (Emerald)',
-      'teal-cyan': 'فيروز مائي بحري (Aqua Teal)',
-      'imperial-ruby': 'عقيق إمبراطوري أحمر (Imperial Ruby)',
-      'amethyst-purple': 'أرجواني مخملي أرستقراطي (Amethyst)',
-      'bronze-amber': 'برونز ونحاس دافئ (Bronze & Amber)',
+      'sapphire': 'ياقوت نيلي ملكي (Sapphire Classic)',
+      'royal-gold': 'أسود كربوني وذهب شمبانيا (Carbon & Champagne)',
+      'emerald': 'زمرد نورديك وسيج فندقي (Nordic Sage)',
+      'teal-cyan': 'فيروز أكوا ومياه كريستالية (Aqua Marine)',
+      'imperial-ruby': 'تيراكوتا إيطالية وترافنتينو (Tuscan Terracotta)',
+      'amethyst-purple': 'نحاس ألماني وجانميتال (Industrial Copper)',
+      'bronze-amber': 'عنبر دافئ وجوز فاخر (Warm Amber & Walnut)',
       'midnight-titanium': 'تيتانيوم ليلي داكن (Midnight Titanium)',
-      'platinum-silver': 'بلاتينيوم وسليت رمادي (Platinum Slate)',
-      'rose-gold': 'روز جولد معاصر (Rose Gold)',
-      'white-pure': 'أبيض سيراميك ناصع (Pure White Background)'
+      'platinum-silver': 'سليت بازلتي وكروم فولاذي (Basalt & Chrome)',
+      'rose-gold': 'برونز وردي معتّق وكشمير (Brushed Rose Bronze)'
     };
 
     const THEME_PALETTES = (typeof SiteData !== 'undefined' && SiteData.THEME_PALETTES) ? SiteData.THEME_PALETTES : {

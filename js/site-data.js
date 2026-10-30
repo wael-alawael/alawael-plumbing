@@ -17,7 +17,7 @@ const SiteData = (function () {
 
   // Default theme & display appearance settings (Site Theme Engine)
   const DEFAULT_THEME_SETTINGS = {
-    themeId: 'sapphire',       // 11 distinct themes: sapphire, royal-gold, emerald, teal-cyan, imperial-ruby, amethyst-purple, bronze-amber, midnight-titanium, platinum-silver, rose-gold, white-pure
+    themeId: 'sapphire',       // 10 distinct themes: sapphire, royal-gold, emerald, teal-cyan, imperial-ruby, amethyst-purple, bronze-amber, midnight-titanium, platinum-silver, rose-gold
     fontScale: 'normal',       // 'small', 'normal', 'large', 'xlarge'
     borderRadius: 'modern',    // 'modern', 'sharp'
     animations: 'full',        // 'full', 'reduced'
@@ -1419,20 +1419,6 @@ const SiteData = (function () {
       gradient: 'linear-gradient(135deg, #140c11 0%, #1f161c 50%, #a85d6d 100%)',
       cardBg: '#251b22',
       border: '#f2e5e8'
-    },
-    'white-pure': {
-      name: 'أبيض سيراميك ناصع (Pure White Background)',
-      navy: '#0f2744',
-      navyDark: '#091e36',
-      navyLight: '#1e3a5f',
-      primary: '#0284c7',
-      primaryDark: '#0369a1',
-      accent: '#0284c7',
-      light: '#f0f9ff',
-      gold: '#f59e0b',
-      gradient: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%)',
-      cardBg: '#ffffff',
-      border: '#cbd5e1'
     }
   };
 
@@ -1442,7 +1428,7 @@ const SiteData = (function () {
       const saved = localStorage.getItem(STORAGE_KEYS.THEME_SETTINGS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed && (parsed.themeId === 'royal-gold' || parsed.themeId === 'sapphire')) {
+        if (parsed && !THEME_PALETTES[parsed.themeId]) {
           parsed.themeId = 'sapphire';
           localStorage.setItem(STORAGE_KEYS.THEME_SETTINGS, JSON.stringify(parsed));
         }
@@ -1503,10 +1489,10 @@ const SiteData = (function () {
     const root = document.documentElement;
     if (!root) return;
 
-    const themeId = settings.themeId || 'sapphire';
+    const themeId = (settings && settings.themeId && THEME_PALETTES[settings.themeId]) ? settings.themeId : 'sapphire';
     root.setAttribute('data-theme', themeId);
 
-    const palette = THEME_PALETTES[themeId] || THEME_PALETTES['sapphire'];
+    const palette = THEME_PALETTES[themeId];
     if (palette) {
       // Set all custom CSS variables directly on root inline style for instant, foolproof cascade
       root.style.setProperty('--c-navy', palette.navy);
@@ -1531,15 +1517,9 @@ const SiteData = (function () {
 
     // Theme background colors
     root.removeAttribute('data-bg-tone');
-    if (themeId === 'white-pure') {
-      root.style.setProperty('--c-bg', '#ffffff');
-      root.style.setProperty('--c-bg-alt', '#ffffff');
-      root.style.setProperty('--c-card', '#ffffff');
-    } else {
-      root.style.setProperty('--c-bg', '#f8fafc');
-      root.style.setProperty('--c-bg-alt', '#f1f5f9');
-      root.style.setProperty('--c-card', '#ffffff');
-    }
+    root.style.setProperty('--c-bg', '#f8fafc');
+    root.style.setProperty('--c-bg-alt', '#f1f5f9');
+    root.style.setProperty('--c-card', '#ffffff');
 
     // Font Scale (Directly scale root font size for instantaneous rem-scaling)
     const fontScale = settings.fontScale || 'normal';

@@ -6934,76 +6934,6 @@ html[data-theme="rose-gold"] {
   --theme-accent: #c97f8f;
 }
 
-/* 11. Calacatta Porcelain - رخام كلكتا وبورسلين ناصع */
-html[data-theme="white-pure"] {
-  --c-navy: #0c1b2e;
-  --c-navy-dark: #060f1c;
-  --c-navy-light: #152942;
-  --c-blue: #0284c7;
-  --c-blue-dark: #0369a1;
-  --c-blue-light: #f8fafc;
-  --c-gold: #f59e0b;
-  --c-bg: #ffffff;
-  --c-bg-alt: #ffffff;
-  --c-card: #ffffff;
-  --theme-primary: #0284c7;
-  --theme-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
-  --theme-accent: #38bdf8;
-}
-
-html[data-theme="white-pure"] .main-navbar {
-  background: #ffffff !important;
-  border-bottom: 2px solid #0284c7 !important;
-  box-shadow: 0 4px 20px rgba(15, 39, 68, 0.08) !important;
-}
-
-html[data-theme="white-pure"] .brand-name {
-  color: #0f2744 !important;
-}
-
-html[data-theme="white-pure"] .brand-sub {
-  color: #0284c7 !important;
-}
-
-html[data-theme="white-pure"] .nav-item {
-  color: #334155 !important;
-}
-
-html[data-theme="white-pure"] .nav-item:hover,
-html[data-theme="white-pure"] .nav-item.active {
-  color: #0284c7 !important;
-}
-
-html[data-theme="white-pure"] .nav-item.active::after {
-  background: #0284c7 !important;
-}
-
-html[data-theme="white-pure"] .mobile-menu-btn {
-  color: #0f2744 !important;
-}
-
-/* Pure White Theme Override */
-html[data-theme="white-pure"] {
-  --c-bg: #ffffff !important;
-  --c-bg-alt: #ffffff !important;
-  --c-card: #ffffff !important;
-}
-
-html[data-theme="white-pure"] body,
-html[data-theme="white-pure"] .hero-box,
-html[data-theme="white-pure"] .section-container,
-html[data-theme="white-pure"] .bg-light,
-html[data-theme="white-pure"] .quick-reassurance {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-}
-
-.pill-white-pure {
-  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important;
-  border: 2px solid #0284c7 !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
 /* ==========================================================================
    FONT SIZE SCALING & ACCESSIBILITY (Laptop + Mobile Calibrated)
    ========================================================================== */
@@ -7409,7 +7339,6 @@ html[data-radius="modern"] {
 .pill-midnight      { background: linear-gradient(90deg, #0f172a 0%, #3b82f6 100%); }
 .pill-platinum      { background: linear-gradient(90deg, #151c27 0%, #475569 100%); }
 .pill-rose-gold     { background: linear-gradient(90deg, #1f161c 0%, #a85d6d 100%); }
-.pill-white-pure    { background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important; border: 2px solid #0284c7 !important; }
 
 /* ==========================================================================
    FONT SIZE & ACCESSIBILITY CONTROLS CARD
