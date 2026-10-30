@@ -17,7 +17,7 @@ const SiteData = (function () {
 
   // Default theme & display appearance settings (Site Theme Engine)
   const DEFAULT_THEME_SETTINGS = {
-    themeId: 'sapphire',       // 11 distinct themes: sapphire, royal-gold, emerald, teal-cyan, imperial-ruby, amethyst-purple, bronze-amber, midnight-titanium, platinum-silver, rose-gold, white-pure
+    themeId: 'royal-gold',     // Active surprise theme: Royal Andalusian Midnight & Brushed Champagne Gold
     fontScale: 'normal',       // 'small', 'normal', 'large', 'xlarge'
     borderRadius: 'modern',    // 'modern', 'sharp'
     animations: 'full',        // 'full', 'reduced'
@@ -1303,17 +1303,17 @@ const SiteData = (function () {
     },
     'royal-gold': {
       name: 'كحلي أندلسي بذهب ملكي (Royal Gold)',
-      navy: '#0e1e38',
-      navyDark: '#07101f',
-      navyLight: '#1a325c',
+      navy: '#0b1a30',
+      navyDark: '#060e1c',
+      navyLight: '#162a47',
       primary: '#d97706',
       primaryDark: '#b45309',
       accent: '#fbbf24',
       light: '#fef3c7',
       gold: '#f59e0b',
-      gradient: 'linear-gradient(135deg, #07101f 0%, #0e1e38 50%, #d97706 100%)',
-      cardBg: '#13233d',
-      border: '#3b2f15'
+      gradient: 'linear-gradient(135deg, #060e1c 0%, #0b1a30 50%, #d97706 100%)',
+      cardBg: '#10223b',
+      border: '#e7e5e4'
     },
     'emerald': {
       name: 'زمرد هندسي فندقي (Emerald)',
@@ -1448,7 +1448,12 @@ const SiteData = (function () {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.THEME_SETTINGS);
       if (saved) {
-        return { ...DEFAULT_THEME_SETTINGS, ...JSON.parse(saved) };
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.themeId === 'sapphire') {
+          parsed.themeId = DEFAULT_THEME_SETTINGS.themeId;
+          localStorage.setItem(STORAGE_KEYS.THEME_SETTINGS, JSON.stringify(parsed));
+        }
+        return { ...DEFAULT_THEME_SETTINGS, ...parsed };
       }
     } catch (e) {
       console.warn('Error reading theme settings:', e);
@@ -1537,6 +1542,10 @@ const SiteData = (function () {
       root.style.setProperty('--c-bg', '#ffffff');
       root.style.setProperty('--c-bg-alt', '#ffffff');
       root.style.setProperty('--c-card', '#ffffff');
+    } else if (themeId === 'royal-gold') {
+      root.style.setProperty('--c-bg', '#fafaf9');
+      root.style.setProperty('--c-bg-alt', '#f5f5f4');
+      root.style.setProperty('--c-card', '#ffffff');
     } else {
       root.style.setProperty('--c-bg', '#f8fafc');
       root.style.setProperty('--c-bg-alt', '#f1f5f9');
@@ -1563,9 +1572,9 @@ const SiteData = (function () {
       root.style.setProperty('--radius-lg', '6px');
       root.style.setProperty('--radius-full', '4px');
     } else {
-      root.style.setProperty('--radius-sm', '8px');
-      root.style.setProperty('--radius-md', '14px');
-      root.style.setProperty('--radius-lg', '20px');
+      root.style.setProperty('--radius-sm', '10px');
+      root.style.setProperty('--radius-md', '18px');
+      root.style.setProperty('--radius-lg', '26px');
       root.style.setProperty('--radius-full', '9999px');
     }
   }
