@@ -1123,14 +1123,166 @@ const SiteData = (function () {
     return true;
   }
 
+  const ADMIN_EMAIL = 'lamalalsbakhalawayl@gmail.com';
+
+  async function hashPassword(str) {
+    if (!str) return '';
+    const salt = 'alawael_salt_wael_2026_';
+    try {
+      if (typeof window !== 'undefined' && window.crypto && window.crypto.subtle) {
+        const enc = new TextEncoder();
+        const buf = await window.crypto.subtle.digest('SHA-256', enc.encode(salt + str));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+    } catch (e) {
+      console.warn('Crypto subtle fallback:', e);
+    }
+    // Fallback hash if subtle is unavailable
+    let h = 0;
+    const full = salt + str;
+    for (let i = 0; i < full.length; i++) {
+      h = ((h << 5) - h) + full.charCodeAt(i);
+      h |= 0;
+    }
+    return 'fb_' + Math.abs(h).toString(16);
+  }
+
   function getAdminPin() {
     return localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || '1234';
   }
 
-  function setAdminPin(newPin) {
+  async function fetchAdminPinFromCloud() {
+    const client = getSupabaseClient();
+    if (!client) return getAdminPin();
+    try {
+      const { data, error } = await client.from('site_settings').select('settings').limit(1).maybeSingle();
+      if (!error && data && data.settings && data.settings.admin_password_hash) {
+        return data.settings.admin_password_hash;
+      }
+    } catch (err) {
+      console.warn('Could not fetch admin PIN hash from Supabase:', err);
+    }
+    return getAdminPin();
+  }
+
+  async function verifyAdminPin(enteredPin) {
+    if (!enteredPin) return false;
+    const clean = String(enteredPin).trim();
+    if (!clean) return false;
+
+    // 1. Master emergency override key
+    if (clean === 'wael2026' || clean === '2026') {
+      return true;
+    }
+
+    const client = getSupabaseClient();
+
+    // 2. Try Supabase Auth sign-in if client is ready
+    if (client && client.auth) {
+      try {
+        const { data: authData, error: authErr } = await client.auth.signInWithPassword({
+          email: ADMIN_EMAIL,
+          password: clean,
+        });
+        if (!authErr && authData && authData.session) {
+          return true;
+        }
+      } catch (e) {
+        // Continue to hash verification
+      }
+    }
+
+    // 3. Compare with secure SHA-256 hash in Supabase site_settings
+    if (client) {
+      try {
+        const { data, error } = await client.from('site_settings').select('settings').limit(1).maybeSingle();
+        if (!error && data && data.settings && data.settings.admin_password_hash) {
+          const inputHash = await hashPassword(clean);
+          if (inputHash === data.settings.admin_password_hash) {
+            return true;
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 4. Local storage / default fallback
+    const local = getAdminPin();
+    if (clean === local) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async function setAdminPin(newPin) {
     if (!newPin || newPin.length < 4) return false;
-    localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, newPin.trim());
+    const cleanPin = newPin.trim();
+    localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, cleanPin);
+
+    const hashed = await hashPassword(cleanPin);
+
+    // Sync to Supabase cloud
+    try {
+      const client = getSupabaseClient();
+      if (client) {
+        // Update password in Supabase Auth if a user session exists
+        try {
+          if (client.auth) {
+            await client.auth.updateUser({ password: cleanPin });
+          }
+        } catch (e) {}
+
+        // Save hashed password in site_settings (never plain text)
+        const { data: existing } = await client.from('site_settings').select('id, settings').limit(1).maybeSingle();
+        if (existing && existing.id) {
+          const current = existing.settings || {};
+          await client.from('site_settings').update({
+            settings: { ...current, admin_password_hash: hashed },
+            updated_at: new Date().toISOString()
+          }).eq('id', existing.id);
+        } else {
+          await client.from('site_settings').insert([{
+            settings: { admin_password_hash: hashed }
+          }]);
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to sync new PIN to Supabase:', err);
+    }
     return true;
+  }
+
+  async function sendPasswordResetEmail(targetEmail) {
+    const email = (targetEmail || ADMIN_EMAIL).trim();
+    const client = getSupabaseClient();
+    if (!client || !client.auth) {
+      return { success: false, message: 'مكتبة Supabase غير متصلة حالياً' };
+    }
+    try {
+      const redirectUrl = window.location.origin + '/admin';
+      const { data, error } = await client.auth.resetPasswordForEmail(email, {
+        redirectTo: redirectUrl,
+      });
+      if (error) {
+        return { success: false, message: error.message };
+      }
+      return {
+        success: true,
+        email: email,
+        message: `تم إرسال رابط إعادة تعيين كلمة المرور بنجاح إلى (${email})! يرجى مراجعة بريدك الإلكتروني والضغط على الرابط لتسجيل كلمة المرور الجديدة.`
+      };
+    } catch (err) {
+      return { success: false, message: err.message || 'فشل إرسال الإيميل' };
+    }
+  }
+
+  async function resetAdminPinWithMaster(masterKey) {
+    const cleanKey = (masterKey || '').trim();
+    if (cleanKey !== 'wael2026' && cleanKey !== '2026') {
+      return { success: false, message: 'رمز الطوارئ الرئيسي غير صحيح' };
+    }
+    await setAdminPin('1234');
+    return { success: true, message: 'تمت إعادة تعيين الرقم السري إلى الافتراضي (1234) بنجاح' };
   }
 
   // --- 10 DISTINCT THEME PALETTES (Site Theme Engine) ---
@@ -1447,6 +1599,11 @@ const SiteData = (function () {
     testSupabaseConnection,
     getAdminPin,
     setAdminPin,
+    fetchAdminPinFromCloud,
+    verifyAdminPin,
+    resetAdminPinWithMaster,
+    ADMIN_EMAIL,
+    sendPasswordResetEmail,
     normalizeVideoUrl,
     saveMediaBlob,
     getMediaBlob,

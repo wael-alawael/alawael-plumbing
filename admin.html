@@ -2590,6 +2590,75 @@
         <span>دخول لوحة التحكم</span>
       </button>
       <div id="loginErrorMsg" style="color: #ef4444; font-size: 0.85rem; font-weight: 700; margin-top: 12px; display: none;">الرقم السري غير صحيح، حاول مرة أخرى</div>
+
+      <div style="margin-top: 16px;">
+        <button type="button" id="btnForgotPin" style="background: none; border: none; color: #94a3b8; font-size: 0.85rem; cursor: pointer; text-decoration: underline; transition: color 0.2s;">
+          <i class="fa-solid fa-circle-question"></i> نسيت الرقم السري؟
+        </button>
+      </div>
+
+      <!-- Forgot PIN Recovery Box (Hidden by default) -->
+      <div id="forgotPinBox" style="display: none; margin-top: 16px; padding: 16px; background: rgba(15, 51, 92, 0.45); border: 1px dashed #38bdf8; border-radius: 12px; text-align: right; font-size: 0.82rem; color: #cbd5e1;">
+        <h4 style="color: #fbbf24; margin-bottom: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-envelope-circle-check"></i> استعادة كلمة المرور عبر الإيميل
+        </h4>
+        <p style="margin-bottom: 8px; line-height: 1.5; font-size: 0.8rem;">
+          سيتم إرسال رابط آمن ومباشر لإعادة تعيين كلمة المرور إلى البريد الإلكتروني المعتمد:
+        </p>
+        <div style="background: rgba(2, 132, 199, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 8px 12px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #38bdf8; text-align: center; margin-bottom: 12px; word-break: break-all;">
+          <i class="fa-solid fa-envelope"></i> lamalalsbakhalawayl@gmail.com
+        </div>
+
+        <button type="button" id="btnSendResetEmail" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #fff; border: none; padding: 10px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); transition: all 0.2s;">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>إرسال رابط تعيين كلمة المرور للإيميل</span>
+        </button>
+
+        <div id="emailResetStatusMsg" style="font-size: 0.8rem; margin-top: 10px; line-height: 1.4; display: none;"></div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 14px; padding-top: 12px;">
+          <h5 style="color: #94a3b8; font-size: 0.78rem; margin-bottom: 8px;">طرق بديلة فورية للطوارئ:</h5>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;">
+            <a href="https://wa.me/201144867114?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B3%D9%8A%D8%AA%20%D9%83%D9%84%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%B1%20%D9%84%D9%84%D9%88%D8%AD%D8%A9%20%D8%AA%D8%AD%D9%83%D9%85%20%D8%B4%D8%B1%D9%83%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D8%A7%D8%A1%D9%84%20%D9%88%D9%85%D8%AD%D8%AA%D8%A7%D8%AC%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%B9%D8%A7%D8%AF%D8%A9" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.8rem;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> تواصل فوري مع الدعم على واتساب
+            </a>
+          </div>
+
+          <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">أو إدخال كود الطوارئ الرئيسي للإعادة إلى (1234):</label>
+          <div style="display: flex; gap: 6px;">
+            <input type="password" id="masterRecoveryKeyInput" placeholder="كود الطوارئ..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; background: #07101f; border: 1px solid #334155; border-radius: 6px; color: #fff;">
+            <button type="button" id="btnSubmitRecovery" style="background: #334155; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">إعادة تعيين</button>
+          </div>
+          <div id="recoveryStatusMsg" style="font-size: 0.78rem; margin-top: 6px; display: none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Password Recovery Modal (Shown when opening reset link from Gmail) -->
+  <div class="login-modal-overlay" id="passwordResetOverlay" style="display: none;">
+    <div class="login-card">
+      <div class="login-icon-wrap" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981;">
+        <i class="fa-solid fa-key" style="color: #10b981;"></i>
+      </div>
+      <h2>تعيين كلمة مرور جديدة</h2>
+      <p>تم التحقق من هويتك بنجاح عبر البريد الإلكتروني <br><strong style="color: #38bdf8; font-size: 0.85rem;">lamalalsbakhalawayl@gmail.com</strong></p>
+      
+      <form id="newPasswordFromEmailForm" style="margin-top: 16px;">
+        <div style="margin-bottom: 12px; text-align: right;">
+          <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 4px;">كلمة المرور الجديدة (4 أحرف/أرقام على الأقل):</label>
+          <input type="password" id="resetNewPassword" class="pin-input" placeholder="••••••••" minlength="4" required style="width: 100%; text-align: center; margin-bottom: 0;">
+        </div>
+        <div style="margin-bottom: 16px; text-align: right;">
+          <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 4px;">تأكيد كلمة المرور الجديدة:</label>
+          <input type="password" id="resetConfirmPassword" class="pin-input" placeholder="••••••••" minlength="4" required style="width: 100%; text-align: center; margin-bottom: 0;">
+        </div>
+        <button type="submit" class="btn-unlock" id="btnSaveNewPassword" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+          <i class="fa-solid fa-check"></i>
+          <span>حفظ وتفعيل الدخول</span>
+        </button>
+        <div id="resetErrorMsg" style="color: #ef4444; font-size: 0.85rem; font-weight: 700; margin-top: 12px; display: none;"></div>
+      </form>
     </div>
   </div>
 
@@ -4156,17 +4225,39 @@
       setTimeout(() => pinInput.focus(), 120);
     }
 
-    function doUnlock() {
-      const currentPin = SiteData.getAdminPin();
-      if (pinInput.value.trim() === currentPin) {
-        loginOverlay.style.display = 'none';
-        loginErrorMsg.style.display = 'none';
-        showToast('مرحباً بك يا بشمهندس وائل! تم تسجيل الدخول بنجاح 🔐✨');
-        initAdminData();
-      } else {
-        loginErrorMsg.style.display = 'block';
-        pinInput.value = '';
-        pinInput.focus();
+    async function doUnlock() {
+      const entered = pinInput.value.trim();
+      if (!entered) return;
+
+      unlockBtn.disabled = true;
+      const prevHtml = unlockBtn.innerHTML;
+      unlockBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>جاري التحقق...</span>';
+
+      try {
+        const isValid = await SiteData.verifyAdminPin(entered);
+        if (isValid) {
+          loginOverlay.style.display = 'none';
+          loginErrorMsg.style.display = 'none';
+          showToast('مرحباً بك يا بشمهندس وائل! تم تسجيل الدخول بنجاح 🔐✨');
+          initAdminData();
+        } else {
+          loginErrorMsg.style.display = 'block';
+          pinInput.value = '';
+          pinInput.focus();
+        }
+      } catch (err) {
+        console.error('Login error:', err);
+        if (entered === SiteData.getAdminPin()) {
+          loginOverlay.style.display = 'none';
+          loginErrorMsg.style.display = 'none';
+          showToast('مرحباً بك يا بشمهندس وائل! 🔐');
+          initAdminData();
+        } else {
+          loginErrorMsg.style.display = 'block';
+        }
+      } finally {
+        unlockBtn.disabled = false;
+        unlockBtn.innerHTML = prevHtml;
       }
     }
 
@@ -4174,6 +4265,179 @@
     pinInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') doUnlock();
     });
+
+    // Forgot PIN toggling & recovery
+    const btnForgotPin = document.getElementById('btnForgotPin');
+    const forgotPinBox = document.getElementById('forgotPinBox');
+    const masterRecoveryKeyInput = document.getElementById('masterRecoveryKeyInput');
+    const btnSubmitRecovery = document.getElementById('btnSubmitRecovery');
+    const recoveryStatusMsg = document.getElementById('recoveryStatusMsg');
+    const btnSendResetEmail = document.getElementById('btnSendResetEmail');
+    const emailResetStatusMsg = document.getElementById('emailResetStatusMsg');
+
+    if (btnForgotPin && forgotPinBox) {
+      btnForgotPin.addEventListener('click', () => {
+        const isHidden = forgotPinBox.style.display === 'none' || !forgotPinBox.style.display;
+        forgotPinBox.style.display = isHidden ? 'block' : 'none';
+        if (isHidden && btnSendResetEmail) {
+          btnSendResetEmail.focus();
+        }
+      });
+    }
+
+    if (btnSendResetEmail && emailResetStatusMsg) {
+      btnSendResetEmail.addEventListener('click', async () => {
+        btnSendResetEmail.disabled = true;
+        const origHtml = btnSendResetEmail.innerHTML;
+        btnSendResetEmail.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري إرسال الرابط للإيميل...</span>';
+        emailResetStatusMsg.style.display = 'none';
+
+        try {
+          const res = await SiteData.sendPasswordResetEmail('lamalalsbakhalawayl@gmail.com');
+          emailResetStatusMsg.style.display = 'block';
+          if (res.success) {
+            emailResetStatusMsg.style.color = '#10b981';
+            emailResetStatusMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + res.message;
+          } else {
+            emailResetStatusMsg.style.color = '#ef4444';
+            emailResetStatusMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> خطأ: ' + res.message;
+          }
+        } catch (err) {
+          emailResetStatusMsg.style.display = 'block';
+          emailResetStatusMsg.style.color = '#ef4444';
+          emailResetStatusMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> حدث خطأ أثناء إرسال البريد: ' + err.message;
+        } finally {
+          btnSendResetEmail.disabled = false;
+          btnSendResetEmail.innerHTML = origHtml;
+        }
+      });
+    }
+
+    if (btnSubmitRecovery && masterRecoveryKeyInput && recoveryStatusMsg) {
+      btnSubmitRecovery.addEventListener('click', async () => {
+        const key = masterRecoveryKeyInput.value.trim();
+        if (!key) {
+          recoveryStatusMsg.style.display = 'block';
+          recoveryStatusMsg.style.color = '#ef4444';
+          recoveryStatusMsg.textContent = 'الرجاء إدخال كود الطوارئ';
+          return;
+        }
+
+        btnSubmitRecovery.disabled = true;
+        btnSubmitRecovery.textContent = 'جاري التحقق...';
+
+        try {
+          const res = await SiteData.resetAdminPinWithMaster(key);
+          recoveryStatusMsg.style.display = 'block';
+          if (res.success) {
+            recoveryStatusMsg.style.color = '#10b981';
+            recoveryStatusMsg.textContent = '✅ ' + res.message;
+            pinInput.value = '1234';
+            masterRecoveryKeyInput.value = '';
+            setTimeout(() => {
+              forgotPinBox.style.display = 'none';
+              doUnlock();
+            }, 1200);
+          } else {
+            recoveryStatusMsg.style.color = '#ef4444';
+            recoveryStatusMsg.textContent = '❌ ' + res.message;
+          }
+        } catch (e) {
+          recoveryStatusMsg.style.display = 'block';
+          recoveryStatusMsg.style.color = '#ef4444';
+          recoveryStatusMsg.textContent = 'حدث خطأ: ' + e.message;
+        } finally {
+          btnSubmitRecovery.disabled = false;
+          btnSubmitRecovery.textContent = 'إعادة تعيين';
+        }
+      });
+    }
+
+    // Check if user landed on /admin via password recovery email link
+    const passwordResetOverlay = document.getElementById('passwordResetOverlay');
+    const newPasswordFromEmailForm = document.getElementById('newPasswordFromEmailForm');
+    const resetNewPassword = document.getElementById('resetNewPassword');
+    const resetConfirmPassword = document.getElementById('resetConfirmPassword');
+    const resetErrorMsg = document.getElementById('resetErrorMsg');
+
+    function checkRecoveryLink() {
+      const hash = window.location.hash || '';
+      const isRecovery = hash.includes('type=recovery') || hash.includes('access_token=');
+      if (isRecovery) {
+        loginOverlay.style.display = 'none';
+        if (passwordResetOverlay) {
+          passwordResetOverlay.style.display = 'flex';
+          setTimeout(() => resetNewPassword?.focus(), 150);
+        }
+      }
+    }
+
+    // Also listen to Supabase Auth events
+    try {
+      if (typeof window.supabase !== 'undefined' && SiteData) {
+        const cfg = SiteData.getSupabaseConfig();
+        if (cfg && cfg.url && cfg.anonKey) {
+          const sbClient = window.supabase.createClient(cfg.url, cfg.anonKey);
+          sbClient.auth.onAuthStateChange((event) => {
+            if (event === 'PASSWORD_RECOVERY') {
+              loginOverlay.style.display = 'none';
+              if (passwordResetOverlay) {
+                passwordResetOverlay.style.display = 'flex';
+                setTimeout(() => resetNewPassword?.focus(), 150);
+              }
+            }
+          });
+        }
+      }
+    } catch(e) {}
+
+    checkRecoveryLink();
+
+    if (newPasswordFromEmailForm) {
+      newPasswordFromEmailForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const p1 = resetNewPassword.value.trim();
+        const p2 = resetConfirmPassword.value.trim();
+
+        if (p1.length < 4) {
+          resetErrorMsg.style.display = 'block';
+          resetErrorMsg.textContent = 'كلمة المرور يجب أن تكون 4 أحرف أو أرقام على الأقل';
+          return;
+        }
+        if (p1 !== p2) {
+          resetErrorMsg.style.display = 'block';
+          resetErrorMsg.textContent = 'كلمتا المرور غير متطابقتين، يرجى التأكد';
+          return;
+        }
+
+        const btnSave = document.getElementById('btnSaveNewPassword');
+        const prevText = btnSave ? btnSave.innerHTML : '';
+        if (btnSave) {
+          btnSave.disabled = true;
+          btnSave.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري الحفظ والتأمين...';
+        }
+
+        try {
+          await SiteData.setAdminPin(p1);
+          try {
+            history.replaceState(null, '', window.location.pathname);
+          } catch(err) {}
+
+          passwordResetOverlay.style.display = 'none';
+          loginOverlay.style.display = 'none';
+          showToast('تم تعيين كلمة المرور الجديدة بنجاح! مرحباً بك يا بشمهندس وائل 🔐✨');
+          initAdminData();
+        } catch (err) {
+          resetErrorMsg.style.display = 'block';
+          resetErrorMsg.textContent = 'حدث خطأ: ' + err.message;
+        } finally {
+          if (btnSave) {
+            btnSave.disabled = false;
+            btnSave.innerHTML = prevText;
+          }
+        }
+      });
+    }
 
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
       window.location.reload();
@@ -6697,17 +6961,23 @@
     });
 
     // --- HELPER: CURRENT PIN DISPLAY ---
-    function updateCurrentPinDisplay() {
+    async function updateCurrentPinDisplay() {
       const pinEl = document.getElementById('currentPinDisplay');
       if (pinEl && typeof SiteData !== 'undefined') {
         pinEl.textContent = SiteData.getAdminPin();
+        if (typeof SiteData.fetchAdminPinFromCloud === 'function') {
+          try {
+            const cloud = await SiteData.fetchAdminPinFromCloud();
+            if (cloud) pinEl.textContent = cloud;
+          } catch(e) {}
+        }
       }
     }
 
     // --- CHANGE PIN ---
     const changePinForm = document.getElementById('changePinForm');
     if (changePinForm) {
-      changePinForm.addEventListener('submit', (e) => {
+      changePinForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const newPinInput = document.getElementById('newPinInput');
         const newPin = newPinInput ? newPinInput.value.trim() : '';
@@ -6715,10 +6985,25 @@
           alert('الرقم السري يجب أن يتكون من 4 أرقام أو أحرف على الأقل');
           return;
         }
-        SiteData.setAdminPin(newPin);
-        if (newPinInput) newPinInput.value = '';
-        updateCurrentPinDisplay();
-        showToast('تم تحديث وحفظ الرقم السري الجديد بنجاح! 🔑✨');
+        const submitBtn = changePinForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري الحفظ...';
+        }
+        try {
+          await SiteData.setAdminPin(newPin);
+          if (newPinInput) newPinInput.value = '';
+          await updateCurrentPinDisplay();
+          showToast('تم تحديث وحفظ الرقم السري الجديد ومزامنته سحابياً بنجاح! 🔑☁️');
+        } catch (err) {
+          showToast('حدث خطأ أثناء الحفظ: ' + err.message);
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }
+        }
       });
     }
 
