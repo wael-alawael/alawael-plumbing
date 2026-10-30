@@ -17,7 +17,7 @@ const SiteData = (function () {
 
   // Default theme & display appearance settings (Site Theme Engine)
   const DEFAULT_THEME_SETTINGS = {
-    themeId: 'royal-gold',     // Active surprise theme: Royal Andalusian Midnight & Brushed Champagne Gold
+    themeId: 'sapphire',       // 11 distinct themes: sapphire, royal-gold, emerald, teal-cyan, imperial-ruby, amethyst-purple, bronze-amber, midnight-titanium, platinum-silver, rose-gold, white-pure
     fontScale: 'normal',       // 'small', 'normal', 'large', 'xlarge'
     borderRadius: 'modern',    // 'modern', 'sharp'
     animations: 'full',        // 'full', 'reduced'
@@ -1449,8 +1449,8 @@ const SiteData = (function () {
       const saved = localStorage.getItem(STORAGE_KEYS.THEME_SETTINGS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed && parsed.themeId === 'sapphire') {
-          parsed.themeId = DEFAULT_THEME_SETTINGS.themeId;
+        if (parsed && (parsed.themeId === 'royal-gold' || parsed.themeId === 'sapphire')) {
+          parsed.themeId = 'sapphire';
           localStorage.setItem(STORAGE_KEYS.THEME_SETTINGS, JSON.stringify(parsed));
         }
         return { ...DEFAULT_THEME_SETTINGS, ...parsed };
@@ -1542,10 +1542,6 @@ const SiteData = (function () {
       root.style.setProperty('--c-bg', '#ffffff');
       root.style.setProperty('--c-bg-alt', '#ffffff');
       root.style.setProperty('--c-card', '#ffffff');
-    } else if (themeId === 'royal-gold') {
-      root.style.setProperty('--c-bg', '#fafaf9');
-      root.style.setProperty('--c-bg-alt', '#f5f5f4');
-      root.style.setProperty('--c-card', '#ffffff');
     } else {
       root.style.setProperty('--c-bg', '#f8fafc');
       root.style.setProperty('--c-bg-alt', '#f1f5f9');
@@ -1572,9 +1568,9 @@ const SiteData = (function () {
       root.style.setProperty('--radius-lg', '6px');
       root.style.setProperty('--radius-full', '4px');
     } else {
-      root.style.setProperty('--radius-sm', '10px');
-      root.style.setProperty('--radius-md', '18px');
-      root.style.setProperty('--radius-lg', '26px');
+      root.style.setProperty('--radius-sm', '8px');
+      root.style.setProperty('--radius-md', '14px');
+      root.style.setProperty('--radius-lg', '20px');
       root.style.setProperty('--radius-full', '9999px');
     }
   }
