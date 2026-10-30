@@ -7409,7 +7409,7 @@ html[data-radius="modern"] {
 .pill-midnight      { background: linear-gradient(90deg, #0f172a 0%, #3b82f6 100%); }
 .pill-platinum      { background: linear-gradient(90deg, #151c27 0%, #475569 100%); }
 .pill-rose-gold     { background: linear-gradient(90deg, #1f161c 0%, #a85d6d 100%); }
-.pill-white-pure    { background: linear-gradient(90deg, #0c1b2e 0%, #0284c7 100%); border: 2px solid #e2e8f0; }
+.pill-white-pure    { background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important; border: 2px solid #0284c7 !important; }
 
 /* ==========================================================================
    FONT SIZE & ACCESSIBILITY CONTROLS CARD

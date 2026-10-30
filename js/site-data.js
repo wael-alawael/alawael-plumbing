@@ -1421,18 +1421,18 @@ const SiteData = (function () {
       border: '#f2e5e8'
     },
     'white-pure': {
-      name: 'رخام كلكتا وبورسلين ناصع (Calacatta Porcelain)',
-      navy: '#0c1b2e',
-      navyDark: '#060f1c',
-      navyLight: '#152942',
+      name: 'أبيض سيراميك ناصع (Pure White Background)',
+      navy: '#0f2744',
+      navyDark: '#091e36',
+      navyLight: '#1e3a5f',
       primary: '#0284c7',
       primaryDark: '#0369a1',
-      accent: '#38bdf8',
-      light: '#f8fafc',
+      accent: '#0284c7',
+      light: '#f0f9ff',
       gold: '#f59e0b',
       gradient: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%)',
       cardBg: '#ffffff',
-      border: '#e2e8f0'
+      border: '#cbd5e1'
     }
   };
 
