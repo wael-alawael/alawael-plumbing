@@ -103,7 +103,6 @@ const SiteData = (function () {
         'assets/pics/1000346028.jpg',
         'assets/pics/1000346027.jpg'
       ],
-      tag: 'بانيو ديكور بيضاوي',
       description: 'تنفيذ متكامل ببانيو بيضاوي فاخر، خلاط شلال، وحدة حوض عائمة بأدراج رخامية، ومرآة مضيئة تعمل باللمس مع بيبة صرف رخامية مدفونة.'
     },
     {
@@ -115,7 +114,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000345976.jpg'
       ],
-      tag: 'كابينة سيكوريت',
       description: 'كابينة شاور زجاجية مع دش مطري دفن وسيفون مسطري ستانلس ستيل في الأرضية، بيوت إضاءة ديكورية (Niches) في الحوائط، وقاعدة معلقة.'
     },
     {
@@ -129,7 +127,6 @@ const SiteData = (function () {
         'assets/pics/1000318836.jpg',
         'assets/pics/1000318838.jpg'
       ],
-      tag: 'رخام كلكتا فاخر',
       description: 'قمة الفخامة بتشطيب رخامي كامل وبانيو حر في المنتصف، مع 3 رفوف ديكورية جدارية مضاءة بنظام LED دافئ وخلاط دفن إيطالي معتمد.'
     },
     {
@@ -141,7 +138,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000346007.jpg'
       ],
-      tag: 'شاسيه جروهي دفن',
       description: 'استغلال هندسي ذكي للمساحات المحدودة، قاعدة تواليت معلقة ريملس مع زر طرد ثنائي كروم، مرآة ذكية، وتأسيس وتوصيل مخفي بالكامل.'
     },
     {
@@ -153,7 +149,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000346012.jpg'
       ],
-      tag: 'شاسيه جروهي أصلي',
       description: 'تركيب دقيق لشاسيه الدفن داخل الجدار بوزن ليزري، ربط قاعدة معلقة ديورافيت ريملس، وشطاف ستانلس ستيل كروم مع زر طرد ثنائي أصلي.'
     },
     {
@@ -165,7 +160,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000345996.jpg'
       ],
-      tag: 'حوض تركي سقط رخام',
       description: 'تركيب حوض تركي ساقط برخام جلاكسي أسود، خلاط متحرك بخرطوم سحاب قابل للمد بوضعين لتدفق المياه، مع محابس أمان إيطالية مانعة للتسريب.'
     },
     {
@@ -177,7 +171,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000345981.jpg'
       ],
-      tag: 'دش مطري مربع دفن',
       description: 'ميول أرضية ليزرية تضمن تصريف فوري للمياه داخل جريلية صرف مسطرية ستانلس 304، مع رأس دش مطري دفن ومقبض أمان لكبار السن.'
     },
     {
@@ -189,7 +182,6 @@ const SiteData = (function () {
       images: [
         'assets/pics/1000345986.jpg'
       ],
-      tag: 'صمام أمان رداد',
       description: 'تثبيت صلب بمسامير فيشر حديد بالخرسانة، صمام أمان لعدم الرجوع لمنع زيادة ضغط البخار، ومحابس زاوية نيكل أصلية مانعة للتسريب تماماً.'
     },
     {
@@ -201,7 +193,6 @@ const SiteData = (function () {
       images: [
         'assets/before_after/case3_master_wael_delivered.jpg'
       ],
-      tag: 'تسليم على المفتاح',
       description: 'لقطة حقيقية للبشمهندس وائل داخل حمام مودرن فاخر بعد الانتهاء من تركيبه وتسليمه بالكامل على الليزر (قاعدة معلقة ريملس، حوض معلق، وعمود شاور أسود فاخر).'
     }
   ];
@@ -637,7 +628,7 @@ const SiteData = (function () {
           location: p.location,
           category: p.category,
           image_url: p.image_url,
-          tag: p.tag,
+          tag: null,
           description: p.description,
           display_order: idx + 1
         }));
@@ -660,7 +651,6 @@ const SiteData = (function () {
       category: photoData.category || 'luxury',
       image_url: imagesList.length > 0 ? imagesList[0] : (photoData.image_url || ''),
       images: imagesList,
-      tag: photoData.tag || 'إشراف البشمهندس وائل',
       description: photoData.description || '',
       created_at: new Date().toISOString(),
     };
@@ -685,7 +675,7 @@ const SiteData = (function () {
           location: newPhoto.location,
           category: newPhoto.category,
           image_url: newPhoto.image_url,
-          tag: newPhoto.tag,
+          tag: null,
           description: newPhoto.description,
         }]).select();
 
@@ -721,7 +711,6 @@ const SiteData = (function () {
       category: photoData.category !== undefined ? photoData.category : existing.category,
       image_url: imagesList.length > 0 ? imagesList[0] : (photoData.image_url || existing.image_url),
       images: imagesList,
-      tag: photoData.tag !== undefined ? photoData.tag : existing.tag,
       description: photoData.description !== undefined ? photoData.description.trim() : existing.description,
     };
 
@@ -736,7 +725,7 @@ const SiteData = (function () {
           location: updatedPhoto.location,
           category: updatedPhoto.category,
           image_url: updatedPhoto.image_url,
-          tag: updatedPhoto.tag || 'إشراف البشمهندس وائل',
+          tag: null,
           description: updatedPhoto.description || '',
         };
 

@@ -2298,20 +2298,10 @@ img[src*="wael_portrait"] {
   flex: 1;
 }
 
-.gallery-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
+.gallery-tags,
+.modal-gallery-tags,
 .gtag {
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: #0369a1;
-  background: #e0f2fe;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
+  display: none !important;
 }
 
 .gallery-details h4 {

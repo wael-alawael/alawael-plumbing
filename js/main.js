@@ -909,17 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (modalGalleryTags) {
       modalGalleryTags.innerHTML = '';
-      if (tagsRaw) {
-        tagsRaw.split(',').forEach((tagText) => {
-          const trimmed = tagText.trim();
-          if (trimmed) {
-            const span = document.createElement('span');
-            span.className = 'gtag';
-            span.textContent = trimmed;
-            modalGalleryTags.appendChild(span);
-          }
-        });
-      }
+      modalGalleryTags.style.display = 'none';
     }
 
     if (modalGalleryWaBtn) {
@@ -2198,21 +2188,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const safeTitle = escapeChoiceHtml(p.title || 'مشروع سباكة وتشطيب');
       const safeLoc = escapeChoiceHtml(p.location || 'القاهرة والجيزة');
       const safeDesc = escapeChoiceHtml(p.description || 'تنفيذ وإشراف هندسي متكامل بأيدي البشمهندس وائل وفريق شركة الأوائل.');
-      const safeTag = escapeChoiceHtml(p.tag || 'إشراف البشمهندس وائل');
       const firstImg = imagesList[0] || p.image_url || '';
 
       card.innerHTML = `
         <div class="gallery-img-wrap">
           <img src="${firstImg}" alt="${safeTitle}" class="gallery-img" loading="lazy">
           <span class="gallery-badge"><i class="fa-solid fa-location-dot"></i> ${safeLoc}</span>
-          <button class="gallery-zoom-btn" type="button" aria-label="عرض الصورة عالية الدقة" data-title="${safeTitle}" data-loc="${safeLoc}" data-desc="${safeDesc}" data-tags="${safeTag}">
+          <button class="gallery-zoom-btn" type="button" aria-label="عرض الصورة عالية الدقة" data-title="${safeTitle}" data-loc="${safeLoc}" data-desc="${safeDesc}">
             <i class="fa-solid fa-expand"></i>
           </button>
         </div>
         <div class="gallery-details">
-          <div class="gallery-tags">
-            <span class="gtag">${safeTag}</span>
-          </div>
           <h4>${safeTitle}</h4>
           <p>${safeDesc}</p>
           <div class="gallery-foot">
