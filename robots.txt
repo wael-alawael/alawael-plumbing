@@ -5,4 +5,4 @@ Disallow: /admin
 Disallow: /admin.html
 
 # Sitemap index
-Sitemap: https://alawael-plumbing.vercel.app/sitemap.xml
+Sitemap: https://alawael-plumbing.com/sitemap.xml
