@@ -1320,6 +1320,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startHeroProgressBar() {
     stopHeroProgressBar();
+    if (!heroConfig || heroConfig.mode !== 'both') return;
     heroStartTime = performance.now() - heroElapsedBeforePause;
 
     function step(now) {
@@ -1352,6 +1353,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function switchHeroSlide(slideTarget, continueTimer = false) {
+    // Strict Mode Safeguards: If mode is portrait only, NEVER allow switching to video/ad!
+    if (heroConfig && heroConfig.mode === 'portrait') {
+      slideTarget = 'portrait';
+      continueTimer = false;
+    } else if (heroConfig && heroConfig.mode === 'video') {
+      slideTarget = 'video';
+      continueTimer = false;
+    }
+
     heroCurrentSlide = slideTarget;
     heroElapsedBeforePause = 0;
 
@@ -1363,22 +1373,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const fillVideo = document.getElementById('storyFillVideo');
 
     if (slideTarget === 'portrait') {
-      if (slidePortrait) slidePortrait.classList.add('active');
-      if (slideVideo) slideVideo.classList.remove('active');
+      if (slidePortrait) {
+        slidePortrait.classList.add('active');
+        slidePortrait.style.display = 'flex';
+      }
+      if (slideVideo) {
+        slideVideo.classList.remove('active');
+        if (heroConfig && heroConfig.mode === 'portrait') {
+          slideVideo.style.display = 'none';
+        }
+      }
       if (segPortrait) segPortrait.classList.add('active');
       if (segVideo) segVideo.classList.remove('active');
       if (fillPortrait) fillPortrait.style.width = '0%';
       if (fillVideo) fillVideo.style.width = '0%';
     } else {
       if (slidePortrait) slidePortrait.classList.remove('active');
-      if (slideVideo) slideVideo.classList.add('active');
+      if (slideVideo) {
+        slideVideo.classList.add('active');
+        slideVideo.style.display = '';
+      }
       if (segPortrait) segPortrait.classList.remove('active');
       if (segVideo) segVideo.classList.add('active');
       if (fillPortrait) fillPortrait.style.width = '100%';
       if (fillVideo) fillVideo.style.width = '0%';
     }
 
-    if (continueTimer) {
+    if (continueTimer && heroConfig && heroConfig.mode === 'both') {
       startHeroProgressBar();
     } else {
       stopHeroProgressBar();
@@ -1476,7 +1497,9 @@ document.addEventListener('DOMContentLoaded', () => {
       segPortrait.dataset.bound = 'true';
       segPortrait.addEventListener('click', (e) => {
         e.preventDefault();
-        switchHeroSlide('portrait', heroConfig.mode === 'both');
+        if (heroConfig && heroConfig.mode === 'both') {
+          switchHeroSlide('portrait', true);
+        }
       });
     }
 
@@ -1485,7 +1508,9 @@ document.addEventListener('DOMContentLoaded', () => {
       segVideo.dataset.bound = 'true';
       segVideo.addEventListener('click', (e) => {
         e.preventDefault();
-        switchHeroSlide('video', heroConfig.mode === 'both');
+        if (heroConfig && heroConfig.mode === 'both') {
+          switchHeroSlide('video', true);
+        }
       });
     }
 
@@ -1496,15 +1521,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target && e.target.closest && e.target.closest('a, button, .hero-promo-cta-btn, .hero-video-sound-btn, .story-progress-segment')) {
           return;
         }
-        heroIsPaused = true;
-        heroElapsedBeforePause = performance.now() - heroStartTime;
-        stopHeroProgressBar();
+        if (heroConfig && heroConfig.mode === 'both') {
+          heroIsPaused = true;
+          heroElapsedBeforePause = performance.now() - heroStartTime;
+          stopHeroProgressBar();
+        }
       });
 
       window.addEventListener('mouseup', () => {
         if (heroIsPaused) {
           heroIsPaused = false;
-          startHeroProgressBar();
+          if (heroConfig && heroConfig.mode === 'both') {
+            startHeroProgressBar();
+          }
         }
       });
     }
@@ -1607,14 +1636,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mode-specific execution
     const storyStrip = document.getElementById('heroStoryProgressStrip');
 
+    const slidePortrait = document.getElementById('heroSlidePortrait');
+    const slideVideo = document.getElementById('heroSlideVideo');
+
     if (effectiveMode === 'portrait') {
       // Clean Founder Portrait Mode: NO AD, NO PROGRESS BAR (Wael's photo is 100% visible)
       if (videoWrap) videoWrap.innerHTML = '';
       if (storyStrip) storyStrip.style.display = 'none';
+      if (slideVideo) {
+        slideVideo.classList.remove('active');
+        slideVideo.style.display = 'none';
+      }
+      if (soundBtn) soundBtn.style.display = 'none';
+      if (slidePortrait) {
+        slidePortrait.classList.add('active');
+        slidePortrait.style.display = 'flex';
+      }
       mediaCard.style.cursor = 'default';
       switchHeroSlide('portrait', false);
       stopHeroProgressBar();
     } else if (effectiveMode === 'video') {
+      if (slideVideo) slideVideo.style.display = '';
       await renderHeroPromoMedia(heroConfig, videoWrap);
       if (storyStrip) storyStrip.style.display = 'none';
       mediaCard.style.cursor = 'default';
@@ -1622,6 +1664,8 @@ document.addEventListener('DOMContentLoaded', () => {
       stopHeroProgressBar();
     } else {
       // effectiveMode === 'both'
+      if (slideVideo) slideVideo.style.display = '';
+      if (slidePortrait) slidePortrait.style.display = 'flex';
       await renderHeroPromoMedia(heroConfig, videoWrap);
       if (storyStrip) storyStrip.style.display = 'flex';
       mediaCard.style.cursor = 'pointer';

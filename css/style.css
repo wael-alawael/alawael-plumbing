@@ -880,6 +880,15 @@ button {
   display: none !important;
 }
 
+.hero-media-card[data-mode="portrait"] .slide-video,
+.hero-media-card[data-mode="portrait"] #heroSlideVideo,
+.hero-media-card[data-mode="portrait"] .hero-video-sound-btn {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .hero-media-card[data-mode="portrait"] {
   aspect-ratio: 4/4.85;
   background: #ffffff;

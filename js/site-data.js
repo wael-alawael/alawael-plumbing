@@ -25,7 +25,7 @@ const SiteData = (function () {
 
   // Default hero media alternating card configuration (Dual Story rotation with loading timer)
   const DEFAULT_HERO_MEDIA = {
-    mode: 'both', // 'both' (dual story rotation with loading bar timer) | 'portrait' | 'video'
+    mode: 'portrait', // 'both' (dual story rotation with loading bar timer) | 'portrait' (clean photo only) | 'video'
     promo_type: 'image', // 'video' | 'image'
     duration: 8, // seconds
     portrait_url: 'assets/wael_portrait.jpg',
