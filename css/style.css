@@ -4182,13 +4182,14 @@ img[src*="wael_portrait"] {
 
   .mobile-hub-title i {
     color: var(--c-blue);
-    font-size: 0.92rem;
-    animation: pointerPulse 1.8s infinite ease-in-out;
+    font-size: 0.98rem;
+    display: inline-block;
+    animation: pointerPulse 1.5s infinite ease-in-out;
   }
 
   @keyframes pointerPulse {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
+    50% { transform: translateY(4px); }
   }
 
   .mobile-hub-grid {
