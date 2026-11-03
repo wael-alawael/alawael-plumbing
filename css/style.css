@@ -4172,7 +4172,7 @@ img[src*="wael_portrait"] {
   .mobile-hub-title {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     font-size: 0.84rem;
     font-weight: 800;
     color: var(--c-navy);
