@@ -60,7 +60,7 @@ const SiteData = (function () {
       tag: 'كشف تسريب حقيقي',
       video_type: 'facebook',
       video_url: 'https://www.facebook.com/reel/2110601713215688',
-      poster_url: 'assets/wael_hero_banner.jpg',
+      poster_url: 'assets/thumb_video_thermal.jpg',
       description: 'فحص هندسي دقيق لمسار مواسير التغذية وتحديد موضع الكسر بدقة سنتيمترية بدون تكسير عشوائي بإشراف البشمهندس وائل.',
     },
     {
@@ -75,7 +75,7 @@ const SiteData = (function () {
       video_type_after: 'facebook',
       video_type: 'facebook',
       video_url: 'https://www.facebook.com/61581980519649/videos/1979778842716946/',
-      poster_url: 'assets/wael_hero_banner.jpg',
+      poster_url: 'assets/thumb_video_pumps.jpg',
       description: 'إعادة هيكلة توصيلات مواتير الرفع وفلاتر التنقية المركزية، تركيب محابس أمان إيطالية وضبط الأوتوماتيك.',
     },
     {
@@ -85,8 +85,18 @@ const SiteData = (function () {
       tag: 'تشطيب وتسليم',
       video_type: 'facebook',
       video_url: 'https://www.facebook.com/reel/1143836208277783',
-      poster_url: 'assets/wael_working.jpg',
+      poster_url: 'assets/thumb_video_laser.jpg',
       description: 'لقطة توثيقية بحضور البشمهندس وائل أثناء اختبار تصريف المياه والتأكد من استواء القاعدة المعلقة وخلاطات الدفن الفندقية.',
+    },
+    {
+      id: 'v4',
+      title: 'تأسيس شبكة بولي بروبلين واختبار ضغط الكبس 16 بار',
+      location: 'مدينة 6 أكتوبر',
+      tag: 'تأسيس وضمان',
+      video_type: 'facebook',
+      video_url: 'https://www.facebook.com/61581980519649/videos/1979778842716946/',
+      poster_url: 'assets/thumb_video_pressure.jpg',
+      description: 'تأسيس شبكة مياه وصرف متكاملة بأجود خامات البولي واختبار الضغط بجهاز الكبس المائي لضمان عدم وجود أي تسريب مدى الحياة.',
     },
   ];
 
