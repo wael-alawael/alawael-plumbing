@@ -1033,28 +1033,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // TOP ANNOUNCEMENT BAR (DESKTOP & MOBILE REACTIVE)
   // ==========================================================================
   async function initAnnouncementBar() {
-    // Clear any past dismissal locks so refreshing always displays the announcement
-    try { sessionStorage.removeItem('alawael_announcement_closed'); } catch(e) {}
-
     if (typeof SiteData === 'undefined') return;
     const bar = document.getElementById('topAnnouncementBar');
     if (!bar) return;
 
-    // Reset dismissal status to ensure bar is rendered on fresh view/reload
-    bar.classList.remove('is-dismissed');
-    bar.style.removeProperty('display');
-    document.body.classList.add('has-announcement');
-
-    const ann = await SiteData.getAnnouncement();
-    if (!ann || ann.is_active === false) {
-      bar.classList.add('is-dismissed');
-      bar.style.setProperty('display', 'none', 'important');
-      document.body.classList.remove('has-announcement');
-      document.documentElement.style.removeProperty('--ad-height');
-      return;
-    }
-
-    // Populate Announcement Bar Data
+    // Elements
     const badgeEl = document.getElementById('adBadgeDisplay');
     const textEl = document.getElementById('adTextDisplay');
     const ctaEl = document.getElementById('adCtaDisplay');
@@ -1071,25 +1054,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const dismissOfferModalBtn = document.getElementById('dismissAdOfferModalBtn');
     const adContentTrigger = document.getElementById('adContentTrigger');
 
-    if (badgeEl) badgeEl.textContent = ann.badge_text || 'عرض خاص 🔥';
-    if (textEl) textEl.textContent = ann.message_text || '';
-    if (ctaTextEl) ctaTextEl.textContent = ann.cta_text || 'احجز العرض على واتساب';
-    if (ctaEl && ann.cta_link) ctaEl.href = ann.cta_link;
-
-    // Sync Offer Details Modal
-    if (modalBadge) modalBadge.textContent = ann.badge_text || 'عرض خاص 🔥';
-    if (modalText) modalText.textContent = ann.message_text || '';
-    if (modalCta && ann.cta_link) modalCta.href = ann.cta_link;
-    if (modalCtaText && ann.cta_text) modalCtaText.textContent = ann.cta_text;
-
-    // Apply Custom Background Color to top banner if set
-    if (ann.bg_color) {
-      bar.style.background = ann.bg_color;
-    } else {
-      bar.style.removeProperty('background');
+    function updateBarHeight() {
+      if (bar.classList.contains('is-dismissed') || bar.style.display === 'none') {
+        document.body.classList.remove('has-announcement');
+        document.documentElement.style.removeProperty('--ad-height');
+        return;
+      }
+      const h = bar.offsetHeight;
+      if (h > 0) {
+        document.documentElement.style.setProperty('--ad-height', h + 'px');
+      }
     }
 
-    // Modal open / close handlers
+    function renderAnnouncement(ann) {
+      if (!ann || ann.is_active === false) {
+        bar.classList.add('is-dismissed');
+        bar.style.setProperty('display', 'none', 'important');
+        document.body.classList.remove('has-announcement');
+        document.documentElement.style.removeProperty('--ad-height');
+        return false;
+      }
+
+      // Check user session dismissal
+      try {
+        if (sessionStorage.getItem('alawael_announcement_closed') === 'true') {
+          bar.classList.add('is-dismissed');
+          bar.style.setProperty('display', 'none', 'important');
+          document.body.classList.remove('has-announcement');
+          document.documentElement.style.removeProperty('--ad-height');
+          return false;
+        }
+      } catch(e) {}
+
+      // Populate Announcement Bar Data
+      if (badgeEl) badgeEl.textContent = ann.badge_text || 'عرض خاص 🔥';
+      if (textEl) textEl.textContent = ann.message_text || '';
+      if (ctaTextEl) ctaTextEl.textContent = ann.cta_text || 'احجز العرض على واتساب';
+      if (ctaEl && ann.cta_link) ctaEl.href = ann.cta_link;
+
+      // Sync Offer Details Modal
+      if (modalBadge) modalBadge.textContent = ann.badge_text || 'عرض خاص 🔥';
+      if (modalText) modalText.textContent = ann.message_text || '';
+      if (modalCta && ann.cta_link) modalCta.href = ann.cta_link;
+      if (modalCtaText && ann.cta_text) modalCtaText.textContent = ann.cta_text;
+
+      // Apply Custom Background Color
+      if (ann.bg_color) {
+        bar.style.background = ann.bg_color;
+      } else {
+        bar.style.removeProperty('background');
+      }
+
+      bar.classList.remove('is-dismissed');
+      bar.style.removeProperty('display');
+      document.body.classList.add('has-announcement');
+      requestAnimationFrame(updateBarHeight);
+      return true;
+    }
+
+    // Modal open / close handlers (bind once)
     function openOfferModal(e) {
       if (e) {
         e.preventDefault();
@@ -1141,25 +1164,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    bar.classList.remove('is-dismissed');
-    bar.style.removeProperty('display');
-    document.body.classList.add('has-announcement');
-
-    // Dynamically calculate and apply bar height for both desktop and mobile
-    function updateBarHeight() {
-      if (bar.classList.contains('is-dismissed') || bar.style.display === 'none') {
-        document.body.classList.remove('has-announcement');
-        document.documentElement.style.removeProperty('--ad-height');
-        return;
-      }
-      const h = bar.offsetHeight;
-      if (h > 0) {
-        document.documentElement.style.setProperty('--ad-height', h + 'px');
-      }
-    }
-    requestAnimationFrame(updateBarHeight);
-    window.addEventListener('resize', updateBarHeight);
-
     function dismissAnnouncement(e) {
       if (e) {
         e.preventDefault();
@@ -1169,12 +1173,37 @@ document.addEventListener('DOMContentLoaded', () => {
       bar.style.setProperty('display', 'none', 'important');
       document.body.classList.remove('has-announcement');
       document.documentElement.style.removeProperty('--ad-height');
+      try {
+        sessionStorage.setItem('alawael_announcement_closed', 'true');
+      } catch(e) {}
     }
 
     if (closeBtn && !closeBtn.dataset.bound) {
       closeBtn.dataset.bound = 'true';
       closeBtn.addEventListener('click', dismissAnnouncement);
       closeBtn.addEventListener('touchend', dismissAnnouncement, { passive: false });
+    }
+
+    if (!bar.dataset.resizeBound) {
+      bar.dataset.resizeBound = 'true';
+      window.addEventListener('resize', updateBarHeight);
+    }
+
+    // Step 1: Render immediately from localStorage cache (zero delay, zero flicker)
+    try {
+      const cached = localStorage.getItem('alawael_announcement_data');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        renderAnnouncement(parsed);
+      }
+    } catch(e) {}
+
+    // Step 2: Fetch latest from cloud database and update smoothly
+    try {
+      const ann = await SiteData.getAnnouncement();
+      renderAnnouncement(ann);
+    } catch(err) {
+      console.warn('Could not refresh announcement:', err);
     }
   }
 
@@ -1183,27 +1212,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Listen to live changes from Admin Panel in other tabs or same window
   window.addEventListener('alawael_announcement_changed', () => {
-    sessionStorage.removeItem('alawael_announcement_closed');
+    try { sessionStorage.removeItem('alawael_announcement_closed'); } catch(e) {}
     const bar = document.getElementById('topAnnouncementBar');
     if (bar) bar.classList.remove('is-dismissed');
     initAnnouncementBar();
   });
   window.addEventListener('storage', (e) => {
     if (e.key === 'alawael_announcement_data') {
-      sessionStorage.removeItem('alawael_announcement_closed');
+      try { sessionStorage.removeItem('alawael_announcement_closed'); } catch(e) {}
       const bar = document.getElementById('topAnnouncementBar');
       if (bar) bar.classList.remove('is-dismissed');
       initAnnouncementBar();
-    }
-  });
-  window.addEventListener('focus', initAnnouncementBar);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) initAnnouncementBar();
-  });
-  window.addEventListener('resize', () => {
-    const bar = document.getElementById('topAnnouncementBar');
-    if (bar && bar.style.display !== 'none') {
-      document.documentElement.style.setProperty('--ad-height', bar.offsetHeight + 'px');
     }
   });
 

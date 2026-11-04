@@ -5381,6 +5381,7 @@ img[src*="wael_portrait"] {
    Distinctive, high-converting offer theme contrasting brilliantly with navy
    ========================================================================== */
 .top-announcement-bar {
+  display: none;
   background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 45%, #b91c1c 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
@@ -5393,6 +5394,10 @@ img[src*="wael_portrait"] {
   padding: 7px 14px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   font-family: var(--font-ar);
+}
+
+body.has-announcement .top-announcement-bar:not(.is-dismissed) {
+  display: block;
 }
 
 .announcement-flex {
@@ -5542,7 +5547,7 @@ body.has-announcement .main-navbar {
 /* Mobile Announcement Bar */
 @media (max-width: 768px) {
   .top-announcement-bar {
-    display: block !important;
+    display: none;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -5553,6 +5558,10 @@ body.has-announcement .main-navbar {
     font-size: 0.8rem;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  body.has-announcement .top-announcement-bar:not(.is-dismissed) {
+    display: block !important;
   }
 
   .top-announcement-bar.is-dismissed {
